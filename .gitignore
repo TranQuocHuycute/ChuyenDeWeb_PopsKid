@@ -1,31 +1,23 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Other files and folders
-.settings/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# testing
+/coverage
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
-/chuyendeweb_popskid/node_modules/
-/chuyendeweb_popskid/dist/
-/chuyendeweb_popskid/npm-debug.*
-/chuyendeweb_popskid/*.jks
-/chuyendeweb_popskid/*.p8
-/chuyendeweb_popskid/*.p12
-/chuyendeweb_popskid/*.key
-/chuyendeweb_popskid/*.orig.*
-/chuyendeweb_popskid/web-build/
-package-lock.json
-/chuyendeweb_popskid/yarn.lock
-# macOS
-/Freentship/.DS_Store
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
