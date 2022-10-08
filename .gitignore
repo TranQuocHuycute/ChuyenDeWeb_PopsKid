@@ -16,3 +16,16 @@ bin-release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
+/chuyendeweb_popskid/node_modules/
+/chuyendeweb_popskid/dist/
+/chuyendeweb_popskid/npm-debug.*
+/chuyendeweb_popskid/*.jks
+/chuyendeweb_popskid/*.p8
+/chuyendeweb_popskid/*.p12
+/chuyendeweb_popskid/*.key
+/chuyendeweb_popskid/*.orig.*
+/chuyendeweb_popskid/web-build/
+package-lock.json
+/chuyendeweb_popskid/yarn.lock
+# macOS
+/Freentship/.DS_Store
