@@ -1,12 +1,35 @@
 import React, { useState } from "react";
-import Nav from './Nav'
+import Nav from "./Nav";
 import Seacrh from "./Seacrh";
+import Menu from "../../Popper/Menu";
+import images from "../../../../assets/images";
 
 const profile =
   "https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp";
 
-function Header() {
+const ITEMS = [
+  {
+    title: "POPS kid learn",
+    icon: images.searchIsActive,
 
+    to: "/learn",
+  },
+  {
+    title: "Đăng xuất",
+    icon: images.searchIsActive,
+    to: "/learn",
+  },
+  {
+    title: "Về chúng tôi",
+    icon: images.searchIsActive,
+    to: "/learn",
+  },
+];
+function Header() {
+  const [imgActive, setImgActive] = useState(true);
+  const handdlesSearch = () => {
+    setImgActive((current) => !current);
+  };
   return (
     <div className="w-full h-32 bg-white flex justify-around items-center  ">
       {/* logo */}
@@ -17,141 +40,17 @@ function Header() {
       {/* Nav */}
 
       {/* <Nav/> */}
-      <Seacrh/>
+      {imgActive ? <Nav /> : <Seacrh />}
 
       {/* Item */}
       <div className="flex">
-        <span className="mx-4">
-          <svg
-            viewBox="0 0 32 32"
-            height="35"
-            width="35"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="15.5"
-              cy="15.5"
-              r="12.5"
-              fill="url(#paint0_linear_959_5881)"
-            ></circle>
-            <g filter="url(#filter0_f_959_5881)">
-              <circle
-                cx="15.5"
-                cy="15.5"
-                r="10.5"
-                fill="url(#paint1_linear_959_5881)"
-              ></circle>
-            </g>
-            <path
-              d="M12 12H20"
-              stroke="url(#paint2_linear_959_5881)"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-            <path
-              d="M12 17H17"
-              stroke="url(#paint3_linear_959_5881)"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-            <path
-              d="M29 29L26 26"
-              stroke="#5798F8"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-            <defs>
-              <filter
-                id="filter0_f_959_5881"
-                x="1"
-                y="1"
-                width="29"
-                height="29"
-                filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
-              >
-                <feFlood
-                  flood-opacity="0"
-                  result="BackgroundImageFix"
-                ></feFlood>
-                <feBlend
-                  mode="normal"
-                  in="SourceGraphic"
-                  in2="BackgroundImageFix"
-                  result="shape"
-                ></feBlend>
-                <feGaussianBlur
-                  stdDeviation="2"
-                  result="effect1_foregroundBlur_959_5881"
-                ></feGaussianBlur>
-              </filter>
-              <linearGradient
-                id="paint0_linear_959_5881"
-                x1="15.5"
-                y1="3"
-                x2="15.5"
-                y2="28"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#9BCFFB"></stop>
-                <stop offset="1" stop-color="#468BF7"></stop>
-              </linearGradient>
-              <linearGradient
-                id="paint1_linear_959_5881"
-                x1="15.5"
-                y1="5"
-                x2="15.5"
-                y2="26"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#81C1F9"></stop>
-                <stop offset="1" stop-color="#8EBBF9"></stop>
-              </linearGradient>
-              <linearGradient
-                id="paint2_linear_959_5881"
-                x1="22.6667"
-                y1="11"
-                x2="19.8915"
-                y2="6.49541"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#F4B75B"></stop>
-                <stop offset="1" stop-color="#FBE099"></stop>
-              </linearGradient>
-              <linearGradient
-                id="paint3_linear_959_5881"
-                x1="18.6667"
-                y1="16"
-                x2="15.5598"
-                y2="12.8482"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#F4B75B"></stop>
-                <stop offset="1" stop-color="#FBE099"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-        </span>
-        {/* <span className="mx-4">
-          <svg
-            viewBox="0 0 32 32"
-            height="35"
-            width="35"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M15.3159 4.99716C9.61312 4.99716 4.99718 9.61306 4.99718 15.3158C4.99718 21.0186 9.61312 25.6345 15.3159 25.6345C21.0188 25.6345 25.6347 21.0186 25.6347 15.3158C25.6347 14.7643 26.0818 14.3172 26.6333 14.3172C27.1848 14.3172 27.6319 14.7643 27.6319 15.3158C27.6319 22.1216 22.1218 27.6317 15.3159 27.6317C8.51011 27.6317 3 22.1216 3 15.3158C3 8.51006 8.51011 3 15.3159 3C15.8675 3 16.3145 3.44708 16.3145 3.99858C16.3145 4.55008 15.8675 4.99716 15.3159 4.99716ZM19.0098 4.36827C18.4808 4.36827 18.0519 4.67461 18.0519 5.05249C18.0519 5.43037 18.4808 5.7367 19.0098 5.7367H26.6731C27.2021 5.7367 27.631 5.43037 27.631 5.05249C27.631 4.67461 27.2021 4.36827 26.6731 4.36827H19.0098ZM18.9642 8.47356C18.4604 8.47356 18.0519 8.77989 18.0519 9.15777C18.0519 9.53565 18.4604 9.84199 18.9642 9.84199H22.6134C23.1172 9.84199 23.5257 9.53565 23.5257 9.15777C23.5257 8.77989 23.1172 8.47356 22.6134 8.47356H18.9642ZM26.396 25.1524C26.0525 24.8088 25.4955 24.8088 25.1519 25.1524C24.8084 25.4959 24.8084 26.0529 25.1519 26.3965L27.4978 28.7423C27.8413 29.0859 28.3983 29.0859 28.7419 28.7423C29.0854 28.3988 29.0854 27.8418 28.7419 27.4982L26.396 25.1524Z"
-              fill="#B6B6B6"
-            ></path>
-          </svg>
-        </span> */}
+        <button className="mx-4">
+          <img
+            src={imgActive ? images.searchInActive : images.searchIsActive}
+            onClick={() => handdlesSearch()}
+            alt=""
+          />
+        </button>
 
         <span className="mx-4">
           <svg
@@ -178,7 +77,9 @@ function Header() {
           </svg>
         </span>
 
-        <img className="w-9 h-9 mx-4" src={profile}></img>
+        <Menu items={ITEMS}>
+          <img className="w-9 h-9 mx-4" src={profile} alt=""></img>
+        </Menu>
       </div>
     </div>
   );

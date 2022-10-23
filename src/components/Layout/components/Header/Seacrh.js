@@ -1,7 +1,7 @@
 import React from "react";
-import Tippy from "@tippyjs/react";
+import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../../Popper";
-import "tippy.js/dist/tippy.css"; // optional
+import "tippy.js/dist/tippy.css";
 function Seacrh() {
   return (
     <Tippy
@@ -9,52 +9,54 @@ function Seacrh() {
       render={(attrs) => (
         <div className="box" tabIndex="-1" {...attrs}>
           <PopperWrapper>
-            <div className="m-2 mx-6 ">TÌM KIẾM GẦN ĐÂY</div>
-            <div className=" m-2 mx-6 border-b-[1px] border-[#e5e7eb]"></div>
-            <div className="m-2 mx-6">HOT KEYWORDS</div>
-            <ul className="flex flex-wrap m-3">
-              <li className="p-2  m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Doreamon</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Doreamon</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Doreamon</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Doreamon</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Doreamon</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Doreamon</a>
-              </li>
-              <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-              </li>
-            </ul>
+            <div className="w-[40rem]">
+              <div className="m-2 mx-6 ">TÌM KIẾM GẦN ĐÂY</div>
+              <div className=" m-2 mx-6 border-b-[1px] border-[#e5e7eb]"></div>
+              <div className="m-2 mx-6">HOT KEYWORDS</div>
+              <ul className="flex flex-wrap m-3">
+                <li className="p-2  m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Doreamon</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Doreamon</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Doreamon</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Doreamon</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Doreamon</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Doreamon</a>
+                </li>
+                <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                  <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                </li>
+              </ul>
+            </div>
           </PopperWrapper>
         </div>
       )}
     >
-      <div className="w-[38rem] h-14 flex bg-[#e5e7eb] rounded-full">
+      <div className="w-[40rem] h-14 flex bg-[#e5e7eb] rounded-full">
         <input
           className="w-full bg-transparent mx-4 transparent focus:outline-none"
           spellCheck={false}

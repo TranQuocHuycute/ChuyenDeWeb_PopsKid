@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 const images = [
   {
     inActive:
@@ -41,7 +41,7 @@ function Nav() {
   const [isActive, setIsActive] = useState(0);
 
   return (
-    <div>
+    <div >
       <ul className="flex content-center">
         {images.map((i, index) => (
           <li key={index}>
