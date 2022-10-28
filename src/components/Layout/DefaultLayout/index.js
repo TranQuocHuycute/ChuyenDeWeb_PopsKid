@@ -4,7 +4,7 @@ import Banner from "./Banner";
 
 function DefaultLayout() {
   return (
-    <div className="bg-[#e5e7eb] relative">
+    <div className="bg-[#f0f0f0] relative">
       <Header />
       <Banner />
       <diV>

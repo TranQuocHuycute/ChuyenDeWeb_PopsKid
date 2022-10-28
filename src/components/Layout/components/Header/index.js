@@ -47,7 +47,6 @@ const useOutsideClick = (callback) => {
   return ref;
 };
 
-
 function Header() {
   const [imgActive, setImgActive] = useState(true);
   const scrollDirection = useScrollDirection();

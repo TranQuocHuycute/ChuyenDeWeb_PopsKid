@@ -1,11 +1,25 @@
-import React from "react";
+import React , {useState , useEffect} from "react";
 import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../../Popper";
 import "tippy.js/dist/tippy.css";
 function Seacrh() {
+
+  const [searchValue, setSearchValue] = useState("");
+  const [seacrhResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    // setTimeout(() => {
+    setSearchResult([1]);
+    // }, 0);
+    console.log(seacrhResult);
+  }, []);
+
+  console.log('search value:' , searchValue)
+
   return (
     <Tippy
       trigger="click"
+      // visible = {searchValue}
       interactive
       render={(attrs) => (
         <div className="box" tabIndex="-1" {...attrs}>
@@ -50,7 +64,6 @@ function Seacrh() {
                 </li>
                 <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
                   <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-
                 </li>
               </ul>
             </div>
@@ -60,6 +73,8 @@ function Seacrh() {
     >
       <div className="w-[40rem] h-14 flex bg-[#e5e7eb] rounded-full">
         <input
+          value={searchValue}
+          onChange = {(e)=> setSearchValue(e.target.value)}
           className="w-full bg-transparent mx-4 transparent focus:outline-none"
           spellCheck={false}
           placeholder="Hoạt hình , tiếng anh , Doreamon ..., ca nhạc"
