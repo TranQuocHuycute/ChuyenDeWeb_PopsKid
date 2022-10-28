@@ -6,6 +6,7 @@ function Seacrh() {
   return (
     <Tippy
       trigger="click"
+      interactive
       render={(attrs) => (
         <div className="box" tabIndex="-1" {...attrs}>
           <PopperWrapper>
@@ -49,6 +50,7 @@ function Seacrh() {
                 </li>
                 <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
                   <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+
                 </li>
               </ul>
             </div>

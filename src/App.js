@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { DefaultLayout } from "./components/Layout";
 import { publicRoutes } from "./routes";
-import { Fragment } from 'react';
+import React, { Fragment } from "react";
+// import "./fontawesome"
 import "./index.css";
+
+
 
 function App() {
   return (
