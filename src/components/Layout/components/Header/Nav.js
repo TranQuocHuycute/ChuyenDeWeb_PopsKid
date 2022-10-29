@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { images } from "../../../../assets/images/iconnav";
+import { Link } from "react-router-dom";
 function Nav() {
-  const [isActive, setIsActive] = useState(0);
+  const [isActive, setIsActive] = useState();
 
   return (
     <div>
       <ul className="flex content-center">
         {images.map((i, index) => (
           <li key={index}>
-            <a
+            <Link
               className="relative flex justify-center"
+              to = {i.to}
               onClick={() => setIsActive(index)}
             >
               <img
@@ -28,7 +30,7 @@ function Nav() {
                   {i.title}
                 </span>
               ) */}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

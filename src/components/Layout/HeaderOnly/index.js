@@ -1,11 +1,11 @@
 import { Children } from "react"
 import Header from "../components/Header"
 
-function HeaderOnly({Children}) {
+function HeaderOnly({children}) {
   return (
     <div>HeaderOnly
         <Header/>
-        <div>{Children}</div>
+        <div>{children}</div>
     </div>
   )
 }

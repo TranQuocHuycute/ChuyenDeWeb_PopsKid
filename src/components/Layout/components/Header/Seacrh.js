@@ -19,8 +19,8 @@ function Seacrh() {
   return (
     <Tippy
       trigger="click"
-      // visible = {searchValue}
-      interactive
+      // visible 
+      interactive 
       render={(attrs) => (
         <div className="box" tabIndex="-1" {...attrs}>
           <PopperWrapper>

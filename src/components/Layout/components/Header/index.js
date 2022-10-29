@@ -66,14 +66,12 @@ function Header() {
       ref={ref}
       className={` sticky ${
         scrollDirection === "down" ? "-top-32" : "top-0"
-      }  w-full h-16 md:h-32 bg-white flex justify-around items-center rounded-b-lg transition-all duration-500 `}
+      } z-10 w-full h-16 md:h-32 bg-white flex justify-around items-center rounded-b-3xl transition-all duration-500 `}
     >
       {/* logo */}
       <div className=" hidden md:block md:w-20 md:h-14  ">
         <img src={require("../../../../assets/images/logo.png")} alt="Logo" />
       </div>
-
-      {/* Nav */}
 
       {/* <Nav/> */}
       {imgActive ? <Nav /> : <Seacrh />}

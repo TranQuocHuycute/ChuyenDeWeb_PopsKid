@@ -25,7 +25,7 @@ const ITEMS = [
     title: "Tài khoản",
     isActive: images.accIsActive,
     inActive: images.accInActive,
-    to: "/seacrh",
+    to: "/profile",
   },
 ];
 
