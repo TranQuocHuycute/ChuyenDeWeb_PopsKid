@@ -1,11 +1,14 @@
 import Header from "../components/Header"
+import LearningCard from "../components/LearningCard"
 import Banner from "./Banner"
+
 
 function DefaultLayout() {
   return (
-    <div className="bg-[#e5e7eb]">
+    <div className="bg-[#f2fafd]">
         <Header/>
         <Banner/>
+        <LearningCard/>
     </div>
   )
 }
