@@ -50,10 +50,10 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="carousel my-12 mx-auto pl-20 pt-5">
+    <div className="carousel my-12 mx-auto pl-20 pt-5 rounded-md">
       {/* Tên phim */}
-      <div>
-        <div className="flex flex-row justify-items-center items-center">
+      <div clasName="rounded-md">
+        <div className="flex flex-row justify-items-center items-center rounded-md">
           {/* icon */}
           <div className="mr-2">
             <svg
@@ -161,21 +161,21 @@ const Carousel = () => {
       </section>
 
       {/* carousel */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden rounded-md">
         <div
           ref={carousel}
-          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 rounded-md"
         >
           {data.resources.map((resource, index) => {
             return (
-              <div className="px-2 pb-20 text-black">
+              <div className="px-2 pb-20 text-black rounded-md">
                 <div
                   key={index}
-                  className="carousel-item text-start relative w-64 h-32 snap-start"
+                  className="carousel-item text-start relative w-64 h-32 snap-start rounded-md"
                 >
                   <a
                     href={resource.link}
-                    className="scale-100 hover:scale-105 ease-in duration-100 h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                    className="scale-100 hover:scale-105 ease-in duration-100 h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
                     style={{
                       backgroundImage: `url(${resource.imageUrl || ""})`,
                     }}
@@ -183,7 +183,7 @@ const Carousel = () => {
                     <img
                       src={resource.imageUrl || ""}
                       alt={resource.title}
-                      className="aspect-square hidden "
+                      className="aspect-square hidden rounded-md"
                     />
                   </a>
                   <a
