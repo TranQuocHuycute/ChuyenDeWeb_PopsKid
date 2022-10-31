@@ -190,7 +190,7 @@ const Carousel = () => {
                     href={resource.link}
                     className="aspect-square block absolute transition-opacity z-10"
                   >
-                    <h3 className="pt-2 w-64 mx-auto text-xl font-bold">
+                    <h3 className="pt-2 w-64 mx-auto text-xl font-bold truncate">
                       {resource.title}
                     </h3>
                   </a>
