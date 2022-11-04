@@ -1,13 +1,16 @@
-import Header from "../components/Header"
-import Banner from "./Banner"
+import Header from "../components/Header";
+import BottomNavMobile from "../components/BottomNavMobile";
+import Banner from "./Banner";
+import { Children } from "react";
 
-function DefaultLayout() {
+function DefaultLayout({children}) {
   return (
-    <div className="bg-[#e5e7eb]">
-        <Header/>
-        <Banner/>
+    <div className="bg-[#f4f3f3] relative">
+      <Header />
+      {children}
+      <BottomNavMobile/>
     </div>
-  )
+  );
 }
 
-export default DefaultLayout
+export default DefaultLayout;
