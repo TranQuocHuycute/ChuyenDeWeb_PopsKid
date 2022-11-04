@@ -1,10 +1,8 @@
 
 import Header from "../components/Header";
 import BottomNavMobile from "../components/BottomNavMobile";
-import Banner from "./Banner";
-import { Children } from "react";
 import Carousel from "../components/Carousel"
-
+import LearningCard from "../components/LearningCard"
 
 
 function DefaultLayout({children}) {
@@ -12,6 +10,7 @@ function DefaultLayout({children}) {
     <div className="bg-[#f4f3f3] relative">
       <Header />
       {children}
+      <LearningCard/>
       <Carousel/>
       <BottomNavMobile/>
     </div>
