@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-
+import { Outlet, Link } from "react-router-dom";
 // Data
 import data from "./data.json";
 
@@ -173,8 +173,8 @@ const Carousel = () => {
                   key={index}
                   className="carousel-item text-start relative w-64 h-32 snap-start rounded-md"
                 >
-                  <a
-                    href={resource.link}
+                  <Link
+                    to={resource.to}
                     className="scale-100 hover:scale-105 ease-in duration-100 h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
                     style={{
                       backgroundImage: `url(${resource.imageUrl || ""})`,
@@ -185,15 +185,15 @@ const Carousel = () => {
                       alt={resource.title}
                       className="aspect-square hidden rounded-md"
                     />
-                  </a>
-                  <a
-                    href={resource.link}
+                  </Link>
+                  <Link
+                    to={resource.to}
                     className="aspect-square block absolute transition-opacity z-10"
                   >
                     <h3 className="pt-2 w-64 mx-auto text-xl font-bold">
                       {resource.title}
                     </h3>
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

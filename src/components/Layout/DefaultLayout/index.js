@@ -6,7 +6,7 @@ import BottomNavMobile from "../components/BottomNavMobile";
 
 function DefaultLayout({children}) {
   return (
-    <div className="bg-[#f4f3f3] relative">
+    <div className="relative">
       <Header />
       {children}
       <BottomNavMobile/>
