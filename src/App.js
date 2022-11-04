@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { DefaultLayout } from "./components/Layout";
 import { publicRoutes } from "./routes";
 import React, { Fragment } from "react";
-// import "./fontawesome"
 import "./index.css";
 
 

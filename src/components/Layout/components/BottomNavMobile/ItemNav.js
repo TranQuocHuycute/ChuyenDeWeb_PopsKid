@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import images from "../../../../assets/images";
-import useScrollDirection from "../useScrollDirection";
 import { Outlet, Link } from "react-router-dom";
 const ITEMS = [
   {
