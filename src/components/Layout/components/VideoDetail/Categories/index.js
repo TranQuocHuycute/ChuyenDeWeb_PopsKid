@@ -66,7 +66,7 @@ function Categories() {
           </Box>
         </div>
         <div className="flex justify-center">
-        <div className="bg-[#f5f5f5] mt-6 w-96">
+        <div className="bg-[#f5f5f5] mt-6 w-[770px] rounded-2xl">
           <TabPanel value={value} index={0}>
             <EpisodeList/>
           </TabPanel>

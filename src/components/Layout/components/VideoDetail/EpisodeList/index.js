@@ -1,89 +1,62 @@
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-export default function EpisodeList() {
+import React from "react";
+import Option from "../Option";
+import data from "../../Carousel/data.json";
+import { Link } from "react-router-dom";
+import images from "../../../../../assets/images";
+function EpisodeList() {
   return (
-    <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none ">
-        Mùa 2 - 2022
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-        </Menu.Button>
-      </div>
-
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute left-0 z-10 w-56 origin-top-right  bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
+    <div>
+      <Option />
+      <div className="border-t border-[black] ">
+        <div className="mt-5">
+          {data.resources.map((resource, index) => {
+            return (
+              <div className="px-2 pb-6 text-black rounded-md flex relative">
+                <div
+                  key={index}
+                  className="carousel-item text-start relative w-[273px] h-[154px] snap-start rounded-md overflow-hidden hover:drop-shadow-[0_1px_5px_rgba(6,175,195)]"
                 >
-                  Account settings
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Support
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  License
-                </a>
-              )}
-            </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
-                    )}
+                  <Link
+                    className="scale-100 hover:scale-105 ease-in duration-100 w-[273px] h-[154px] aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat rounded-md"
+                    style={{
+                      backgroundImage: `url(${resource.imageUrl})`,
+                    }}
                   >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
-  )
+                    <img
+                      src={resource.imageUrl || ""}
+                      alt={resource.title}
+                      className="aspect-square hidden rounded-md"
+                    />
+                  </Link>
+                </div>
+                <div className="px-4 w-[398px] flex flex-col justify-between ">
+                  <Link>
+                    <h3 className="w-[398px] mx-auto text-xl font-bold">
+                      {resource.title}
+                    </h3>
+                  </Link>
+                  <div className="flex justify-between">
+                    <p className="flex justify-center items-center text-[#808080] text-xs	">
+                      <span className="mr-2">
+                        <img className="" src={images.time} />
+                      </span>
+                      5mins
+                    </p>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-6 right-0">
+   
+                    <img src={images.favorite} />
+                  
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default EpisodeList;
