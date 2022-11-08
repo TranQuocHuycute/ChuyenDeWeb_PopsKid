@@ -7,17 +7,17 @@ function EpisodeList() {
   return (
     <div>
       <Option />
-      <div className="border-t border-[black] ">
+      <div className="w-full border-t border-[black] ">
         <div className="mt-5">
           {data.resources.map((resource, index) => {
             return (
-              <div className="px-2 pb-6 text-black rounded-md flex relative">
+              <div className="px-2 pb-6 text-black rounded-md flex relative ">
                 <div
                   key={index}
-                  className="carousel-item text-start relative w-[273px] h-[154px] snap-start rounded-md overflow-hidden hover:drop-shadow-[0_1px_5px_rgba(6,175,195)]"
+                  className=" text-start relative md:w-[273px] md:h-[154px] rounded-sm overflow-hidden hover:drop-shadow-[0_1px_5px_rgba(6,175,195)]"
                 >
                   <Link
-                    className="scale-100 hover:scale-105 ease-in duration-100 w-[273px] h-[154px] aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat rounded-md"
+                    className="scale-100 hover:scale-110 ease-in duration-200 w-[168px] h-[95px] md:w-[273px] md:h-[154px] aspect-square block md:bg-origin-padding md:bg-left-top bg-cover bg-no-repeat rounded-md"
                     style={{
                       backgroundImage: `url(${resource.imageUrl})`,
                     }}
@@ -29,9 +29,9 @@ function EpisodeList() {
                     />
                   </Link>
                 </div>
-                <div className="px-4 w-[398px] flex flex-col justify-between ">
+                <div className=" md:px-4 w:auto w-[150px] ml-2 md:w-[398px] flex flex-col justify-between ">
                   <Link>
-                    <h3 className="w-[398px] mx-auto text-xl font-bold">
+                    <h3  className="md:w-[398px] w-[166px] h-auto md:text-xl text-sm font-bold">
                       {resource.title}
                     </h3>
                   </Link>
@@ -46,9 +46,9 @@ function EpisodeList() {
                 </div>
 
                 <div className="absolute bottom-6 right-0">
-   
+
                     <img src={images.favorite} />
-                  
+
                 </div>
               </div>
             );

@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Carousel from "../../Carousel";
 import EpisodeList from "../EpisodeList";
+import MoiveList from "../MovieList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,35 +49,33 @@ function Categories() {
   };
 
   return (
-    
-      <Box sx={{ width: "100%" }}>
-        <div className="bg-[#f5f5f5] mt-6 pt-4">
-          <Box>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              textColor="secondary"
-              indicatorColor="secondary"
-              centered
-              aria-label="basic tabs example"
-            >
-              <Tab label="Item One" {...a11yProps(0)} />
-              <Tab label="Item Two" {...a11yProps(1)} />
-            </Tabs>
-          </Box>
-        </div>
-        <div className="flex justify-center">
-        <div className="bg-[#f5f5f5] mt-6 w-[770px] rounded-2xl">
+    <Box sx={{ width: "100%" }}>
+      <div className="bg-[#f5f5f5] pt-2 md:mt-6 md:pt-4">
+        <Box>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            textColor="secondary"
+            indicatorColor="secondary"
+            centered
+            aria-label="basic tabs example"
+          >
+            <Tab label="Tập" {...a11yProps(0)} />
+            <Tab label="Xem thêm" {...a11yProps(1)} />
+          </Tabs>
+        </Box>
+      </div>
+      <div className="flex justify-center">
+        <div className= " w-full md:bg-[#f5f5f5] md:mt-6 md:w-[770px] md:rounded-2xl">
           <TabPanel value={value} index={0}>
-            <EpisodeList/>
+            <EpisodeList />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
+            <MoiveList/>
           </TabPanel>
         </div>
-        </div>
-      </Box>
-    
+      </div>
+    </Box>
   );
 }
 

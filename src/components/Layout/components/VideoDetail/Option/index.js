@@ -20,10 +20,10 @@ export default function Option() {
   };
 
   return (
-    <Menu as="div" className="relative text-left w-full mb-5 ">
-      <Menu.Button className="inline-flex  justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none ">
+    <Menu as="div" className="relative flex  md:text-left md:w-full md:mb-5 mb-5 ">
+      <Menu.Button className=" flex ml-5 md:inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 md:text-sm md:font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none ">
         {optionValue == 0 ? Episode[0].name : optionValue.name}
-        <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        <ChevronDownIcon className="-mr-1 ml-5 h-5 w-5" aria-hidden="true" />
       </Menu.Button>
 
       <Transition
@@ -35,7 +35,7 @@ export default function Option() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute left-0 z-10 origin-top-right w-full bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute  top-11 left-5 z-10 origin-top-right md:w-full bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {Episode.map((i) => (
               <Menu.Item key={i.id}>
