@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 // Data
-import data from "./data.json";
+import dataCarousel from "./dataCarousel.json";
 
 const Carousel = () => {
   const maxScrollWidth = useRef(0);
@@ -166,7 +166,7 @@ const Carousel = () => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 rounded-md"
         >
-          {data.resources.map((resource, index) => {
+          {dataCarousel.resources.map((resource, index) => {
             return (
               <div className="px-2 pb-20 text-black rounded-md">
                 <div
