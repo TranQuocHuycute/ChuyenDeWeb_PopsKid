@@ -54,18 +54,18 @@ const Slider = () => {
       <div className="static">
         {/* slider */}
         <div>
-          <div>
+          {/* <div>
             <img src={require("../../../../assets/images/slider.png")} alt='slider'></img>
           </div>
           <div className="pt-36 w-full absolute left-20 top-1/3">
             <button class="bg-sky-400 hover:bg-sky-700 text-white font-bold py-2 px-2 rounded-full">
               <p className="mx-3">CHI TIẾT</p>
             </button>
-          </div>
+          </div> */}
 
           {/* <div className="bg-[#fff] w-full h-36 absolute"></div> */}
 
-          <div className="slider mx-auto pl-20 rounded-md mb-96 ">
+          <div className="slider mx-auto pl-20 rounded-md mb-96 pt-6">
             {/* <div className="absolute top-3/4"></div> */}
             {/* Tên phim */}
             <div clasName="rounded-md">
@@ -186,7 +186,7 @@ const Slider = () => {
               >
                 {dataSlider.resources.map((resource, index) => {
                   return (
-                    <div className="px-2 pb-20 text-black rounded-md">
+                    <div className="px-2 pb-10 text-black rounded-md">
                       <div
                         key={index}
                         className="slider-item text-start relative w-64 h-64 snap-start rounded-md"
