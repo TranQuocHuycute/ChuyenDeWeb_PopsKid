@@ -6,7 +6,7 @@ function DefaultLayout() {
   return (
     <div className="bg-[#e5e7eb]">
         <Header/>
-        <div><Slider/></div>
+        <div className="bg-[#ededed]"><Slider/></div>
         
         
     </div>
