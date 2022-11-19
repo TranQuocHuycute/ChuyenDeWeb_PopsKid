@@ -51,8 +51,10 @@ const LearningCard = () => {
       : 0;
   }, []);
 
+  const [isLike, setIsLike] = useState(false);
+
   return (
-    <div className="learningcard my-12 mx-auto pl-20 pt-5">
+    <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16">
       {/* Pha doa cung */}
       <div>
         <div className="flex flex-row justify-items-center items-center">
@@ -80,7 +82,7 @@ const LearningCard = () => {
           <a className="flex" href="...">
             {/* tên phim */}
             <div className="mr-2">
-              <p className="text-3xl leading-8 font-bold text-slate-700">
+              <p className="text-xl xl:text-2xl 2xl:text-3xl leading-8 font-bold text-slate-700">
                 Phá Đảo Thế Giới Tik Tok
               </p>
             </div>
@@ -89,74 +91,76 @@ const LearningCard = () => {
       </div>
 
       {/* <> */}
-      <section className="pb-1 px-20">
-        <div class="flex justify-end flex-row p">
-          {/* < */}
-          <div class="flex items-center">
-            <div class="text-right">
-              <button
-                onClick={movePrev}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                disabled={isDisabled("prev")}
-                class="p-1 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
+      {/* {false && (  */}
+        <section className="pb-1 px-20">
+          <div class="flex justify-end flex-row">
+            {/* < */}
+            <div class="flex items-center">
+              <div class="text-right">
+                <button
+                  onClick={movePrev}
+                  className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  disabled={isDisabled("prev")}
+                  class="p-1 rounded-full"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-                <span className="sr-only">Prev</span>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                  <span className="sr-only">Prev</span>
+                </button>
+              </div>
+            </div>
+            {/* > */}
+            <div class="flex items-center">
+              <div class="text-right">
+                <button
+                  onClick={moveNext}
+                  className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  disabled={isDisabled("next")}
+                  class="p-1 rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </button>
+                <span className="sr-only">Next</span>
+              </div>
             </div>
           </div>
-          {/* > */}
-          <div class="flex items-center">
-            <div class="text-right">
-              <button
-                onClick={moveNext}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                disabled={isDisabled("next")}
-                class="p-1 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </button>
-              <span className="sr-only">Next</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      {/* )} */}
 
       {/* learningcard */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden pt-2">
         <div
           ref={learningcard}
           className="learningcard-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
           {dataLearningCard.resources.map((resource, index) => {
             return (
-              <div className="pl-4 pb-28">
+              <div className="pl-4 pb-10">
                 <div className="pb-32 text-black bg-[#fff] rounded-md">
                   <div className="rounded-md">
                     <div
