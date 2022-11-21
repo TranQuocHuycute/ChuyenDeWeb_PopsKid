@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 // Data
-import data from "./data.json";
+import dataCarousel from "./dataCarousel.json";
 
 const Carousel = () => {
   const maxScrollWidth = useRef(0);
@@ -50,7 +50,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="carousel my-12 mx-auto pl-20 pt-5 rounded-md">
+    <div className="carousel mx-6 xl:mx-16 2xl:mx-16 rounded-md">
       {/* Tên phim */}
       <div clasName="rounded-md">
         <div className="flex flex-row justify-items-center items-center rounded-md">
@@ -101,72 +101,74 @@ const Carousel = () => {
       </div>
 
       {/* <> */}
-      <section className="pb-1 px-20">
-        <div class="flex justify-end flex-row p">
-          {/* < */}
-          <div class="flex items-center">
-            <div class="text-right">
-              <button
-                onClick={movePrev}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                disabled={isDisabled("prev")}
-                class="p-1 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
+      {/* {false && ( */}
+        <section className="pb-1 px-20">
+          <div class="flex justify-end flex-row p">
+            {/* < */}
+            <div class="flex items-center">
+              <div class="text-right">
+                <button
+                  onClick={movePrev}
+                  className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  disabled={isDisabled("prev")}
+                  class="p-1 rounded-full"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-                <span className="sr-only">Prev</span>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                  <span className="sr-only">Prev</span>
+                </button>
+              </div>
+            </div>
+            {/* > */}
+            <div class="flex items-center">
+              <div class="text-right">
+                <button
+                  onClick={moveNext}
+                  className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  disabled={isDisabled("next")}
+                  class="p-1 rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </button>
+                <span className="sr-only">Next</span>
+              </div>
             </div>
           </div>
-          {/* > */}
-          <div class="flex items-center">
-            <div class="text-right">
-              <button
-                onClick={moveNext}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                disabled={isDisabled("next")}
-                class="p-1 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </button>
-              <span className="sr-only">Next</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      {/* )} */}
 
       {/* carousel */}
-      <div className="relative overflow-hidden rounded-md">
+      <div className="relative overflow-hidden rounded-md pt-2">
         <div
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 rounded-md"
         >
-          {data.resources.map((resource, index) => {
+          {dataCarousel.resources.map((resource, index) => {
             return (
               <div className="px-2 pb-20 text-black rounded-md">
                 <div
@@ -190,7 +192,7 @@ const Carousel = () => {
                     to={resource.to}
                     className="aspect-square block absolute transition-opacity z-10"
                   >
-                    <h3 className="pt-2 w-64 mx-auto text-xl font-bold">
+                    <h3 className="pt-2 w-64 mx-auto text-xl font-bold truncate">
                       {resource.title}
                     </h3>
                   </Link>
