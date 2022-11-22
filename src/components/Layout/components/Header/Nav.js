@@ -25,11 +25,6 @@ function Nav() {
               ) : (
                 ""
               )}
-              {/* (
-                <span className=" opacity-100 text-gray-600 hover:opacity-100 absolute top-12 py-4">
-                  {i.title}
-                </span>
-              ) */}
             </Link>
           </li>
         ))}
