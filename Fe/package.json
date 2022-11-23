@@ -36,7 +36,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write .",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "lint-staged": {
+      "**/*.{js,jsx}": [
+        "npm run lint",
+        "prettier --write"
+      ]
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +67,12 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.2.0",
     "autoprefixer": "^10.4.12",
+    "eslint": "7.18.0",
+    "eslint-config-prettier": "8.1.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
     "postcss": "^8.4.18",
+    "prettier": "^2.7.1",
     "tailwindcss": "^3.2.0"
   }
 }

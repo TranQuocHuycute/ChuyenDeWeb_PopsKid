@@ -1,57 +1,57 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from 'react'
 
 // Data
-import dataLearningCard from "./dataLearningCard.json";
+import dataLearningCard from './dataLearningCard.json'
 
 const LearningCard = () => {
-  const maxScrollWidth = useRef(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const learningcard = useRef(null);
+  const maxScrollWidth = useRef(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const learningcard = useRef(null)
 
   const movePrev = () => {
     if (currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1);
+      setCurrentIndex((prevState) => prevState - 1)
     }
-  };
+  }
 
   const moveNext = () => {
     if (
       learningcard.current !== null &&
       learningcard.current.offsetWidth * currentIndex <= maxScrollWidth.current
     ) {
-      setCurrentIndex((prevState) => prevState + 1);
+      setCurrentIndex((prevState) => prevState + 1)
     }
-  };
+  }
 
   const isDisabled = (direction) => {
-    if (direction === "prev") {
-      return currentIndex <= 0;
+    if (direction === 'prev') {
+      return currentIndex <= 0
     }
 
-    if (direction === "next" && learningcard.current !== null) {
+    if (direction === 'next' && learningcard.current !== null) {
       return (
         learningcard.current.offsetWidth * currentIndex >=
         maxScrollWidth.current
-      );
+      )
     }
 
-    return false;
-  };
+    return false
+  }
 
   useEffect(() => {
     if (learningcard !== null && learningcard.current !== null) {
       learningcard.current.scrollLeft =
-        learningcard.current.offsetWidth * currentIndex;
+        learningcard.current.offsetWidth * currentIndex
     }
-  }, [currentIndex]);
+  }, [currentIndex])
 
   useEffect(() => {
     maxScrollWidth.current = learningcard.current
       ? learningcard.current.scrollWidth - learningcard.current.offsetWidth
-      : 0;
-  }, []);
+      : 0
+  }, [])
 
-  const [isLike, setIsLike] = useState(false);
+  // const [isLike, setIsLike] = useState(false);
 
   return (
     <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16">
@@ -92,64 +92,64 @@ const LearningCard = () => {
 
       {/* <> */}
       {/* {false && (  */}
-        <section className="pb-1 px-20">
-          <div class="flex justify-end flex-row">
-            {/* < */}
-            <div class="flex items-center">
-              <div class="text-right">
-                <button
-                  onClick={movePrev}
-                  className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                  disabled={isDisabled("prev")}
-                  class="p-1 rounded-full"
+      <section className="pb-1 px-20">
+        <div class="flex justify-end flex-row">
+          {/* < */}
+          <div class="flex items-center">
+            <div class="text-right">
+              <button
+                onClick={movePrev}
+                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                disabled={isDisabled('prev')}
+                class="p-1 rounded-full"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M15.75 19.5L8.25 12l7.5-7.5"
-                    />
-                  </svg>
-                  <span className="sr-only">Prev</span>
-                </button>
-              </div>
-            </div>
-            {/* > */}
-            <div class="flex items-center">
-              <div class="text-right">
-                <button
-                  onClick={moveNext}
-                  className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                  disabled={isDisabled("next")}
-                  class="p-1 rounded-full"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    />
-                  </svg>
-                </button>
-                <span className="sr-only">Next</span>
-              </div>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+                <span className="sr-only">Prev</span>
+              </button>
             </div>
           </div>
-        </section>
+          {/* > */}
+          <div class="flex items-center">
+            <div class="text-right">
+              <button
+                onClick={moveNext}
+                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                disabled={isDisabled('next')}
+                class="p-1 rounded-full"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </button>
+              <span className="sr-only">Next</span>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* )} */}
 
       {/* learningcard */}
@@ -172,11 +172,11 @@ const LearningCard = () => {
                         href={resource.link}
                         className="h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
                         style={{
-                          backgroundImage: `url(${resource.imageUrl || ""})`,
+                          backgroundImage: `url(${resource.imageUrl || ''})`,
                         }}
                       >
                         <img
-                          src={resource.imageUrl || ""}
+                          src={resource.imageUrl || ''}
                           alt={resource.title}
                           className="aspect-square hidden w-full rounded-md"
                         />
@@ -289,12 +289,12 @@ const LearningCard = () => {
                   </div>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LearningCard;
+export default LearningCard
