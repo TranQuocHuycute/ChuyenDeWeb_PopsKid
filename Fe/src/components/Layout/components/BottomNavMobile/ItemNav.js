@@ -1,42 +1,41 @@
-import React, { useState } from "react";
-import images from "../../../../assets/images";
-import { Outlet, Link } from "react-router-dom";
+import React, { useState } from 'react'
+import images from '../../../../assets/images'
+import { Link } from 'react-router-dom'
 const ITEMS = [
   {
-    title: "Home",
+    title: 'Home',
     isActive: images.homeIsActive,
     inActive: images.homeInActive,
-    to: "/",
+    to: '/',
   },
   {
-    title: "Tìm kiếm",
+    title: 'Tìm kiếm',
     isActive: images.searchIsActive,
     inActive: images.searchInActive,
-    to: "/search",
+    to: '/search',
   },
   {
-    title: "Yêu thích",
+    title: 'Yêu thích',
     isActive: images.favoriteIsActive,
     inActive: images.favoriteInActive,
-    to: "/learn",
+    to: '/learn',
   },
   {
-    title: "Tài khoản",
+    title: 'Tài khoản',
     isActive: images.accIsActive,
     inActive: images.accInActive,
-    to: "/profile",
+    to: '/profile',
   },
-];
+]
 
 function ItemNav() {
-  const [isActive, setIsActive] = useState(0);
+  const [isActive, setIsActive] = useState(0)
 
   return (
     <ul className="flex content-center">
       {ITEMS.map((i, index) => (
         <li key={index}>
           <Link
-           
             className="relative flex justify-center"
             onClick={() => setIsActive(index)}
             to={i.to}
@@ -58,7 +57,7 @@ function ItemNav() {
         </li>
       ))}
     </ul>
-  );
+  )
 }
 
-export default ItemNav;
+export default ItemNav
