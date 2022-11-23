@@ -12,7 +12,7 @@ function BottomNavMobile({children}) {
     >
       {children}
     </div>
-  );
+  )
 }
 
-export default BottomNavMobile;
+export default BottomNavMobile
