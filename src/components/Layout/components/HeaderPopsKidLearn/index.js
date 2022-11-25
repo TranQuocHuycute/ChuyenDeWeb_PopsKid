@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Menu from "../../Popper/Menu";
 import images from "../../../../assets/images";
-import useScrollDirection from "../useScrollDirection";
-
+import HeaderWrapper from "../HeaderWrapper";
+import MenuPopsKidLearn from "../MenuPopsKidLearn";
 const profile =
   "https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp";
 
@@ -24,44 +24,13 @@ const ITEMS = [
     to: "/learn",
   },
 ];
-const categories = [
-  { id: 1, title: "Khám Phá" },
-  { id: 2, title: "Khóa Học" },
-  { id: 3, title: "Nhận 200K" },
-  { id: 4, title: "Đối Tác Giáo Dục" },
-  { id: 5, title: "Khóa Học Đã Đăng Ký" },
-];
-
-const useOutsideClick = (callback) => {
-  const ref = useRef();
-
-  useEffect(() => {
-    const handleClick = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        callback();
-      }
-    };
-
-    document.addEventListener("click", handleClick, true);
-
-    return () => {
-      document.removeEventListener("click", handleClick, true);
-    };
-  }, [ref]);
-
-  return ref;
-};
 
 function HeaderPopsKidLearn() {
   const [imgActive, setImgActive] = useState(true);
-  const [activeCate, setActiveCate] = useState(1);
-  const scrollDirection = useScrollDirection();
 
   const handleClickOutside = () => {
     setImgActive(true);
   };
-
-  const ref = useOutsideClick(handleClickOutside);
 
   const handdlesSearch = () => {
     setImgActive((current) => !current);
@@ -72,20 +41,19 @@ function HeaderPopsKidLearn() {
   const [seacrhResult, setSearchResult] = useState([]);
 
   return (
-    <div className="relative">
-      <div
-        ref={ref}
-        className={` sticky ${
-          scrollDirection === "down" ? "-top-32" : "top-0"
-        } z-10 w-full h-16 md:h-32 bg-white flex justify-around items-center rounded-b-3xl transition-all duration-500 `}
-      >
+    <HeaderWrapper>
+      <div className="relative flex justify-around items-center w-full">
         {/* logo */}
-        <div className=" hidden md:block md:w-20 md:h-14  ">
-          <img src={require("../../../../assets/images/logo.png")} alt="Logo" />
+        <div className="  md:block md:w-20 md:h-14  ">
+          <img
+            className="w-[70px] h-[46px]"
+            src={require("../../../../assets/images/logo.png")}
+            alt="Logo"
+          />
         </div>
 
         <div className="relative">
-          <div className="shadow-md rounded-[24px] absolute  border-t hidden">
+          {/* <div className="shadow-md rounded-[24px] absolute  border-t hidden">
             <div className="w-[41rem] h-auto flex bg-white border-b-2 p-4 pt-3">
               <input
                 value={searchValue}
@@ -136,14 +104,14 @@ function HeaderPopsKidLearn() {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
 
-          <div className="w-[41rem] h-auto flex  p-[10px] mx-2  bg-[#f3f3f3] rounded-full">
+          <div className="md:w-[41rem] h-auto flex  md:p-[10px] md:mx-2 p-2 w-full bg-[#f3f3f3] rounded-full">
             <input
-              className="w-full bg-transparent placeholder:text-xl placeholder:text-[#BBBBBB] focus:outline-none"
+              className="w-full bg-transparent md:placeholder:text-xl placeholder:text-[#BBBBBB] focus:outline-none"
               placeholder="Tìm kiếm tên khóa học hoặc môn học"
             ></input>
-            <button className=" my-[0.2rem]  hover:opacity-80">
+            <button className=" md:my-[0.2rem] hover:opacity-80">
               <span>
                 <svg
                   viewBox="0 0 32 32"
@@ -166,39 +134,13 @@ function HeaderPopsKidLearn() {
 
         <div className=" hidden md:flex">
           <Menu items={ITEMS} profile={profile}>
-            <img className="w-9 h-9 mx-4" src={profile} alt=""></img>
+            <img className="w-9 h-9 mx-4 bottom-1" src={profile} alt=""></img>
           </Menu>
         </div>
       </div>
-      <div className="w-full border-b border-[#e5e7eb] ">
-        <div className="flex justify-center items-center relative md:mx-20">
-          <div className="">
-            <ul className="flex ">
-              {categories.map((i) => {
-                return (
-                  <li>
-                    <a
-                      onClick={()=>setActiveCate(i.id)}
-                      className={` relative py-3 px-2 mx-2 block text-base capitalize hover:border-b-2 ${
-                        activeCate == i.id
-                          ? "text-[#fe7f56] border-b-2"
-                          : "text-[#808080] "
-                      } border-[#fe7f56]`}
-                      title=""
-                    >
-                      {i.title}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <a className=" text-[#52a5f1] text-lg absolute right-0 " title="">
-            Trở thành giáo viên
-          </a>
-        </div>
-      </div>
-    </div>
+
+      <MenuPopsKidLearn position={"absolute md:-bottom-12 -bottom-12"} />
+    </HeaderWrapper>
   );
 }
 

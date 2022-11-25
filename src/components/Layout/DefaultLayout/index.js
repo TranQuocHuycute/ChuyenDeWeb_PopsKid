@@ -1,7 +1,6 @@
 
 import Header from "../components/Header";
-import BottomNavMobile from "../components/BottomNavMobile";
-
+import BotttomPopskid from "../components/BottomNavMobile/BotttomPopskid";
 
 
 function DefaultLayout({children}) {
@@ -9,7 +8,7 @@ function DefaultLayout({children}) {
     <div className="relative">
       <Header />
       {children}
-      <BottomNavMobile/>
+      <BotttomPopskid/>
     </div>
   );
 }

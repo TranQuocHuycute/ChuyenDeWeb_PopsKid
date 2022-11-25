@@ -21,6 +21,7 @@ const publicRoutes = [
   { path: "/learn", components: Learn, layout: PopskidLearnLayout },
   { path: "/search", components: Search },
   { path: "/profile", components: Profile },
+  { path: "/profile_popskidlearn", components: Profile , layout: PopskidLearnLayout },
   { path: "/videoDetail", components: VideoDetail },
 ];
 //private

@@ -3,7 +3,8 @@ import Nav from "./Nav";
 import Seacrh from "./Seacrh";
 import Menu from "../../Popper/Menu";
 import images from "../../../../assets/images";
-import useScrollDirection from "../useScrollDirection";
+import HeaderWrapper from "../HeaderWrapper";
+
 
 const profile =
   "https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp";
@@ -49,7 +50,6 @@ const useOutsideClick = (callback) => {
 
 function Header() {
   const [imgActive, setImgActive] = useState(true);
-  const scrollDirection = useScrollDirection();
 
   const handleClickOutside = () => {
     setImgActive(true);
@@ -62,13 +62,8 @@ function Header() {
   };
 
   return (
-   
-      <div
-        ref={ref}
-        className={` sticky ${
-          scrollDirection === "down" ? "-top-32" : "top-0"
-        } z-10 w-full h-16 md:h-32 bg-white flex justify-around items-center rounded-b-3xl transition-all duration-500 `}
-      >
+    <HeaderWrapper>
+      <div className="flex justify-around items-center w-full" ref={ref}>
         {/* logo */}
         <div className=" hidden md:block md:w-20 md:h-14  ">
           <img src={require("../../../../assets/images/logo.png")} alt="Logo" />
@@ -116,8 +111,9 @@ function Header() {
             <img className="w-9 h-9 mx-4" src={profile} alt=""></img>
           </Menu>
         </div>
+
       </div>
-    
+    </HeaderWrapper>
   );
 }
 

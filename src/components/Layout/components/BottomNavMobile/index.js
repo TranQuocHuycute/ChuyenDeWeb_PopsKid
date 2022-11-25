@@ -10,9 +10,9 @@ function BottomNavMobile({children}) {
     <div
       className={`sticky ${
         scrollDirection === "down" ? "-bottom-32" : "bottom-0 "
-      }  w-full h-16 md:h-32 bg-white flex justify-around items-center  transition-all duration-500 md:hidden`}
+      }  w-full h-16 md:h-32 bg-white flex  items-center  transition-all duration-500 md:hidden z-50`}
     >
-      <ItemNav/>
+      {children}
     </div>
   );
 }
