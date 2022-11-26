@@ -3,14 +3,14 @@
 // import { publicRoutes } from "./routes";
 // import React, { Fragment } from "react";
 import './index.css'
-// import { ParentsComments } from './components/Layout/ParentsComments'
+import { ParentsComments } from './components/Layout/ParentsComments'
 
-import { CourseSelection } from './components/Layout/CourseSelection'
+// import { CourseSelection } from './components/Layout/CourseSelection'
 
 function App() {
   return (
-    <CourseSelection />
-    // <ParentsComments />
+    // <CourseSelection />
+    <ParentsComments />
     // <Router>
     //   <Routes>
     //     {publicRoutes.map((route, index) => {
