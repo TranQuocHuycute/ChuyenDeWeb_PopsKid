@@ -74,7 +74,7 @@ function MenuPopsKidLearn({position}) {
     );
   };
   return (
-    <div className={`w-full border-b bg-white border-[#e5e7eb] z-50 ${position}`}>
+    <div className={`w-full border-b bg-[#f4f6f8] border-[#e5e7eb] z-50 ${position}`}>
       <div className="flex justify-center items-center relative md:mx-20">
         <div className="overflow-auto">
           <ul className="flex items-center whitespace-nowrap ">
