@@ -19,7 +19,7 @@ export const CourseSelection = () => {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row my-12">
+    <div className="px-6 sm:pt-10 max-w-[1100px] mx-[auto] flex flex-col sm:flex-row my-12">
       {/*left*/}
       <div className="relative h-fit">
         <img src={agesImg} alt="ages" />

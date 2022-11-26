@@ -44,7 +44,7 @@ export const ParentsComments = () => {
     ],
   }
   return (
-    <div>
+    <div className="px-6 sm:pt-10 max-w-[1100px] mx-[auto]">
       <h2 className="text-main text-center font-bold py-8">
         Cảm Nhận Của Phụ Huynh
       </h2>
