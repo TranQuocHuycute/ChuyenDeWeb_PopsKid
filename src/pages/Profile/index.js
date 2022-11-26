@@ -26,7 +26,7 @@ const ITEMS = [
 
 function Profile() {
   return (
-    <div className="h-screen m-4">
+    <div className="h-screen m-4 mt-16">
       <div className=" flex items-center mx-4">
         <img className="flex-none w-11 h-11" src={profile} alt=""></img>
         <div className="grow h-14 mx-5">
