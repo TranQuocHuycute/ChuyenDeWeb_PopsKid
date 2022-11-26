@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
 // Data
 import dataCarousel from './dataCarousel.json'
