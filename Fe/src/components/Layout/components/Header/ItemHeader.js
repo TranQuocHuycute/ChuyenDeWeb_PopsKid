@@ -4,24 +4,7 @@ import Seacrh from "./Seacrh";
 import Menu from "../../Popper/Menu";
 import images from "../../../../assets/images";
 import Header from "../Header";
-const ITEMS = [
-  {
-    title: "POPS kid learn",
-    icon: images.learnIcon,
 
-    to: "/learn",
-  },
-  {
-    title: "Đăng xuất",
-    icon: images.logoutIcon,
-    to: "/learn",
-  },
-  {
-    title: "Về chúng tôi",
-    icon: images.blogIcon,
-    to: "/learn",
-  },
-];
 function ItemHeader() {
   const [imgActive, setImgActive] = useState(true);
   const handleClickOutside = () => {
@@ -98,9 +81,6 @@ function ItemHeader() {
           </svg>
         </span>
 
-        {/* <Menu items={ITEMS} profile={profile}>
-          <img className="w-9 h-9 mx-4" src={profile} alt=""></img>
-        </Menu> */}
       </div>
     </Header>
   );

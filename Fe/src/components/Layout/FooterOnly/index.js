@@ -1,7 +1,7 @@
 
 import Footer from "../components/Footer"
 
-function FooterOnly({Children}) {
+function FooterOnly() {
   return (
     <div>FooterOnly
         <Footer/>

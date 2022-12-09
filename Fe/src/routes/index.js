@@ -1,7 +1,6 @@
 //Layout
-import { HeaderOnly } from "../components/Layout";
-import BottomNavOnly from "../components/Layout/BotomNavOnly";
 import PopskidLearnLayout from "../components/PopskidLearnLayout";
+import LoginAndRegisterLayout from "../components/Layout/LoginAndRegisterLayout";
 // Page
 import Home from "../pages/Home";
 import Music from "../pages/Music";
@@ -11,7 +10,8 @@ import Learn from "../pages/Learn";
 import Search from "../pages/Search";
 import Profile from "../pages/Profile";
 import VideoDetail from "../pages/VideoDetail";
-
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 //public
 const publicRoutes = [
   { path: "/", components: Home },
@@ -23,6 +23,9 @@ const publicRoutes = [
   { path: "/profile", components: Profile },
   { path: "/profile_popskidlearn", components: Profile , layout: PopskidLearnLayout },
   { path: "/videoDetail", components: VideoDetail },
+  { path: "/login", components: Login  , layout : LoginAndRegisterLayout},
+  { path: "/register", components: Register , layout : LoginAndRegisterLayout },
+
 ];
 //private
 const privateRoutes = [];

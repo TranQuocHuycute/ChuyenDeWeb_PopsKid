@@ -9,6 +9,7 @@ function ItemMenu({ data }) {
       {/* <FontAwesomeIcon icon="fa-light fa-book-open" /> */}
       <Link to={data.to}> {data.title} </Link>
     </button>
+    
   )
 }
 

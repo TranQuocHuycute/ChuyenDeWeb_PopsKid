@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import Menu from "../../Popper/Menu";
 import images from "../../../../assets/images";
 import HeaderWrapper from "../HeaderWrapper";
@@ -26,19 +26,19 @@ const ITEMS = [
 ];
 
 function HeaderPopsKidLearn() {
-  const [imgActive, setImgActive] = useState(true);
+  // const [imgActive, setImgActive] = useState(true);
 
-  const handleClickOutside = () => {
-    setImgActive(true);
-  };
+  // const handleClickOutside = () => {
+  //   setImgActive(true);
+  // };
 
-  const handdlesSearch = () => {
-    setImgActive((current) => !current);
-  };
+  // const handdlesSearch = () => {
+  //   setImgActive((current) => !current);
+  // };
 
-  const [searchAc, setSearcgAc] = useState(true);
-  const [searchValue, setSearchValue] = useState("");
-  const [seacrhResult, setSearchResult] = useState([]);
+  // const [searchAc, setSearcgAc] = useState(true);
+  // const [searchValue, setSearchValue] = useState("");
+  // const [seacrhResult, setSearchResult] = useState([]);
 
   return (
     <HeaderWrapper>

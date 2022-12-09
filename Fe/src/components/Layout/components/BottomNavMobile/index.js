@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import images from "../../../../assets/images";
+import React from "react";
+
 import useScrollDirection from "../useScrollDirection";
-import { Outlet, Link } from "react-router-dom";
-import ItemNav from "./ItemNav";
 
 function BottomNavMobile({children}) {
   const scrollDirection = useScrollDirection();
