@@ -1,28 +1,28 @@
-import React from "react";
-import images from "../../assets/images";
-import { Link } from "react-router-dom";
+import React from 'react'
+import images from '../../assets/images'
+import { Link } from 'react-router-dom'
 
 const profile =
-  "https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp";
+  'https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp'
 
 const ITEMS = [
   {
-    title: "POPS kid learn",
+    title: 'POPS kid learn',
     icon: images.learnIcon,
 
-    to: "/learn",
+    to: '/learn',
   },
   {
-    title: "Đăng xuất",
+    title: 'Đăng xuất',
     icon: images.logoutIcon,
-    to: "/learn",
+    to: '/learn',
   },
   {
-    title: "Về chúng tôi",
+    title: 'Về chúng tôi',
     icon: images.blogIcon,
-    to: "/learn",
+    to: '/learn',
   },
-];
+]
 
 function Profile() {
   return (
@@ -54,19 +54,20 @@ function Profile() {
       </div>
       <div className=" drop-shadow-lg mt-4 border ">
         <div className="flex flex-col-reverse divide-y divide-gray-300 drop-shadow-md divide-y-reverse mx-5">
-        {ITEMS.map((data, index) => (
-          <button key={index} className="flex w-full  py-5 hover:bg-[#EEEEEE] hover:text-[#09ccc7] hover:border-l-[2px] border-[#09ccc7]">
-            <img className="mr-2" src={data.icon} alt="" />
-            {/* <FontAwesomeIcon icon="fa-light fa-book-open" /> */}
-            <Link to={data.to}> {data.title} </Link>
-          </button>
-        ))}
+          {ITEMS.map((data, index) => (
+            <button
+              key={index}
+              className="flex w-full  py-5 hover:bg-[#EEEEEE] hover:text-[#09ccc7] hover:border-l-[2px] border-[#09ccc7]"
+            >
+              <img className="mr-2" src={data.icon} alt="" />
+              {/* <FontAwesomeIcon icon="fa-light fa-book-open" /> */}
+              <Link to={data.to}> {data.title} </Link>
+            </button>
+          ))}
         </div>
-       
       </div>
-   
     </div>
-  );
+  )
 }
 
-export default Profile;
+export default Profile
