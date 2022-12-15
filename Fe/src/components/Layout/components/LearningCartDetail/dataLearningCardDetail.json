@@ -1,0 +1,40 @@
+{
+  "resources": [
+    {
+      "title": "Tuổi 6 - 12"
+    },
+    {
+      "title": "60 Phút/Buổi"
+    },
+    {
+      "title": "Bắt đầu 01/01/2023"
+    }
+  ],
+
+  "resources2": [
+    {
+      "title": "Tối đa 12 học viên"
+    },
+    {
+      "title": "Tiếng Việt"
+    },
+    {
+      "title": "1 Buổi"
+    }
+  ],
+  "resources3": [
+    {
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp"
+    }
+  ],
+  "resources4": [
+    {
+      "buoi": "1 Buổi",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp"
+      ,"start":  "Bắt đầu 01/01/2023",
+      "price": "300.000",
+      "list": "Tối đa 12 học viên",
+      "time": "Thứ 7 - 16:00"
+    }
+  ]
+}
