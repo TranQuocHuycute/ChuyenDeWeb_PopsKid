@@ -140,6 +140,7 @@ function Register() {
         </div>
 
         <button
+          disabled
           type="submit"
           className="mt-9 rounded-3xl p-3 bg-[#02ccc5] hover:bg-opacity-80 text-white w-full text-sm"
         >

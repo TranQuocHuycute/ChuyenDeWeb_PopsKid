@@ -19,12 +19,13 @@ function CoursesItem() {
           isReadMore ? "overflow-hidden max-h-[280px]" : ""
         } md:max-h-full`}
       >
-        {courseList.map((element) => {
+        {courseList.map((element, index) => {
           return (
             <a
               className=" text-center mb-8 mx-4 "
               title=""
               href="/subject/uu-dai-634545887b72fa0059a2ebce"
+              key={index}
             >
               <picture className="flex justify-center">
                 <img

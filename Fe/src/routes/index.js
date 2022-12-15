@@ -12,6 +12,7 @@ import Profile from "../pages/Profile";
 import VideoDetail from "../pages/VideoDetail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import SearchValue from "../pages/SearchValue";
 //public
 const publicRoutes = [
   { path: "/", components: Home },
@@ -21,11 +22,12 @@ const publicRoutes = [
   { path: "/learn", components: Learn, layout: PopskidLearnLayout },
   { path: "/search", components: Search },
   { path: "/profile", components: Profile },
+  { path: "/@:searchValue", components: SearchValue },
   { path: "/profile_popskidlearn", components: Profile , layout: PopskidLearnLayout },
   { path: "/videoDetail", components: VideoDetail },
   { path: "/login", components: Login  , layout : LoginAndRegisterLayout},
   { path: "/register", components: Register , layout : LoginAndRegisterLayout },
-
+  
 ];
 //private
 const privateRoutes = [];
