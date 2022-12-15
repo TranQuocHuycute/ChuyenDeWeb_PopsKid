@@ -171,9 +171,9 @@ const Carousel = () => {
         >
           {dataCarousel.resources.map((resource, index) => {
             return (
-              <div className="px-2 pb-20 text-black rounded-md">
+              <div key={index} className="px-2 pb-20 text-black rounded-md">
                 <div
-                  key={index}
+                  
                   className="carousel-item text-start relative w-64 h-32 snap-start rounded-md"
                 >
                   <Link

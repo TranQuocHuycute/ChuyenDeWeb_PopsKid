@@ -1,19 +1,25 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function ItemSearch() {
+function SearchValue({ data }) {
+  console.log('data', data)
   return (
-    <div className='md:hidden mx-8 mt-16'><div class="grid grid-cols-1 divide-y ">
-    <div className='py-2 text-[#797979]'>01</div>
-    <div className='py-2 text-[#797979]'>01</div>
-    <div className='py-2 text-[#797979]'>01</div>
-    <div className='py-2 text-[#797979]'>01</div>
-    <div className='py-2 text-[#797979]'>01</div>
-    <div className='py-2 text-[#797979]'>01</div>
-    <div className='py-2 text-[#797979]'>01</div>
-    <div className='py-2 text-[#797979]'>01</div>
-   
-  </div></div>
+    <div className="md:mt-0 mx-8 mt-16">
+      <div class="grid grid-cols-1 divide-y ">
+        {data.map((e) => {
+          return (
+            <Link
+              to={`/@${e.id}`}
+              key={e.id}
+              className="py-2 text-[#797979]"
+            >
+              {e.full_name}
+            </Link>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
-export default ItemSearch
+export default SearchValue

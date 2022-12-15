@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
-
+import LoginFbOrGG from '../../components/Layout/LoginAndRegisterLayout/LoginFbOrGG'
 function Login() {
   const [emailValue, setEmailValue] = useState({
     email: '',
@@ -33,8 +33,8 @@ function Login() {
   }
 
   return (
-    <div className="w-auto  mx-[70px] my-[50px]">
-      <h1 className="font-bold text-2xl text-center text-[#06afc3]  mb-4">
+    <div className="w-auto mx-4 my-4 md:mx-[70px] md:my-[50px]">
+      <h1 className="font-bold text-2xl md:text-4xl text-center text-[#06afc3]  mb-4">
         Đăng nhập
       </h1>
       <p class="mb-7 text-center text-[#808080]">
@@ -45,18 +45,16 @@ function Login() {
 
       <form action="">
         <div className="email pt-3 block ">
-          
           <input
             className="rounded-3xl input block border border-gray-300 focus:border-pitch-black  py-3 px-3 w-full focus:outline-none "
             type="text"
             name="email"
-            placeholder='Nhập số điện thoại hoặc email'
+            placeholder="Nhập số điện thoại hoặc email"
             value={emailValue.email}
             onChange={handleEmailValue}
           />
         </div>
         <div className="password_2 block pt-6 relative">
-        
           <div className="eye_div">
             <input
               className="input rounded-3xl block border border-gray-300 focus:border-pitch-black  py-3 px-3 w-full focus:outline-none "
@@ -65,7 +63,7 @@ function Login() {
               type={values.showPassword ? 'text' : 'password'}
               onChange={handlePasswordChange('password')}
               value={values.password}
-              placeholder='Mật khẩu'
+              placeholder="Mật khẩu"
             />
             <div
               className="icon_button absolute right-4 top-9"
@@ -81,18 +79,22 @@ function Login() {
         </div>
         {passValue.password !== '' ? (
           <button className="mt-9 rounded-3xl p-3 bg-[#02ccc5] hover:bg-opacity-80 text-white w-full text-sm">
-            Sign In
+            Đăng nhập
           </button>
         ) : (
           <button
             disabled
             className="mt-9 p-3 bg-[#c4c4c4]  rounded-3xl text-white w-full text-sm"
           >
-            Sign In
+            Đăng nhập
           </button>
         )}
-        <p className="text-center mt-6 font-medium text-[#06afc3]">Forgot your password?</p>
+        <p className="text-center mt-6 md:text-lg font-medium text-[#06afc3]">
+          Quên mật khẩu ?
+        </p>
       </form>
+
+      <LoginFbOrGG title = 'Chưa có tài khoản ?' status = 'Đăng nhập' to= '/register'/>
     </div>
   )
 }
