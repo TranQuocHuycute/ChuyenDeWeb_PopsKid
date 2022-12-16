@@ -9,7 +9,6 @@ import tv.dzerok1.popskids.entity.Post;
 
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
-    private final String theAllowedorigins = "http://localhost:3000";
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
@@ -25,6 +24,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         disableHttpMethods(Post.class, config, theUnsupportedActions);
 
 //        Configure CORS mapping
+        String theAllowedorigins = "http://localhost:3000";
         cors.addMapping(config.getBasePath() + "/**")
             .allowedOrigins(theAllowedorigins);
     }
