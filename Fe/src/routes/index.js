@@ -26,7 +26,7 @@ const publicRoutes = [
   { path: "/profile", components: Profile },
   { path: "/@:searchValue", components: SearchValue },
   { path: "/profile_popskidlearn", components: Profile , layout: PopskidLearnLayout },
-  { path: "/videoDetail", components: VideoDetail },
+  { path: "/videoDetail/:key", components: VideoDetail },
   { path: "/login", components: Login  , layout : LoginAndRegisterLayout},
   { path: "/register", components: Register , layout : LoginAndRegisterLayout },
   { path: '*', components: NotFound , layout: NotFound},

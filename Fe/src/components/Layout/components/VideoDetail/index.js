@@ -1,15 +1,15 @@
-import React from "react";
-import Categories from "./Categories";
-import Videos from "./Videos";
-import LearningCartDetail from "../LearningCartDetail";
+import React from 'react'
+import Videos from './Videos'
+import LearningCartDetail from '../LearningCartDetail'
+
 function VideoDetail() {
+
   return (
     <div>
-      <Videos/>
-      <Categories />
-      <LearningCartDetail/>
+      <Videos />
+      <LearningCartDetail />
     </div>
-  );
+  )
 }
 
-export default VideoDetail;
+export default VideoDetail
