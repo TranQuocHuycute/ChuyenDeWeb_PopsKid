@@ -11,6 +11,12 @@ module.exports = {
         main1: '#808080',
         main2: '#4B4B4B',
       },
+      backgroundImage: {
+        'arrow-left':
+          "url('https://cdn.popsww.com/popsapp/assets/images/icons/icon-arrow-left-blue.png')",
+        'arrow-right':
+          "url('https://cdn.popsww.com/popsapp/assets/images/icons/icon-arrow-right-blue.png')",
+      },
     },
   },
 
