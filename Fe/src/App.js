@@ -1,25 +1,36 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { DefaultLayout } from "./components/Layout";
-import { publicRoutes } from "./routes";
-import React, { Fragment } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { DefaultLayout } from './components/Layout'
+import { publicRoutes } from './routes'
+import React, { Fragment, useEffect } from 'react'
 import './index.css'
+import VideoService from './services/VideoService'
 // import { ParentsComments } from './components/Layout/ParentsComments'
 
 // import { CourseSelection } from './components/Layout/CourseSelection'
 
 function App() {
+  useEffect(() => {
+    VideoService.getVideos()
+      .then((res) => {
+        console.log({ data: res.data })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   return (
     // <CourseSelection />
     // <ParentsComments />
     <Router>
       <Routes>
         {publicRoutes.map((route, index) => {
-          const Page = route.components;
-          let Layout = DefaultLayout;
+          const Page = route.components
+          let Layout = DefaultLayout
           if (route.layout) {
-            Layout = route.layout;
+            Layout = route.layout
           } else if (route.layout === null) {
-            Layout = Fragment;
+            Layout = Fragment
           }
           return (
             <Route
@@ -32,7 +43,7 @@ function App() {
                 </Layout>
               }
             ></Route>
-          );
+          )
         })}
       </Routes>
     </Router>

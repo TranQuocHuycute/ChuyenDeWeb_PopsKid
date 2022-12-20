@@ -1,15 +1,13 @@
 package tv.dzerok1.popskids.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tv.dzerok1.popskids.dao.EpsRepository;
 import tv.dzerok1.popskids.dao.VideosRepository;
+import tv.dzerok1.popskids.entity.Eps;
 import tv.dzerok1.popskids.entity.Videos;
 import tv.dzerok1.popskids.modal.VideoEpRequestDTO;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class VideoEpController {
     @Autowired
@@ -26,5 +24,16 @@ public class VideoEpController {
     @GetMapping("api/videos")
     public Iterable<Videos> getVideos() {
         return videosRepository.findAll();
+    }
+
+    // get video by id
+    @GetMapping("api/videos/{id}")
+    public Videos getVideoById(@PathVariable Long id) {
+        return videosRepository.findById(id).get();
+    }
+
+    @GetMapping("api/eps/{id}")
+    public Eps getEpById(@PathVariable Long id) {
+        return epsRepository.findById(id).get();
     }
 }
