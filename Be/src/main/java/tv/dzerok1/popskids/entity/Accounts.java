@@ -1,6 +1,7 @@
 package tv.dzerok1.popskids.entity;
 
 import lombok.*;
+import tv.dzerok1.popskids.security.Roles;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,5 +21,5 @@ public class Accounts {
     private String username;
     private String full_name;
     private String password;
-    private String role;
+    private Roles roles;
 }

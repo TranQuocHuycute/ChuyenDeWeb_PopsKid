@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -47,7 +48,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     ) throws IOException, ServletException {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
-        String token = TokenUtils.createToken(userDetails.getName(), userDetails.getUsername());
+        String token = TokenUtils.createToken(userDetails.getName(), userDetails.getUsername(), userDetails. getRoles());
 
         response.addHeader("Authorization", "Bearer " + token);
         response.getWriter().flush();

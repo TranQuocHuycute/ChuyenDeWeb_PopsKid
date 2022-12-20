@@ -1,6 +1,7 @@
 package tv.dzerok1.popskids.security;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpMethod;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static tv.dzerok1.popskids.security.Roles.ADMIN;
+import static tv.dzerok1.popskids.security.Roles.USER;
 
 @Configuration
 @AllArgsConstructor
@@ -32,6 +36,14 @@ public class WebSecurityConfig {
         return http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/api/videos")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/videos/{id}")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/eps/{id}")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/accounts")
+                .hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -50,7 +62,7 @@ public class WebSecurityConfig {
 //        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 //        manager.createUser(User.withUsername("admin")
 //                .password(passwordEncoder().encode("admin"))
-//                .roles()
+//                .roles(ADMIN.name())
 //                .build());
 //        return manager;
 //    }

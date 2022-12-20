@@ -52,4 +52,7 @@ public class UserDetailsImpl implements UserDetails {
         return accounts.getFull_name();
     }
 
+    public Roles getRoles() {
+        return accounts.getRoles();
+    }
 }
