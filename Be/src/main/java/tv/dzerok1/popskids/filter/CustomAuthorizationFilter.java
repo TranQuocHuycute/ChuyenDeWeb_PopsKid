@@ -37,8 +37,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         if (request.getServletPath()
                    .equals("/api/login") || request.getServletPath()
-                                                   .equals("/api/token/refresh") || request.getServletPath()
-                                                                                              .equals("/swagger-ui/index.html")) {
+                                                   .equals("/api/token/refresh")) {
             filterChain.doFilter(request, response);
         } else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);
@@ -71,12 +70,13 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     new ObjectMapper().writeValue(response.getOutputStream(), error);
                 }
             } else {
-                response.setHeader("error", "Authorization header must be provided");
-                response.setStatus(SC_FORBIDDEN);
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter()
-                        .write("Authorization header must be provided");
+//                response.setHeader("error", "Authorization header must be provided");
+//                response.setStatus(SC_FORBIDDEN);
+//                response.setContentType("application/json");
+//                response.setCharacterEncoding("UTF-8");
+//                response.getWriter()
+//                        .write("Authorization header must be provided");
+                filterChain.doFilter(request, response);
             }
         }
     }
