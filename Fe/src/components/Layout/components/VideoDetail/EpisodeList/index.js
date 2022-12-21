@@ -3,7 +3,6 @@ import Option from '../Option'
 import { Link } from 'react-router-dom'
 import images from '../../../../../assets/images'
 function EpisodeList({ episode }) {
-  console.log('episode', episode)
   return (
     <div>
       <Option />

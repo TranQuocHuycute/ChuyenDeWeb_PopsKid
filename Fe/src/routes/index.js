@@ -15,6 +15,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import SearchValue from "../pages/SearchValue";
 import NotFound from '../pages/NotFound'
+import Subject from '../pages/Subject';
+
 //public
 const publicRoutes = [
   { path: "/", components: Home },
@@ -30,6 +32,7 @@ const publicRoutes = [
   { path: "/login", components: Login  , layout : LoginAndRegisterLayout},
   { path: "/register", components: Register , layout : LoginAndRegisterLayout },
   { path: '*', components: NotFound , layout: NotFound},
+  { path: '/subject', components: Subject , layout: PopskidLearnLayout},
 ];
 
 //private

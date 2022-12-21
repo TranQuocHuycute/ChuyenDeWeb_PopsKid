@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Categories from '../Categories'
 import axios from 'axios'
-
+import ReactPlayer from 'react-player'
 function Videos() {
   const [isLike, setIsLike] = useState(false)
   const [video, setVideo] = useState()
@@ -49,18 +49,14 @@ function Videos() {
       <div>
         {/* video */}
         <div className="pt-5">
-          {/* <iframe class="w-full aspect-video ..." src="https://www.youtube.com/watch?v=01djTx99H3E"></iframe> */}
-          <div className=" mx-10 xl:mx-16 2xl:mx-16 bg-[#000]">
+       
+          <div className=" mx-3 md:mx-10 xl:mx-16 2xl:mx-16 md:bg-[#000]">
             <div className="flex justify-center">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/watch?v=p4p_ri2j6pQ"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+            <ReactPlayer url = 'https://www.youtube.com/watch?v=p4p_ri2j6pQ'
+            playing = {true}
+            controls = {true}
+            
+            />
             </div>
           </div>
         </div>
