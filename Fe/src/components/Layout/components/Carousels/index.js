@@ -7,18 +7,11 @@ import { Link } from 'react-router-dom'
 const Carousels = () => {
   const [videos, setVideos] = useState([])
 
-  // useEffect(() => {
-
-  console.log('videos', videos)
-
-  // }, [videos])
-
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/videos')
       .then(function (response) {
         // handle success
-        console.log('asdasd', response.data)
         setVideos(response.data)
       })
       .catch(function (error) {
@@ -90,6 +83,7 @@ const Carousels = () => {
                     <div className="px-2 pb-20 text-black rounded-md">
                       <div className="carousel-item text-start relative w-64 h-32 snap-start rounded-md">
                         <Link
+                          to={`/videoDetail/${e.id}/${eps.epNumber}`}
                           className="scale-100 hover:scale-105 ease-in duration-100 h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
                           style={{
                             backgroundImage: `url(${eps.thumbnail || ''})`,
@@ -101,7 +95,10 @@ const Carousels = () => {
                             className="aspect-square hidden rounded-md"
                           />
                         </Link>
-                        <Link className="aspect-square block absolute transition-opacity z-10">
+                        <Link
+                          to={`/videoDetail/${e.id}/${eps.epNumber}`}
+                          className="aspect-square block absolute transition-opacity z-10"
+                        >
                           <h3 className="pt-2 w-64 mx-auto text-xl font-bold truncate">
                             {eps.title}
                           </h3>
