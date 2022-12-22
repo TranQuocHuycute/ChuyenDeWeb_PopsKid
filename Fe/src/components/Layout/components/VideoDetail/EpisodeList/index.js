@@ -1,6 +1,6 @@
 import React from "react";
 import Option from "../Option";
-import data from "../../Carousel/dataCarousel.json";
+import data from "../../Carousels/dataCarousel.json";
 import { Link } from "react-router-dom";
 import images from "../../../../../assets/images";
 function EpisodeList() {

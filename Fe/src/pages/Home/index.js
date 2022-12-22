@@ -1,6 +1,6 @@
 import React from 'react'
 import Banner from '../../components/Layout/DefaultLayout/Banner'
-import Carousel from '../../components/Layout/components/Carousel'
+import Carousel from '../../components/Layout/components/Carousels'
 import LearningCard from '../../components/Layout/components/LearningCard'
 
 function Home() {
