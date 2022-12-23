@@ -30,11 +30,84 @@
   "resources4": [
     {
       "buoi": "1 Buổi",
-      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp"
-      ,"start":  "Bắt đầu 01/01/2023",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+      "start": "Bắt đầu 01/01/2023",
       "price": "300.000",
       "list": "Tối đa 12 học viên",
       "time": "Thứ 7 - 16:00"
+    }
+  ],
+  "noidung": [
+    {
+      "tenNoiDung1": "Học viên sẽ nhận được gì",
+      "tenNoiDung2": "Nội dung và giáo trình",
+      "tenNoiDung3": "Dụng cụ học tập",
+      "tenNoiDung4": "Lưu ý",
+      "tenNoiDung5": "Thông tin về giáo viên/Học viện",
+
+      "dataNoiDung1": "Bé sẽ có thể làm nên mô hình ngôi nhà trong mơ đầy màu sắc và sáng tạo.",
+      "dataNoiDung2": "Được biên soạn bởi Art for Kids",
+      "dataNoiDung3": "💻 Máy tính hoặc máy tính bảng có kết nối internet chất lượng tốt 🎨 Công cụ học tập: Giấy A4 Màu sáp dầu hoặc màu lông Kéo Hồ dán",
+      "dataNoiDung4": "Quý Phụ huynh bố trí chỗ ngồi học thoáng, yên tĩnh và đủ ánh sáng cho trẻ. Sắp xếp thời gian hợp lý để trẻ đảm bảo tham gia đủ thời lượng của 01 buổi học. Với các trẻ dưới 6 tuổi, quý phụ huynh hỗ trợ đăng nhập trước giờ học. Lớp học sẽ được diễn ra khi đủ sĩ số tối thiểu.",
+      "dataNoiDung5": "Cô Trang KK là dancer với 13 năm kinh nghiệm. Hiện nay cô đang là giáo viên dạy Dance, K-Pop, US-UK, Zumba FITNESS và biên đạo cho các vũ đoàn tại Thành phố Hồ Chí Minh.",
+      "imgNoiDung5": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/co_trang_kk-8d701e2d4592-1653896198872-lFiFhXZf.png?v=0"
+    }
+  ],
+  "rating": [
+    {
+      "title": "Phương Linh",
+      "comment": "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học"
+    }
+  ],
+  "learnCard": [
+    {
+      "title": "Học Nhảy Tiktok Dance Cùng Cô Vi Khanh",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+      "namTeacher": "Vi Khanh Dancesport",
+      "detail": "Cùng học nhạy những điệu nhảy và phối hợp với âm nhạc của các ca khúc đang thịnh hành phù hợp với các dộ tuổi của các em"
+    },
+    {
+      "title": "2002 Tiktok Dance",
+      "link": "https://ark-labs.co.uk",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/2002_tiktok_dance-a80dd818cca5-1656050907530-pASUiH28.png?v=0&maxW=640&format=webp",
+      "namTeacher": "Cô Trang KK",
+      "detail": "Cùng học nhạy những điệu nhảy và phối hợp với âm nhạc của các ca khúc đang thịnh hành phù hợp với các dộ tuổi của các em"
+    },
+    {
+      "title": "Tiktok Dance",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/notime-35535c30b91f-1666065070980-k3PtM5Ft.png?v=0&maxW=640&format=webp",
+      "namTeacher": "Cô Mỹ Linh",
+      "detail": "Cùng học nhạy những điệu nhảy và phối hợp với âm nhạc của các ca khúc đang thịnh hành phù hợp với các dộ tuổi của các em"
+    },
+    {
+      "title": "Học Nhảy Tiktok Dance Cùng Cô Vi Khanh",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+      "namTeacher": "Vi Khanh Dancesport",
+      "detail": "Cùng học nhạy những điệu nhảy và phối hợp với âm nhạc của các ca khúc đang thịnh hành phù hợp với các dộ tuổi của các em"
+    },
+    {
+      "title": "Học Nhảy Tiktok Dance Cùng Cô Vi Khanh",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+      "namTeacher": "Vi Khanh Dancesport",
+      "detail": "Cùng học nhạy những điệu nhảy và phối hợp với âm nhạc của các ca khúc đang thịnh hành phù hợp với các dộ tuổi của các em"
+    },
+    {
+      "title": "Học Nhảy Tiktok Dance Cùng Cô Vi Khanh",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+      "namTeacher": "Vi Khanh Dancesport",
+      "detail": "Cùng học nhạy những điệu nhảy và phối hợp với âm nhạc của các ca khúc đang thịnh hành phù hợp với các dộ tuổi của các em"
+    },
+    {
+      "title": "Học Nhảy Tiktok Dance Cùng Cô Vi Khanh",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+      "namTeacher": "Vi Khanh Dancesport",
+      "detail": "Cùng học nhạy những điệu nhảy và phối hợp với âm nhạc của các ca khúc đang thịnh hành phù hợp với các dộ tuổi của các em"
     }
   ]
 }
