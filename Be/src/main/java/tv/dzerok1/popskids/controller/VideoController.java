@@ -1,13 +1,18 @@
 package tv.dzerok1.popskids.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tv.dzerok1.popskids.model.Category;
 import tv.dzerok1.popskids.model.Ep;
 import tv.dzerok1.popskids.model.Video;
 import tv.dzerok1.popskids.service.VideoService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -18,8 +23,16 @@ public class VideoController {
 
     @GetMapping("/videos")
     public ResponseEntity<List<Video>> getVideos() {
+        List<Video> videos = videoService.getVideos();
         return ResponseEntity.ok()
-                             .body(videoService.getVideos());
+                             .body(videos);
+    }
+
+    @GetMapping("/videos/{id}")
+    public ResponseEntity<Video> getVideoByID(@PathVariable Long id) {
+        Video video = videoService.getVideoById(id);
+        return ResponseEntity.ok()
+                .body(video);
     }
 
     @GetMapping("/videos/{videoId}/{epNumber}")

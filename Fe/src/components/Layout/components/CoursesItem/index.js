@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { courseList } from "../../../../pages/Learn/data";
+import { Link } from "react-router-dom";
 
 function CoursesItem() {
   const [isReadMore, setIsReadMore] = useState(true);
@@ -21,10 +22,10 @@ function CoursesItem() {
       >
         {courseList.map((element, index) => {
           return (
-            <a
+            <Link
               className=" text-center mb-8 mx-4 "
               title=""
-              href="/subject/uu-dai-634545887b72fa0059a2ebce"
+              to = '/subject'
               key={index}
             >
               <picture className="flex justify-center">
@@ -38,7 +39,7 @@ function CoursesItem() {
               <p tag="p" className="mt-4 text-xl font-normal ">
                 Học Thử ada
               </p>
-            </a>
+            </Link>
           );
         })}
       </div>

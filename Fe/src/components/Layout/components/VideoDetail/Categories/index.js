@@ -41,7 +41,7 @@ function a11yProps(index) {
   }
 }
 
-function Categories() {
+function Categories({eps}) {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event, newValue) => {
@@ -68,7 +68,7 @@ function Categories() {
       <div className="flex justify-center">
         <div className=" w-full md:bg-[#f5f5f5] md:mt-6 md:w-[770px] md:rounded-2xl">
           <TabPanel value={value} index={0}>
-            <EpisodeList />
+            <EpisodeList eps ={eps}/>
           </TabPanel>
           <TabPanel value={value} index={1}>
             <MoiveList />

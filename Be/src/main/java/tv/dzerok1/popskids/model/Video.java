@@ -63,4 +63,14 @@ public class Video {
     @OneToMany
     @JoinColumn(name = "video_id", referencedColumnName = "id")
     private Collection<Ep> eps = new ArrayList<>();
+
+    public String getCategoriesString() {
+        StringBuilder sb = new StringBuilder();
+        for (Category category : categories) {
+            sb.append(category.getName()).append(",");
+        }
+        // Xóa dấu "," cuối cùng
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
 }

@@ -1,15 +1,16 @@
 import React from 'react'
 import Option from '../Option'
-import data from '../../Carousels/dataCarousel.json'
 import { Link } from 'react-router-dom'
 import images from '../../../../../assets/images'
-function EpisodeList() {
+
+function EpisodeList({ eps }) {
+
   return (
     <div>
       <Option />
       <div className="w-full border-t border-[black] ">
         <div className="mt-5">
-          {data.resources.map((resource, index) => {
+          {eps.map((resource, index) => {
             return (
               <div
                 key={index}
@@ -17,13 +18,14 @@ function EpisodeList() {
               >
                 <div className=" text-start relative md:w-[273px] md:h-[154px] rounded-sm overflow-hidden hover:drop-shadow-[0_1px_5px_rgba(6,175,195)]">
                   <Link
+                    to={`/videoDetail/${resource.videoId}/${resource.epNumber}`} title={resource.title}
                     className="scale-100 hover:scale-110 ease-in duration-200 w-[168px] h-[95px] md:w-[273px] md:h-[154px] aspect-square block md:bg-origin-padding md:bg-left-top bg-cover bg-no-repeat rounded-md"
                     style={{
-                      backgroundImage: `url(${resource.imageUrl})`,
+                      backgroundImage: `url(${resource.thumbnail})`,
                     }}
                   >
                     <img
-                      src={resource.imageUrl || ''}
+                      src={resource.thumbnail || ''}
                       alt={resource.title}
                       className="aspect-square hidden rounded-md"
                     />

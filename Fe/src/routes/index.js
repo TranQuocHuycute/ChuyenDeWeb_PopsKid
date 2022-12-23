@@ -13,6 +13,7 @@ import VideoDetail from "../pages/VideoDetail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import SearchValue from "../pages/SearchValue";
+import Subject from '../pages/Subject';
 //public
 const publicRoutes = [
   { path: "/", components: Home },
@@ -27,6 +28,7 @@ const publicRoutes = [
   { path: "/videoDetail/:video/:eps", components: VideoDetail },
   { path: "/login", components: Login  , layout : LoginAndRegisterLayout},
   { path: "/register", components: Register , layout : LoginAndRegisterLayout },
+  { path: '/subject', components: Subject , layout: PopskidLearnLayout},
   
 ];
 //private
