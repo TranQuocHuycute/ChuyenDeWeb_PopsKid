@@ -11,7 +11,8 @@ const images = {
     homeIsActive : require('./homeIsActive.svg').default,
     homeInActive : require('./homeInActive.svg').default,
     time : require('./time.svg').default,
-    favorite: require('./favorite.svg').default
+    favorite: require('./favorite.svg').default,
+    startXam: require('./startXam.svg').default
 }
 
 export default images
