@@ -34,7 +34,8 @@
       "start": "Bắt đầu 01/01/2023",
       "price": "300.000",
       "list": "Tối đa 12 học viên",
-      "time": "Thứ 7 - 16:00"
+      "time": "Thứ 7 - 16:00",
+      "name": "Học nhảy cùng cô "
     }
   ],
   "noidung": [
@@ -56,7 +57,20 @@
   "rating": [
     {
       "title": "Phương Linh",
-      "comment": "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học"
+      "comment": "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học",
+      "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/1608546041605-51553ad43a69-1634265695366-YewQULXg.jfif"
+      ,"imageUrlWeb": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/1608546041605-51553ad43a69-1634265695366-YewQULXg.jfif?format=webp"
+    },
+    {
+      "title": "Thanh Phu",
+      "comment": "Trang web sieu cap vip pro"
+      ,"imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/ngocquangho-2ca507741692-1634265831308-4nGZlbFj.jpg"
+      ,"imageUrlWeb": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/ngocquangho-2ca507741692-1634265831308-4nGZlbFj.jpg?format=webp"
+    }
+  ],
+  "ratingTotal": [
+    {
+      "ratingTotal": 4.5
     }
   ],
   "learnCard": [

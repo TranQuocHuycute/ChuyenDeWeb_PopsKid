@@ -1,6 +1,26 @@
 import dataLearningCard from './dataLearningCardDetail.json'
+import images from '../../../../assets/images'
 // eslint-disable-next-line no-unused-vars
 import { useState, useRef, useEffect } from 'react'
+
+const ITEMS = [
+  {
+    title: 'POPS kid learn',
+    icon: images.learnIcon,
+
+    to: '/learn',
+  },
+  {
+    title: 'Đăng xuất',
+    icon: images.logoutIcon,
+    to: '/learn',
+  },
+  {
+    title: 'Về chúng tôi',
+    icon: images.blogIcon,
+    to: '/learn',
+  },
+]
 
 function LearningCartDetail() {
   const maxScrollWidth = useRef(0)
@@ -55,7 +75,8 @@ function LearningCartDetail() {
   const [buttonD, setButtonD] = useState(false)
   const [buttonE, setButtonE] = useState(false)
   return (
-    <div>
+    <div className="relative">
+      {/* Trang chi tiết khóa học */}
       <div className="bg-[#fff] sm:m-10 m-5">
         {/* Thong tin khoa hoc */}
         <div className="">
@@ -66,7 +87,7 @@ function LearningCartDetail() {
               <div className="flex flex-row">
                 <div>
                   <h5 className="flex items-center text-[12px] xl:text-[20px] 2xl:text-[20px] font-black dark:text-white">
-                    <span class="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800">
+                    <span className="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800">
                       7-12 {'tuổi'}
                     </span>
                   </h5>
@@ -90,10 +111,11 @@ function LearningCartDetail() {
 
               {/* rating */}
               <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
-                <div class="flex items-center">
-                  <svg
+                <div className="flex items-center">
+                  <img src={images.searchIsActive}></img>
+                  {/* <svg
                     aria-hidden="true"
-                    class="w-5 h-5 text-yellow-400"
+                    className="w-5 h-5 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +125,7 @@ function LearningCartDetail() {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="w-5 h-5 text-yellow-400"
+                    className="w-5 h-5 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +135,7 @@ function LearningCartDetail() {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="w-5 h-5 text-yellow-400"
+                    className="w-5 h-5 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +145,7 @@ function LearningCartDetail() {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="w-5 h-5 text-yellow-400"
+                    className="w-5 h-5 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -133,14 +155,14 @@ function LearningCartDetail() {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                    className="w-5 h-5 text-gray-300 dark:text-gray-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <title>Fifth star</title>
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
+                  </svg> */}
                 </div>
                 <div className="sm:mx-2 ">
                   <p className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px]">
@@ -160,13 +182,10 @@ function LearningCartDetail() {
                 <div ref={dataLearningCard}>
                   {dataLearningCard.resources3.map((resource, index) => {
                     return (
-                      <div className="pl-4">
+                      <div key={index} className="pl-4">
                         <div className=" text-black rounded-md">
                           <div className="rounded-md">
-                            <div
-                              key={index}
-                              className="learningcard-item relative sm:w-64 sm:h-32 w-32 h-16 snap-start rounded-md"
-                            >
+                            <div className="learningcard-item relative sm:w-64 sm:h-32 w-32 h-16 snap-start rounded-md">
                               {/* img */}
                               <a
                                 href={resource.link}
@@ -219,27 +238,27 @@ function LearningCartDetail() {
             <div ref={dataLearningCard} className="flex flex-col sm:flex-row">
               {dataLearningCard.resources.map((resource, index) => {
                 return (
-                  <div className="flex justify-center items-center ">
+                  <div
+                    key={index}
+                    className="flex justify-center items-center "
+                  >
                     <div className=" justify-center items-center">
                       <div className=" text-black rounded-2xl">
                         <div className="rounded-2xl ">
-                          <div
-                            key={index}
-                            className="learningcard-item relative w-40 sm:w-80 snap-start rounded-2xl"
-                          >
+                          <div className="learningcard-item relative w-40 sm:w-80 snap-start rounded-2xl">
                             {/* title */}
                             <div className="flex flex-row sm:justify-center justify-start items-center text-center ">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                                 stroke="currentColor"
-                                class="w-6 h-6"
+                                className="w-6 h-6"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
                                 />
                               </svg>
@@ -263,27 +282,27 @@ function LearningCartDetail() {
             <div ref={dataLearningCard} className="flex flex-col sm:flex-row">
               {dataLearningCard.resources2.map((resources2, index) => {
                 return (
-                  <div className="flex justify-center items-center ">
+                  <div
+                    key={index}
+                    className="flex justify-center items-center "
+                  >
                     <div className=" justify-center items-center">
                       <div className=" text-black  rounded-2xl">
                         <div className="rounded-2xl">
-                          <div
-                            key={index}
-                            className="learningcard-item relative w-40 sm:w-80 snap-start rounded-2xl"
-                          >
+                          <div className="learningcard-item relative w-40 sm:w-80 snap-start rounded-2xl">
                             {/* title */}
                             <div className="flex flex-row sm:justify-center justify-start items-center text-center ">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                                 stroke="currentColor"
-                                class="w-6 h-6"
+                                className="w-6 h-6"
                               >
                                 <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                   d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
                                 />
                               </svg>
@@ -334,18 +353,15 @@ function LearningCartDetail() {
           <div ref={dataLearningCard} className="flex flex-col sm:flex-row">
             {dataLearningCard.resources4.map((resource, index) => {
               return (
-                <div className="">
+                <div key={index} className="">
                   <div className="pb-16 text-black bg-[#f9f9f9] rounded-md">
                     <div className="rounded-md">
-                      <div
-                        key={index}
-                        className="learningcard-item relative w-72 h-72 snap-start rounded-md"
-                      >
+                      <div className="learningcard-item relative w-72 h-72 snap-start rounded-md">
                         <div className="m-10">
                           {/* Buổi */}
                           <div className="flex items-start justify-start pt-10">
                             <h5 className="text-sm font-black dark:text-white">
-                              <span class="bg-[#ff5c5c29] text-[#ff5c5c] text-[12px]  mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800">
+                              <span className="bg-[#ff5c5c29] text-[#ff5c5c] text-[12px]  mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800">
                                 {resource.buoi}
                               </span>
                             </h5>
@@ -364,13 +380,13 @@ function LearningCartDetail() {
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
-                              stroke-width="1.5"
+                              strokeWidth="1.5"
                               stroke="currentColor"
-                              class="w-5 h-5"
+                              className="w-5 h-5"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
                               />
                             </svg>
@@ -402,7 +418,7 @@ function LearningCartDetail() {
 
                           {/* đăng ký */}
                           <div className="w-full flex justify-center align-center items-center px-2 py-4">
-                            <button class="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
+                            <button className="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
                               <p className="mx-4">Đăng ký</p>
                             </button>
                           </div>
@@ -550,90 +566,104 @@ function LearningCartDetail() {
         </div>
 
         {/* Rating list_root__kpG6B*/}
-        <div className="sm:w-10/12 2xl:w-4/5 py-5 sm:m-auto">
+        <div className="sm:w-10/12 2xl:w-4/5 py-5 sm:m-auto pb:-[10px]">
           <h2>
             <span className="text-[20px] md:text-[24px] font-bold">
               Đánh giá của phụ huynh
             </span>
           </h2>
           {/* sao trung bình */}
-          <div>
-            <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
-              <div class="flex items-center">
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+          <div ref={dataLearningCard}>
+            {dataLearningCard.ratingTotal.map((ratingTotal, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-row justify-start items-center pb-[10px]"
                 >
-                  <title>First star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Second star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-yellow-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Third star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-gray-300 dark:text-gray-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Fourth star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-gray-300 dark:text-gray-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Fifth star</title>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-              </div>
-            </div>
+                  <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
+                    <div className="flex items-center">
+                      <svg
+                        aria-hidden="true"
+                        className="w-5 h-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>First star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                      <svg
+                        aria-hidden="true"
+                        className="w-5 h-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>Second star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                      <svg
+                        aria-hidden="true"
+                        className="w-5 h-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>Third star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                      <svg
+                        aria-hidden="true"
+                        className="w-5 h-5 text-gray-300 dark:text-gray-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>Fourth star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                      <svg
+                        aria-hidden="true"
+                        className="w-5 h-5 text-gray-300 dark:text-gray-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>Fifth star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <span className="font-bold text-[#4b4b4b] text-base ml-2">
+                    {ratingTotal.ratingTotal}
+                    <sub className="align-baseline text-base b-0">/5</sub>
+                  </span>
+                </div>
+              )
+            })}
           </div>
           {/* comment */}
           {/* Tên người đánh giá */}
           <div ref={dataLearningCard}>
             {dataLearningCard.rating.map((rating, index) => {
               return (
-                <div key={index}>
+                <div key={index} className=" border-b border-[#f0f0f0] my-5">
                   {/* Tên */}
                   <div className="flex pb-5 items-center">
                     <span className="w-[48px] h-[48px] block rounded-full overflow-hidden">
                       <picture>
                         <source
-                          srcSet="https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/1608546041605-51553ad43a69-1634265695366-YewQULXg.jfif?format=webp"
+                          srcSet={rating.imageUrlWeb}
                           type="image/webp"
                         ></source>
                         <source
-                          srcSet="https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/1608546041605-51553ad43a69-1634265695366-YewQULXg.jfif"
+                          srcSet={rating.imageUrl}
                           type="image/jpeg"
                         ></source>
                         <img
                           title={rating.title}
-                          src="https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/1608546041605-51553ad43a69-1634265695366-YewQULXg.jfif"
+                          src={rating.imageUrl}
                           className="w-[48px] h-[48px]"
                         ></img>
                       </picture>
@@ -646,10 +676,10 @@ function LearningCartDetail() {
 
                   {/* số sao */}
                   <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
-                    <div class="flex items-center">
+                    <div className="flex items-center">
                       <svg
                         aria-hidden="true"
-                        class="w-5 h-5 text-yellow-400"
+                        className="w-5 h-5 text-yellow-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -659,7 +689,7 @@ function LearningCartDetail() {
                       </svg>
                       <svg
                         aria-hidden="true"
-                        class="w-5 h-5 text-yellow-400"
+                        className="w-5 h-5 text-yellow-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -669,7 +699,7 @@ function LearningCartDetail() {
                       </svg>
                       <svg
                         aria-hidden="true"
-                        class="w-5 h-5 text-yellow-400"
+                        className="w-5 h-5 text-yellow-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -679,7 +709,7 @@ function LearningCartDetail() {
                       </svg>
                       <svg
                         aria-hidden="true"
-                        class="w-5 h-5 text-yellow-400"
+                        className="w-5 h-5 text-yellow-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -689,7 +719,7 @@ function LearningCartDetail() {
                       </svg>
                       <svg
                         aria-hidden="true"
-                        class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                        className="w-5 h-5 text-gray-300 dark:text-gray-500"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -701,7 +731,7 @@ function LearningCartDetail() {
                   </div>
 
                   {/* comment */}
-                  <div className="pt-5 ">
+                  <div className="pt-5 pb-5">
                     <div className="text-base whitespace-pre-wrap sm:text-[20px] text-[20px] xl:text-[24px] 2xl:text-[24px] overflow-hidden mr-2 relative inline">
                       {rating.comment}
                     </div>
@@ -731,10 +761,10 @@ function LearningCartDetail() {
           {/* <> */}
           {/* {false && (  */}
           <section className="pb-1 px-20">
-            <div class="flex justify-end flex-row">
+            <div className="flex justify-end flex-row">
               {/* < */}
-              <div class="flex items-center">
-                <div class="text-right">
+              <div className="flex items-center">
+                <div className="text-right">
                   <button
                     onClick={movePrev}
                     className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
@@ -745,13 +775,13 @@ function LearningCartDetail() {
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                       stroke="currentColor"
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M15.75 19.5L8.25 12l7.5-7.5"
                       />
                     </svg>
@@ -760,8 +790,8 @@ function LearningCartDetail() {
                 </div>
               </div>
               {/* > */}
-              <div class="flex items-center">
-                <div class="text-right">
+              <div className="flex items-center">
+                <div className="text-right">
                   <button
                     onClick={moveNext}
                     className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
@@ -772,13 +802,13 @@ function LearningCartDetail() {
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                       stroke="currentColor"
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M8.25 4.5l7.5 7.5-7.5 7.5"
                       />
                     </svg>
@@ -798,13 +828,10 @@ function LearningCartDetail() {
             >
               {dataLearningCard.learnCard.map((learnCard, index) => {
                 return (
-                  <div className="pl-4 pb-10">
+                  <div key={index} className="pl-4 pb-10">
                     <div className="pb-32 text-black bg-[#fff] rounded-md">
                       <div className="rounded-md">
-                        <div
-                          key={index}
-                          className="learningcard-item relative w-64 h-80 snap-start rounded-md"
-                        >
+                        <div className="learningcard-item relative w-64 h-80 snap-start rounded-md">
                           <button>
                             {/* img */}
                             <a
@@ -825,7 +852,7 @@ function LearningCartDetail() {
 
                             {/* tag */}
                             <h5 className="pl-2 pt-4 flex items-center text-sm font-black dark:text-white">
-                              <span class="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
+                              <span className="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
                                 New
                               </span>
                             </h5>
@@ -842,10 +869,10 @@ function LearningCartDetail() {
                               </a>
 
                               {/* rating */}
-                              <div class="pt-16 flex items-center">
+                              <div className="pt-16 flex items-center">
                                 <svg
                                   aria-hidden="true"
-                                  class="w-5 h-5 text-yellow-400"
+                                  className="w-5 h-5 text-yellow-400"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -855,7 +882,7 @@ function LearningCartDetail() {
                                 </svg>
                                 <svg
                                   aria-hidden="true"
-                                  class="w-5 h-5 text-yellow-400"
+                                  className="w-5 h-5 text-yellow-400"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -865,7 +892,7 @@ function LearningCartDetail() {
                                 </svg>
                                 <svg
                                   aria-hidden="true"
-                                  class="w-5 h-5 text-yellow-400"
+                                  className="w-5 h-5 text-yellow-400"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -875,7 +902,7 @@ function LearningCartDetail() {
                                 </svg>
                                 <svg
                                   aria-hidden="true"
-                                  class="w-5 h-5 text-yellow-400"
+                                  className="w-5 h-5 text-yellow-400"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -885,7 +912,7 @@ function LearningCartDetail() {
                                 </svg>
                                 <svg
                                   aria-hidden="true"
-                                  class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                  className="w-5 h-5 text-gray-300 dark:text-gray-500"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -926,24 +953,44 @@ function LearningCartDetail() {
         </div>
 
         {/* Footer */}
+        <div>footer</div>
       </div>
+
       {/* Đăng ký */}
-      <div className="mx-w flex w-full bg-[#F9F9F9]">
-        <div className="mx-auto my-10 flex justify-between items-center flex-row">
-          <div className='flex justify-start'>
-            <button className="bg-[#02bcc4] rounded">
-              <span className="text-white my-10">ĐĂNG KÝ</span>
-            </button>
-          </div>
-          <div className="px-10">
-            <span className="text-red">chủ nhật - Nhảy hiện đại</span>
-          </div>
-          <div>
-            <a className="font-bold text-[16px] sm:[12px] text-[#02bcc4]">
-              Xem lịch học
-            </a>
-          </div>
-        </div>
+      <div
+        ref={dataLearningCard}
+        className="fixed bottom-0 left-0 right-0 flex w-full bg-[#F9F9F9]"
+      >
+        {dataLearningCard.resources4.map((resources4, index) => {
+          return (
+            <div
+              key={index}
+              className="sm:m-10 m-5 my-5 flex justify-start items-center flex-row"
+            >
+              <div className="flex justify-start w-32 h-12 ">
+                <button className="bg-[#02bcc4] rounded-md">
+                  <text className="text-white font-bold px-5 sm:px-2 text-[12px] xl:text-[20px] 2xl:text-[20px]">
+                    ĐĂNG KÝ
+                  </text>
+                </button>
+              </div>
+              <div className="px-10 text-[#ff5c5c] font-bold">
+                <span className="">
+                  ({resources4.time}){' - '}
+                  {resources4.name}
+                </span>
+              </div>
+              <div className="">
+                <a
+                  href="..."
+                  className="font-bold sm:[12px] text-[#02bcc4] text-[12px] xl:text-[20px] 2xl:text-[20px]"
+                >
+                  Xem lịch học
+                </a>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
