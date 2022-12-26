@@ -1,72 +1,76 @@
-import React, { useState, useRef, useEffect } from "react";
-import Nav from "./Nav";
-import Seacrh from "./Seacrh";
-import Menu from "../../Popper/Menu";
-import images from "../../../../assets/images";
-import HeaderWrapper from "../HeaderWrapper";
-
+import React, { useState, useRef, useEffect } from 'react'
+import Nav from './Nav'
+import Seacrh from './Seacrh'
+import Menu from '../../Popper/Menu'
+import images from '../../../../assets/images'
+import HeaderWrapper from '../HeaderWrapper'
+import Cookies from 'js-cookie'
 
 const profile =
-  "https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp";
+  'https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp'
 
 const ITEMS = [
   {
-    title: "POPS kid learn",
+    title: 'POPS kid learn',
     icon: images.learnIcon,
 
-    to: "/learn",
+    to: '/learn',
   },
   {
-    title: "Đăng xuất",
+    title: 'Đăng xuất',
     icon: images.logoutIcon,
-    to: "/learn",
+    to: '/learn',
   },
   {
-    title: "Về chúng tôi",
+    title: 'Về chúng tôi',
     icon: images.blogIcon,
-    to: "/learn",
+    to: '/learn',
   },
-];
+]
 
 const useOutsideClick = (callback) => {
-  const ref = useRef();
+  const ref = useRef()
 
   useEffect(() => {
     const handleClick = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        callback();
+        callback()
       }
-    };
+    }
 
-    document.addEventListener("click", handleClick, true);
+    document.addEventListener('click', handleClick, true)
 
     return () => {
-      document.removeEventListener("click", handleClick, true);
-    };
-  }, [ref]);
+      document.removeEventListener('click', handleClick, true)
+    }
+  }, [ref])
 
-  return ref;
-};
+  return ref
+}
 
 function Header() {
-  const [imgActive, setImgActive] = useState(true);
+  const [imgActive, setImgActive] = useState(true)
 
   const handleClickOutside = () => {
-    setImgActive(true);
-  };
+    setImgActive(true)
+  }
 
-  const ref = useOutsideClick(handleClickOutside);
+  const ref = useOutsideClick(handleClickOutside)
 
   const handdlesSearch = () => {
-    setImgActive((current) => !current);
-  };
+    setImgActive((current) => !current)
+  }
+
+  const isAuthenticated = () => {
+    return Cookies.get('authToken') !== undefined
+  }
 
   return (
     <HeaderWrapper>
       <div className="flex justify-around items-center w-full" ref={ref}>
         {/* logo */}
         <div className=" hidden md:block md:w-20 md:h-14  ">
-          <img src={require("../../../../assets/images/logo.png")} alt="Logo" />
+          <img src={require('../../../../assets/images/logo.png')} alt="Logo" />
         </div>
 
         {/* <Nav/> */}
@@ -106,15 +110,21 @@ function Header() {
               ></path>
             </svg>
           </span>
-
-          <Menu items={ITEMS} profile={profile}>
-            <img className="w-9 h-9 mx-4" src={profile} alt=""></img>
-          </Menu>
+          {isAuthenticated() ? (
+            <Menu items={ITEMS} profile={profile}>
+              <img className="w-9 h-9 mx-4" src={profile} alt=""></img>
+            </Menu>
+          ) : (
+            <div>
+              <a className="bg-amber-500 text-white px-2 py-5" href="/login">
+                Login
+              </a>
+            </div>
+          )}
         </div>
-
       </div>
     </HeaderWrapper>
-  );
+  )
 }
 
-export default Header;
+export default Header
