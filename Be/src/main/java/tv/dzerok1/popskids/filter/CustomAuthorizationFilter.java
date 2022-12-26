@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.stream;
-import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -35,9 +34,21 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-        if (request.getServletPath()
-                   .equals("/api/login") || request.getServletPath()
-                                                   .equals("/api/token/refresh")) {
+        if (request
+                .getServletPath()
+                .equals("/api/auth/login") || request
+                .getServletPath()
+                .equals("/api/token/refresh") || request
+                .getServletPath()
+                .equals("/api/videos") || request
+                .getServletPath()
+                .equals("/api/types") || request
+                .getServletPath()
+                .equals("/api/countries") || request
+                .getServletPath()
+                .equals("/api/categories") || request
+                .getServletPath()
+                .equals("/api/videos/{id}")){
             filterChain.doFilter(request, response);
         } else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);
@@ -45,18 +56,21 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 try {
                     String token = authorizationHeader.substring("Bearer ".length());
                     Algorithm algorithm = Algorithm.HMAC256("dzerok".getBytes());
-                    JWTVerifier verifier = JWT.require(algorithm)
-                                              .build();
+                    JWTVerifier verifier = JWT
+                            .require(algorithm)
+                            .build();
                     DecodedJWT decodedJWT = verifier.verify(token);
                     String username = decodedJWT.getSubject();
-                    String[] roles = decodedJWT.getClaim("roles")
-                                               .asArray(String.class);
+                    String[] roles = decodedJWT
+                            .getClaim("roles")
+                            .asArray(String.class);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
                     stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(username, null, authorities);
-                    SecurityContextHolder.getContext()
-                                         .setAuthentication(authenticationToken);
+                    SecurityContextHolder
+                            .getContext()
+                            .setAuthentication(authenticationToken);
                     filterChain.doFilter(request, response);
                 } catch (Exception e) {
                     log.error("Error logging in: {}", e.getMessage());

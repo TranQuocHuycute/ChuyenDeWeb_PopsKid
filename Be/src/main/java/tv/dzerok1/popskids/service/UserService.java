@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import tv.dzerok1.popskids.dao.RoleRepository;
 import tv.dzerok1.popskids.dao.UserRepository;
 import tv.dzerok1.popskids.domain.Role;
@@ -40,7 +41,7 @@ class UserServiceImpl implements UserService, UserDetailsService {
         User user = userRepository.findByUsername(username);
         if (user == null) {
             log.error("User not found in the database");
-            throw new UsernameNotFoundException("User not found in the database");
+            throw new UsernameNotFoundException("Usernot found in the database");
         } else {
             log.info("User found in the database: {}", username);
         }
