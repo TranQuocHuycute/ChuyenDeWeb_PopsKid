@@ -11,17 +11,20 @@ import java.util.List;
 
 public interface VideoService {
     Video addVideo(Video video);
-    Ep addEp(Ep ep);
-    Type addType(Type type);
-    Country addCountry(Country country);
-    Category addCategory(Category category);
+    void addEp(Ep ep);
+    void addType(Type type);
+    void addCountry(Country country);
+    void addCategory(Category category);
     void addTypeToVideo(Long id, String typeName);
     void addCountryToVideo(Long id, String countryName);
     void addCategoryToVideo(Long id, String categoryName);
+    void deleteVideo(Long id);
+    void updateVideo(Long videoId, Video videoDetails);
     Video getVideoById(Long id);
     Ep getEpByID(Long id);
     Ep getEpByVideoIdAndEpNumber(Long videoID, Integer epNumber);
     List<Video> getVideos();
+    List<Video> searchVideos(String key);
     List<Ep>  getEpsByVideoId(Long videoId);
     List<Type> getTypes();
     List<Country> getCountries();
@@ -45,34 +48,34 @@ class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Ep addEp(Ep ep) {
+    public void addEp(Ep ep) {
         log.info("Saving new ep {} to the database", ep.getId());
-        return epRepository.save(ep);
+        epRepository.save(ep);
     }
 
     @Override
-    public Type addType(Type type) {
+    public void addType(Type type) {
         log.info("Saving new type {} to the database", type.getName());
-        return typeRepository.save(type);
+        typeRepository.save(type);
     }
 
     @Override
-    public Country addCountry(Country country) {
+    public void addCountry(Country country) {
         log.info("Saving new country {} to the database", country.getName());
-        return countryRepository.save(country);
+        countryRepository.save(country);
     }
 
     @Override
-    public Category addCategory(Category category) {
+    public void addCategory(Category category) {
         log.info("Saving new category {} to the database", category.getName());
-        return categoryRepository.save(category);
+        categoryRepository.save(category);
     }
 
     @Override
     public void addTypeToVideo(Long id, String typeName) {
-        log.info("Adding type {} to video {}", typeName, id);
+        log.info("New Adding type {} to video {}", typeName.replaceAll("\"", ""), id);
         Video video = videoRepository.findById(id).get();
-        Type type = typeRepository.findByName(typeName);
+        Type type = typeRepository.findByName(typeName.replaceAll("\"", ""));
         video.getTypes().add(type);
     }
 
@@ -80,7 +83,7 @@ class VideoServiceImpl implements VideoService {
     public void addCountryToVideo(Long id, String countryName) {
         log.info("Adding country {} to video {}", countryName, id);
         Video video = videoRepository.findById(id).get();
-        Country country = countryRepository.findByName(countryName);
+        Country country = countryRepository.findByName(countryName.replaceAll("\"", ""));
         video.getCountries().add(country);
     }
 
@@ -88,8 +91,33 @@ class VideoServiceImpl implements VideoService {
     public void addCategoryToVideo(Long id, String categoryName) {
         log.info("Adding category {} to video {}", categoryName, id);
         Video video = videoRepository.findById(id).get();
-        Category category = categoryRepository.findByName(categoryName);
+        Category category = categoryRepository.findByName(categoryName.replaceAll("\"", ""));
         video.getCategories().add(category);
+    }
+
+    @Override
+    public void deleteVideo(Long id) {
+        log.info("Deleting video with id {}", id);
+        videoRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateVideo(Long videoId, Video videoDetails) {
+        Video video = videoRepository.findById(videoId).get();
+        log.info("Updating video with id {}", videoDetails);
+
+        video.setTitle(videoDetails.getTitle());
+        video.setAnother_name(videoDetails.getAnother_name());
+        video.setRelease_year(videoDetails.getRelease_year());
+        video.setTime(videoDetails.getTime());
+        video.setRating(videoDetails.getRating());
+        video.setContent_by(videoDetails.getContent_by());
+        video.setDescription(videoDetails.getDescription());
+        video.setCategories(videoDetails.getCategories());
+        video.setCountries(videoDetails.getCountries());
+        video.setTypes(videoDetails.getTypes());
+
+        videoRepository.save(video);
     }
 
     @Override
@@ -114,6 +142,11 @@ class VideoServiceImpl implements VideoService {
     public List<Video> getVideos() {
         log.info("Getting all videos");
         return videoRepository.findAll();
+    }
+
+    @Override
+    public List<Video> searchVideos(String key) {
+        return videoRepository.findDistinctByTitleContainingOrEpsTitleContaining(key, key);
     }
 
     @Override
