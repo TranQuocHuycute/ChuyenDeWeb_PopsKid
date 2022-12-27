@@ -67,8 +67,7 @@ public class PopsKidsApplication {
             userService.addRoleToUser("admin", "ROLE_SUPER_ADMIN");
 
 
-            videoService.addCategory(new Category(null, "Cartoons"));
-            videoService.addCategory(new Category(null, "Children's Music"));
+            videoService.addCategory(new Category(null, "HappyLearning"));
             videoService.addCategory(new Category(null, "Entertainment"));
             videoService.addCategory(new Category(null, "Music"));
 
@@ -111,7 +110,7 @@ public class PopsKidsApplication {
             videoService.addCountryToVideo(video.getId(), "Japan");
             videoService.addTypeToVideo(video.getId(), "Cartoon");
 
-            videoService.addCategoryToVideo(video1.getId(), "Entertainment");
+            videoService.addCategoryToVideo(video1.getId(), "HappyLearning");
             videoService.addCountryToVideo(video1.getId(), "Vietnam");
             videoService.addTypeToVideo(video1.getId(), "Movie");
 

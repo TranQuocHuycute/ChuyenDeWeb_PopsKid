@@ -1,27 +1,7 @@
-// import { useEffect, useState } from 'react'
 import Carousel from 'react-grid-carousel'
-// eslint-disable-next-line no-unused-vars
-// import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const Carousels = ({data}) => {
-
-  // useEffect(() => {
-  //   axios
-  //     .get('http://localhost:8080/api/videos')
-  //     .then(function (response) {
-  //       // handle success
-  //       setVideos(response.data)
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       console.log(error)
-  //     })
-  //     .finally(function () {
-  //       // always executed
-  //     })
-  // }, [])
-
   return (
     <div>
       {data.map((e) => (

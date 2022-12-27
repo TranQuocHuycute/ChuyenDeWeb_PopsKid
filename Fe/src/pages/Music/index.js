@@ -5,8 +5,6 @@ import axios from 'axios'
 
 function Music() {
   const [videos, setVideos] = useState([])
-  console.log('videos', videos);
-
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/videos/categories/name/Music')
@@ -22,9 +20,6 @@ function Music() {
         // always executed
       })
   }, [])
-
-  // const { cateId } = useParams()
-  // console.log('cateId', cateId)
   return (
     <div>
       <Carousel data={videos} />

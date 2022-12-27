@@ -17,9 +17,7 @@ function Entertaiment() {
         // handle error
         console.log(error)
       })
-      .finally(function () {
-        // always executed
-      })
+
   }, [])
 
   return (
