@@ -93,27 +93,27 @@ const LearningCard = () => {
       {/* <> */}
       {/* {false && (  */}
       <section className="pb-1 px-20">
-        <div class="flex justify-end flex-row">
+        <div className="flex justify-end flex-row">
           {/* < */}
-          <div class="flex items-center">
-            <div class="text-right">
+          <div className="flex items-center">
+            <div className="text-right">
               <button
                 onClick={movePrev}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                className=" rounded-fullhover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
                 disabled={isDisabled('prev')}
-                class="p-1 rounded-full"
+            
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M15.75 19.5L8.25 12l7.5-7.5"
                   />
                 </svg>
@@ -122,25 +122,25 @@ const LearningCard = () => {
             </div>
           </div>
           {/* > */}
-          <div class="flex items-center">
-            <div class="text-right">
+          <div className="flex items-center">
+            <div className="text-right">
               <button
                 onClick={moveNext}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                className=" rounded-full hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
                 disabled={isDisabled('next')}
-                class="p-1 rounded-full"
+                
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M8.25 4.5l7.5 7.5-7.5 7.5"
                   />
                 </svg>
@@ -160,11 +160,11 @@ const LearningCard = () => {
         >
           {dataLearningCard.resources.map((resource, index) => {
             return (
-              <div className="pl-4 pb-10">
+              <div key={index} className="pl-4 pb-10">
                 <div className="pb-32 text-black bg-[#fff] rounded-md">
                   <div className="rounded-md">
                     <div
-                      key={index}
+                      
                       className="learningcard-item relative w-64 h-80 snap-start rounded-md"
                     >
                       {/* img */}
@@ -184,7 +184,7 @@ const LearningCard = () => {
 
                       {/* tag */}
                       <h5 className="pl-2 pt-4 flex items-center text-sm font-black dark:text-white">
-                        <span class="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
+                        <span className="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
                           New
                         </span>
                       </h5>
@@ -201,10 +201,10 @@ const LearningCard = () => {
                         </a>
 
                         {/* rating */}
-                        <div class="pt-16 flex items-center">
+                        <div className="pt-16 flex items-center">
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +214,7 @@ const LearningCard = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +224,7 @@ const LearningCard = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +234,7 @@ const LearningCard = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +244,7 @@ const LearningCard = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                            className="w-5 h-5 text-gray-300 dark:text-gray-500"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -280,7 +280,7 @@ const LearningCard = () => {
                           <div className="border-solid border-2 border-black-500 w-52 h-px"></div>
                         </a>
                         <div className="pt-36 w-full">
-                          <button class="bg-sky-400 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-full">
+                          <button className="bg-sky-400 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-full">
                             <p className="mx-14">Xem Thêm</p>
                           </button>
                         </div>

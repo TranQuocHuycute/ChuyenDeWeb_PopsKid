@@ -8,6 +8,7 @@ import tv.dzerok1.popskids.dao.*;
 import tv.dzerok1.popskids.model.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface VideoService {
     Video addVideo(Video video);
@@ -24,6 +25,9 @@ public interface VideoService {
     Ep getEpByID(Long id);
     Ep getEpByVideoIdAndEpNumber(Long videoID, Integer epNumber);
     List<Video> getVideos();
+
+    List<Video> getVideosByCategoryID(Long id);
+
     List<Video> searchVideos(String key);
     List<Ep>  getEpsByVideoId(Long videoId);
     List<Type> getTypes();
@@ -145,6 +149,14 @@ class VideoServiceImpl implements VideoService {
     }
 
     @Override
+
+    public List<Video> getVideosByCategoryID(Long id) {
+        log.info("Getting all avideos by categories id {}", id);
+        return videoRepository.findByCategoriesId(id);
+    }
+
+    @Override
+
     public List<Video> searchVideos(String key) {
         return videoRepository.findDistinctByTitleContainingOrEpsTitleContaining(key, key);
     }

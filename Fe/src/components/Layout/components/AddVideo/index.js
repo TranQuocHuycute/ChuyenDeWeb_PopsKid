@@ -107,7 +107,7 @@ export function AddVideo() {
 
         if (id) {
           const dataValue = {}
-          VideoService.getVideoById(id).then((response) => {
+          await VideoService.getVideoById(id).then((response) => {
             dataValue.title = response.data.title
             dataValue.another_name = response.data.another_name
             dataValue.content_by = response.data.content_by
@@ -128,7 +128,6 @@ export function AddVideo() {
 
     fetchData()
   }, [])
-
   return (
     <div className="mt-10 sm:mt-0">
       <div className="">

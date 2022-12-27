@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(GET, "/api/users", "/api/videos/{id}", "/api/videos/{id}/type/**", "/api/videos/{id}/country" ,"/api/videos/{id}/category/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/swagger-ui/index.html").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPER_ADMIN");
         http.authorizeRequests().antMatchers(POST, "/api/videos/add/**", "/videos/{id}", "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(PUT, "/api/videos/update", "/api/user/update").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(PUT, "/api/videos/update/**", "/api/user/update/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.httpBasic();
         http.sessionManagement().sessionCreationPolicy(STATELESS);

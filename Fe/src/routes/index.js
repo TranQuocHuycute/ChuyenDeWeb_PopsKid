@@ -2,6 +2,7 @@
 import PopskidLearnLayout from '../components/PopskidLearnLayout'
 import LoginAndRegisterLayout from '../components/Layout/LoginAndRegisterLayout'
 // Page
+
 import Home from '../pages/Home'
 import Music from '../pages/Music'
 import Entertaiment from '../pages/Entertaiment'
@@ -23,6 +24,7 @@ import {
 } from '../pages/CRUD'
 import { DashboardLayout } from '../components/Layout/DashboardLayout'
 import { AddVideo } from '../components/Layout/components/AddVideo'
+import Subject from '../pages/Subject';
 //public
 const publicRoutes = [
   { path: '/', components: Home },
@@ -32,7 +34,7 @@ const publicRoutes = [
   { path: '/learn', components: Learn, layout: PopskidLearnLayout },
   { path: '/search', components: Search },
   { path: '/profile', components: Profile },
-  { path: '/@:searchValue', components: SearchValue },
+  { path: '/:searchValue', components: SearchValue },
   {
     path: '/profile_popskidlearn',
     components: Profile,
@@ -70,7 +72,9 @@ const publicRoutes = [
   },
   { path: '/dashboard/users', components: Users, layout: DashboardLayout },
   { path: '/dashboard/types', components: Types, layout: DashboardLayout },
+  { path: '/subject', components: Subject , layout: PopskidLearnLayout},
 ]
+
 //private
 const privateRoutes = []
 export { publicRoutes, privateRoutes }
