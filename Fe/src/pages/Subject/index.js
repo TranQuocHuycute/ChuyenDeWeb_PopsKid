@@ -74,8 +74,8 @@ function Subject() {
     return (
       <div>
         <h1 className="text-4xl font-bold">Các khóa học đề xuất</h1>
-        <div className="flex-row items-center md:h-[184px] hover:bg-[#CCFFFF] active:bg-[#CCFFFF] focus:outline-none  md:my-3 rounded-xl">
-          <div className="md:w-20% bg-black flex-col items-center">
+        <div className="flex justify-center items-center md:px-3 md:h-[184px] hover:bg-[#CCFFFF] active:bg-[#CCFFFF] focus:outline-none md:my-3 rounded-xl">
+          <div className="md:w-[20%] ">
             <img
               className="rounded-lg"
               src="https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/ho_c_to__t_mo_n_toa_n_cu_ng_co__ho__ng_nhung__4_-72fab0b42655-1666082706255-QApupaac.png?v=0&maxW=320&format=webp"
@@ -83,7 +83,21 @@ function Subject() {
               height="152px"
             ></img>
           </div>
-          <div className="md:w-80%"></div>
+
+          <div className="md:w-[80%] flex-col ">
+            <div>
+              <p> 8 tuổi</p>
+              <h1>Học Toán Lớp 3 - Toán Tư Duy Singapore</h1>
+              <p>
+                Với phương pháp học CPA (Concrete – Pictorial – Abstract) hiện
+                đại mang ý nghĩa Thực tiễn – Hình ảnh – Khái quát, Toán tư duy
+                lồng ghép các hoạt động, trò chơi thực tiễn có tính tương tác
+                cao giúp hiểu sâu, nhớ lâu và kích thích niềm đam mê Toán học.
+              </p>
+              <div>a</div>
+              <p>lượt đăng kích</p>
+            </div>
+          </div>
         </div>
       </div>
     )

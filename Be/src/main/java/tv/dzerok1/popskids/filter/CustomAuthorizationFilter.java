@@ -42,7 +42,8 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             request.getServletPath()
                     .equals("/api/videos") ||
             request.getServletPath().equals("/api/videos/{videoId}/{epNumber}") ||
-            request.getServletPath().equals("/api/search")) {
+            request.getServletPath().equals("/api/search") ||
+            request.getServletPath().equals("/api/videos/categories/{id}")) {
             filterChain.doFilter(request, response);
         } else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);

@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh/**", "/api/videos/**", "/api/search/**").permitAll();
+        http.authorizeRequests().antMatchers("/api/videos/categories/{id}", "/api/login/**", "/api/token/refresh/**", "/api/videos/**", "/api/search/**").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/users/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/swagger-ui/index.html").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPER_ADMIN");
         http.authorizeRequests().antMatchers(GET, "/api/videos/**").hasAnyAuthority("ROLE_ADMIN");

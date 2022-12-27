@@ -23,6 +23,7 @@ public interface VideoService {
     Ep getEpByID(Long id);
     Ep getEpByVideoIdAndEpNumber(Long videoID, Integer epNumber);
     List<Video> getVideos();
+    List<Video> getVideosByCategoryID(Long id);
     List<Video> searchVideos(String key);
     List<Ep>  getEpsByVideoId(Long videoId);
     List<Type> getTypes();
@@ -116,6 +117,12 @@ class VideoServiceImpl implements VideoService {
     public List<Video> getVideos() {
         log.info("Getting all videos");
         return videoRepository.findAll();
+    }
+
+    @Override
+    public List<Video> getVideosByCategoryID(Long id) {
+        log.info("Getting all avideos by categories id {}", id);
+        return videoRepository.findByCategoriesId(id);
     }
 
     @Override

@@ -1,31 +1,30 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import Carousel from 'react-grid-carousel'
 // eslint-disable-next-line no-unused-vars
-import axios from 'axios'
+// import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-const Carousels = () => {
-  const [videos, setVideos] = useState([])
+const Carousels = ({data}) => {
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:8080/api/videos')
-      .then(function (response) {
-        // handle success
-        setVideos(response.data)
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error)
-      })
-      .finally(function () {
-        // always executed
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:8080/api/videos')
+  //     .then(function (response) {
+  //       // handle success
+  //       setVideos(response.data)
+  //     })
+  //     .catch(function (error) {
+  //       // handle error
+  //       console.log(error)
+  //     })
+  //     .finally(function () {
+  //       // always executed
+  //     })
+  // }, [])
 
   return (
     <div>
-      {videos.map((e) => (
+      {data.map((e) => (
         <div key={e.id}>
           <div className="rounded-md">
             <div className="flex flex-row justify-items-center items-center rounded-md">
@@ -76,7 +75,7 @@ const Carousels = () => {
           </div>
 
           <Carousel cols={5} rows={1} gap={10} loop>
-            {videos.length > 0 &&
+            {data.length > 0 &&
               e.eps.map((eps) => {
                 return (
                   <Carousel.Item key={eps.id}>

@@ -44,4 +44,9 @@ public class VideoController {
     public ResponseEntity<List<Video>> search(@RequestParam String key) {
         return ResponseEntity.ok().body(videoService.searchVideos(key));
     }
+
+    @GetMapping("/videos/categories/{id}")
+    public ResponseEntity<List<Video>> search(@PathVariable Long id) {
+        return ResponseEntity.ok().body(videoService.getVideosByCategoryID(id));
+    }
 }
