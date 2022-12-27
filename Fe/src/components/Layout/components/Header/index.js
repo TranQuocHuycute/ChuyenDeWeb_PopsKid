@@ -1,32 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Nav from './Nav'
 import Seacrh from './Seacrh'
-import Menu from '../../Popper/Menu'
 import images from '../../../../assets/images'
 import HeaderWrapper from '../HeaderWrapper'
-import Cookies from 'js-cookie'
-
-const profile =
-  'https://products.popsww.com/api/v2/containers/file2/profiles/pk20_profile_picture__1_-0727741cd4d3-1640912661200-l305wzS2.jpg?maxW=120&format=webp'
-
-const ITEMS = [
-  {
-    title: 'POPS kid learn',
-    icon: images.learnIcon,
-
-    to: '/learn',
-  },
-  {
-    title: 'Đăng xuất',
-    icon: images.logoutIcon,
-    to: '/learn',
-  },
-  {
-    title: 'Về chúng tôi',
-    icon: images.blogIcon,
-    to: '/learn',
-  },
-]
+import ProfileButton from '../../ProfileButton'
 
 const useOutsideClick = (callback) => {
   const ref = useRef()
@@ -59,10 +36,6 @@ function Header() {
 
   const handdlesSearch = () => {
     setImgActive((current) => !current)
-  }
-
-  const isAuthenticated = () => {
-    return Cookies.get('authToken') !== undefined
   }
 
   return (
@@ -110,17 +83,8 @@ function Header() {
               ></path>
             </svg>
           </span>
-          {isAuthenticated() ? (
-            <Menu items={ITEMS} profile={profile}>
-              <img className="w-9 h-9 mx-4" src={profile} alt=""></img>
-            </Menu>
-          ) : (
-            <div>
-              <a className="bg-amber-500 text-white px-2 py-5" href="/login">
-                Login
-              </a>
-            </div>
-          )}
+
+          <ProfileButton />
         </div>
       </div>
     </HeaderWrapper>
