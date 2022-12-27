@@ -27,6 +27,7 @@ public interface VideoService {
     List<Video> getVideos();
 
     List<Video> getVideosByCategoryID(Long id);
+    List<Video> getVideosByCategoryName(String name);
 
     List<Video> searchVideos(String key);
     List<Ep>  getEpsByVideoId(Long videoId);
@@ -153,6 +154,12 @@ class VideoServiceImpl implements VideoService {
     public List<Video> getVideosByCategoryID(Long id) {
         log.info("Getting all avideos by categories id {}", id);
         return videoRepository.findByCategoriesId(id);
+    }
+
+    @Override
+    public List<Video> getVideosByCategoryName(String name) {
+        log.info("Getting all avideos by categories name {}", name);
+        return videoRepository.findByCategoriesName(name);
     }
 
     @Override

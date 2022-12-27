@@ -90,6 +90,11 @@ public class VideoController {
         return ResponseEntity.ok().body(videoService.getVideosByCategoryID(id));
     }
 
+    @GetMapping("/videos/categories/name/{name}")
+    public ResponseEntity<List<Video>> getCategoriesByName(@PathVariable String name) {
+        return ResponseEntity.ok().body(videoService.getVideosByCategoryName(name));
+    }
+
     @GetMapping("/types")
     public ResponseEntity<List<Type>> getTypes() {
         return ResponseEntity.ok()

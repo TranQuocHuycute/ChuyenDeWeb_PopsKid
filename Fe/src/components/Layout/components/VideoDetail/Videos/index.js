@@ -39,7 +39,7 @@ function Videos() {
               <div className="flex justify-center">
                 <ReactPlayer
                   className="react-player"
-                  url={videos.url}
+                  url= 'https://www.youtube.com/watch?v=xaDl80P6GoA'
                   width="100%"
                   height="500px"
                   controls
@@ -104,7 +104,6 @@ function Videos() {
         .get(`http://localhost:8080/api/videos/${video}`)
         .then(function (response) {
           // handle success
-          console.log('moviessssss', response.data)
           setMovie(response.data)
         })
         .catch(function (error) {

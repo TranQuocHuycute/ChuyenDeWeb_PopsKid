@@ -40,7 +40,7 @@ const publicRoutes = [
     components: Profile,
     layout: PopskidLearnLayout,
   },
-  { path: '/videoDetail', components: VideoDetail },
+  { path: '/videoDetail/:video/:eps', components: VideoDetail },
   { path: '/login', components: Login, layout: LoginAndRegisterLayout },
   { path: '/register', components: Register, layout: LoginAndRegisterLayout },
   {

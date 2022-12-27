@@ -10,4 +10,5 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
     List<Video> findDistinctByTitleContainingOrEpsTitleContaining(String title, String epsTitle);
 //    Optional<Video> findById(Long id);
     List<Video> findByCategoriesId(Long id);
+    List<Video> findByCategoriesName(String name);
 }

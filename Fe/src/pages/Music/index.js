@@ -9,7 +9,7 @@ function Music() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/videos/categories/14')
+      .get('http://localhost:8080/api/videos/categories/name/Music')
       .then(function (response) {
         // handle success
         setVideos(response.data)

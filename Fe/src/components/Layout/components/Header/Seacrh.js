@@ -31,7 +31,6 @@ function Seacrh() {
       console.log(error);
     })
   
-
     // encodeURIComponent ma hoa thanh 1 kí tự hợp lệ trong url
     // const fetchApi = async () => {
     //   const result = await searchServices.seacrh(debounced)
