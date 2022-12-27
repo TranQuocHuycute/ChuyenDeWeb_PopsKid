@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 function MenuPopsKidLearn({position}) {
   const categories = [
-    { id: 1, title: "Khám Phá" },
-    { id: 2, title: "Khóa Học" },
-    { id: 3, title: "Nhận 200K" },
+    { id: 1, title: "Khám Phá" , to :'/learn' },
+    { id: 2, title: "Khóa Học" , to : '/courseDetails'},
     { id: 4, title: "Đối Tác Giáo Dục" },
     { id: 5, title: "Khóa Học Đã Đăng Ký" },
     { id: 6, title: "Trở về popskid", to: "/" },

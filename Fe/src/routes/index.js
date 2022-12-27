@@ -25,6 +25,8 @@ import {
 import { DashboardLayout } from '../components/Layout/DashboardLayout'
 import { AddVideo } from '../components/Layout/components/AddVideo'
 import Subject from '../pages/Subject';
+import CourseDetail from '../pages/CourseDetails'
+import RegisterCourse from '../pages/RegisterCourse'
 //public
 const publicRoutes = [
   { path: '/', components: Home },
@@ -73,6 +75,8 @@ const publicRoutes = [
   { path: '/dashboard/users', components: Users, layout: DashboardLayout },
   { path: '/dashboard/types', components: Types, layout: DashboardLayout },
   { path: '/subject', components: Subject , layout: PopskidLearnLayout},
+  { path: '/courseDetails', components: CourseDetail , layout: PopskidLearnLayout},
+  { path: '/registerCourse', components: RegisterCourse , layout: PopskidLearnLayout},
 ]
 
 //private
