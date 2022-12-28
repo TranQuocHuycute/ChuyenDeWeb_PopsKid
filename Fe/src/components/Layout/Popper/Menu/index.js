@@ -6,7 +6,6 @@ import ItemMenu from './ItemMenu'
 import LoginRegisterButton from '../../LoginRegisterButton'
 import Cookies from 'js-cookie'
 import images from '../../../../assets/images'
-import { Link } from 'react-router-dom'
 
 function Menu({ children, items, profile }) {
   const isAuthenticated = () => {
@@ -15,6 +14,11 @@ function Menu({ children, items, profile }) {
 
   const renderItems = () => {
     return items.map((item, index) => <ItemMenu key={index} data={item} />)
+  }
+
+  function handleLogout() {
+    Cookies.remove('authToken')
+    window.location.href = '/'
   }
 
   return (
@@ -26,7 +30,7 @@ function Menu({ children, items, profile }) {
         <div className="box" tabIndex="-1" {...attrs}>
           <PopperWrapper>
             {isAuthenticated() ? (
-              <div className='flex items-center mx-4'>
+              <div className="flex items-center mx-4">
                 <img
                   className="flex-none w-11 h-11"
                   src={profile}
@@ -61,9 +65,12 @@ function Menu({ children, items, profile }) {
 
             <div className="w-[26rem]">{renderItems()}</div>
             {isAuthenticated() ? (
-              <button className="flex items-center w-full px-4 py-5 hover:bg-[#EEEEEE] hover:text-[#09ccc7] hover:border-l-[2px] border-[#09ccc7]">
+              <button
+                onClick={handleLogout}
+                className="flex items-center w-full px-4 py-5 hover:bg-[#EEEEEE] hover:text-[#09ccc7] hover:border-l-[2px] border-[#09ccc7]"
+              >
                 <img className="mr-2" src={images.logoutIcon} alt="" />
-                <Link> Đăng xuất </Link>
+                Đăng xuất
               </button>
             ) : (
               <LoginRegisterButton />
