@@ -882,9 +882,6 @@ function CourseDetails() {
             </div>
           </div>
         </div>
-
-        {/* Footer */}
-        <div>footer</div>
       </div>
 
       {/* Đăng ký */}
