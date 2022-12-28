@@ -61,13 +61,16 @@ const LearningCardNB = () => {
         <div ref={featuredCourses} className="flex flex-col sm:flex-row">
           {featuredCourses.slice([0], [5]).map((courses) => {
             return (
-              <div key={courses.id} className="pl-2 sm:pl-10 pb-8">
+              <Link
+                to={`/courseDetails/${courses.id}`}
+                key={courses.id}
+                className="pl-2 sm:pl-10 pb-8"
+              >
                 <div className="pb-16 text-black bg-[#fff] rounded-md">
                   <div className="rounded-md">
                     <div className="learningcard-item relative w-72 h-80 snap-start rounded-md">
                       {/* img */}
-                      <Link
-                        
+                      <div
                         className="h-40 w-72 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
                         style={{
                           backgroundImage: `url(${courses.thumbnail || ''})`,
@@ -78,12 +81,12 @@ const LearningCardNB = () => {
                           alt={courses.title}
                           className="aspect-square hidden w-full rounded-md"
                         />
-                      </Link>
+                      </div>
 
                       {/* tag */}
                       <h5 className="pl-2 pt-2 flex items-center text-sm font-black dark:text-white">
-                        <span class="bg-[#ff5c5c29] text-[#ff5c5c] text-[12px]  mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
-                          {courses.age}  tuổi
+                        <span className="bg-[#ff5c5c29] text-[#ff5c5c] text-[12px]  mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
+                          {courses.age} tuổi
                         </span>
                       </h5>
 
@@ -99,10 +102,10 @@ const LearningCardNB = () => {
                         </a>
 
                         {/* rating */}
-                        <div class="pt-20 flex items-center">
+                        <div className="pt-20 flex items-center">
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +115,7 @@ const LearningCardNB = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +125,7 @@ const LearningCardNB = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +135,7 @@ const LearningCardNB = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
+                            className="w-5 h-5 text-yellow-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +145,7 @@ const LearningCardNB = () => {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                            className="w-5 h-5 text-gray-300 dark:text-gray-500"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -153,19 +156,16 @@ const LearningCardNB = () => {
                         </div>
 
                         {/* detail */}
-                        <a
-                 
-                          className="aspect-square block absolute transition-opacity z-10"
-                        >
+                        <div className="aspect-square block absolute transition-opacity z-10">
                           <h3 className="pt-2 font-normal mx-auto text-sm pr-4 text-[#707070]">
-                            {courses.description.slice(0,105)} ...
+                            {courses.description.slice(0, 105)} ...
                           </h3>
-                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
           })}
         </div>
@@ -173,7 +173,7 @@ const LearningCardNB = () => {
 
       {/* Xem Them */}
       <div className=" w-full flex justify-center align-center items-center">
-        <button class="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
+        <button className="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
           <p className="mx-14">Xem Thêm</p>
         </button>
       </div>
