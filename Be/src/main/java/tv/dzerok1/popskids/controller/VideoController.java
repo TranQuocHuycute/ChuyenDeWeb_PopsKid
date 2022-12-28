@@ -2,6 +2,7 @@ package tv.dzerok1.popskids.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ import tv.dzerok1.popskids.service.VideoService;
 
 import javax.validation.Valid;
 import java.util.List;
+import tv.dzerok1.popskids.model.Ep;
+
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
@@ -57,18 +61,38 @@ public class VideoController {
         return ResponseEntity.ok().build();
     }
 
-
-
     @GetMapping("/videos")
     public ResponseEntity<List<Video>> getVideos() {
+        List<Video> videos = videoService.getVideos();
         return ResponseEntity.ok()
-                             .body(videoService.getVideos());
+                             .body(videos);
     }
 
     @GetMapping("/videos/{id}")
-    public ResponseEntity<Video> getVideoById(@PathVariable Long id) {
+    public ResponseEntity<Video> getVideoByID(@PathVariable Long id) {
+        Video video = videoService.getVideoById(id);
         return ResponseEntity.ok()
-                             .body(videoService.getVideoById(id));
+                .body(video);
+    }
+
+    @GetMapping("/videos/{videoId}/{epNumber}")
+    public ResponseEntity<Ep> getEpByVideoId(@PathVariable Long videoId,@PathVariable Integer epNumber) {
+        return ResponseEntity.ok().body(videoService.getEpByVideoIdAndEpNumber(videoId, epNumber));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Video>> search(@RequestParam String key) {
+        return ResponseEntity.ok().body(videoService.searchVideos(key));
+    }
+
+    @GetMapping("/videos/categories/{id}")
+    public ResponseEntity<List<Video>> getCategoriesById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(videoService.getVideosByCategoryID(id));
+    }
+
+    @GetMapping("/videos/categories/name/{name}")
+    public ResponseEntity<List<Video>> getCategoriesByName(@PathVariable String name) {
+        return ResponseEntity.ok().body(videoService.getVideosByCategoryName(name));
     }
 
     @GetMapping("/types")
@@ -87,11 +111,6 @@ public class VideoController {
     public ResponseEntity<List<Category>> getCategories() {
         return ResponseEntity.ok()
                              .body(videoService.getCategories());
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<Video>> search(@RequestParam String key) {
-        return ResponseEntity.ok().body(videoService.searchVideos(key));
     }
 
 }

@@ -34,6 +34,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
+
         if (request
                 .getServletPath()
                 .equals("/api/auth/login") || request
@@ -50,7 +51,30 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 .getServletPath()
                 .equals("/api/videos/{id}") || request
                 .getServletPath()
-                .equals("/api/courses")){
+                .equals("/api/courses") || request
+                .getServletPath()
+                .equals("/api/videos/{videoId}/{epNumber}") || request
+                .getServletPath()
+                .equals("/api/search") || request
+                .getServletPath()
+                .equals("/api/videos/categories/{id}") || request
+                .getServletPath()
+                .equals("/videos/categories/name/{name}") || request
+                .getServletPath()
+                .equals("/api/courses") || request
+                .getServletPath()
+                .equals("/api/courses/{id}") || request
+                .getServletPath()
+                .equals("/api/courses/catalogs") || request
+                .getServletPath()
+                .equals("/api/courses/catalogs/{id}") || request
+                .getServletPath()
+                .equals("/api/courses/{id}/add/teacher") || request
+                .getServletPath()
+                .equals("/api/courses/{id}/add/rating") || request
+                .getServletPath()
+                .equals("/api/courses/search")) {
+
             filterChain.doFilter(request, response);
         } else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);

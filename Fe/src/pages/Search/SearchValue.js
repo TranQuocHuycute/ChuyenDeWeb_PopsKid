@@ -9,11 +9,11 @@ function SearchValue({ data }) {
         {data.map((e) => {
           return (
             <Link
-              to={`/@${e.id}`}
+              to={`/${e.id}`}
               key={e.id}
               className="py-2 text-[#797979]"
             >
-              {e.full_name}
+              {e.title}
             </Link>
           )
         })}

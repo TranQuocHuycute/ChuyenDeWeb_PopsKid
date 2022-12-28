@@ -1,58 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
-
-// Data
+// import { useState, useRef, useEffect } from 'react'
+import Carousel from 'react-grid-carousel'
 import dataLearningCard from './dataLearningCard.json'
 
 const LearningCard = () => {
-  const maxScrollWidth = useRef(0)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const learningcard = useRef(null)
-
-  const movePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1)
-    }
-  }
-
-  const moveNext = () => {
-    if (
-      learningcard.current !== null &&
-      learningcard.current.offsetWidth * currentIndex <= maxScrollWidth.current
-    ) {
-      setCurrentIndex((prevState) => prevState + 1)
-    }
-  }
-
-  const isDisabled = (direction) => {
-    if (direction === 'prev') {
-      return currentIndex <= 0
-    }
-
-    if (direction === 'next' && learningcard.current !== null) {
-      return (
-        learningcard.current.offsetWidth * currentIndex >=
-        maxScrollWidth.current
-      )
-    }
-
-    return false
-  }
-
-  useEffect(() => {
-    if (learningcard !== null && learningcard.current !== null) {
-      learningcard.current.scrollLeft =
-        learningcard.current.offsetWidth * currentIndex
-    }
-  }, [currentIndex])
-
-  useEffect(() => {
-    maxScrollWidth.current = learningcard.current
-      ? learningcard.current.scrollWidth - learningcard.current.offsetWidth
-      : 0
-  }, [])
-
-  // const [isLike, setIsLike] = useState(false);
-
   return (
     <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16">
       {/* Pha doa cung */}
@@ -90,207 +40,146 @@ const LearningCard = () => {
         </div>
       </div>
 
-      {/* <> */}
-      {/* {false && (  */}
-      <section className="pb-1 px-20">
-        <div class="flex justify-end flex-row">
-          {/* < */}
-          <div class="flex items-center">
-            <div class="text-right">
-              <button
-                onClick={movePrev}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                disabled={isDisabled('prev')}
-                class="p-1 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-                <span className="sr-only">Prev</span>
-              </button>
-            </div>
-          </div>
-          {/* > */}
-          <div class="flex items-center">
-            <div class="text-right">
-              <button
-                onClick={moveNext}
-                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                disabled={isDisabled('next')}
-                class="p-1 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </button>
-              <span className="sr-only">Next</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* )} */}
-
       {/* learningcard */}
+
       <div className="relative overflow-hidden pt-2">
-        <div
-          ref={learningcard}
-          className="learningcard-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
-        >
-          {dataLearningCard.resources.map((resource, index) => {
-            return (
-              <div className="pl-4 pb-10">
-                <div className="pb-32 text-black bg-[#fff] rounded-md">
-                  <div className="rounded-md">
-                    <div
-                      key={index}
-                      className="learningcard-item relative w-64 h-80 snap-start rounded-md"
-                    >
-                      {/* img */}
-                      <a
-                        href={resource.link}
-                        className="h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
-                        style={{
-                          backgroundImage: `url(${resource.imageUrl || ''})`,
-                        }}
-                      >
-                        <img
-                          src={resource.imageUrl || ''}
-                          alt={resource.title}
-                          className="aspect-square hidden w-full rounded-md"
-                        />
-                      </a>
+        <div className="">
+          <Carousel cols={5} rows={1} gap={1} loop>
+            {dataLearningCard.resources.map((resource, index) => {
+              return (
+                <Carousel.Item key={index}>
+                  <div className="pl-4 pb-10">
+                    <div className="pb-32 text-black bg-[#fff] rounded-md">
+                      <div className="rounded-md">
+                        <div className="learningcard-item relative w-64 h-80 snap-start rounded-md">
+                          {/* img */}
+                          <a
+                            href={resource.link}
+                            className="h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
+                            style={{
+                              backgroundImage: `url(${
+                                resource.imageUrl || ''
+                              })`,
+                            }}
+                          >
+                            <img
+                              src={resource.imageUrl || ''}
+                              alt={resource.title}
+                              className="aspect-square hidden w-full rounded-md"
+                            />
+                          </a>
 
-                      {/* tag */}
-                      <h5 className="pl-2 pt-4 flex items-center text-sm font-black dark:text-white">
-                        <span class="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
-                          New
-                        </span>
-                      </h5>
+                          {/* tag */}
+                          <h5 className="pl-2 pt-4 flex items-center text-sm font-black dark:text-white">
+                            <span className="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
+                              New
+                            </span>
+                          </h5>
 
-                      <div className="pl-5 w-72 ">
-                        {/* ten khoa hoc */}
-                        <a
-                          href={resource.link}
-                          className="aspect-square block absolute transition-opacity z-10"
-                        >
-                          <h3 className="pt-2 mx-auto text-xl font-bold">
-                            {resource.title}
-                          </h3>
-                        </a>
+                          <div className="pl-5 w-72 ">
+                            {/* ten khoa hoc */}
+                            <a
+                              href={resource.link}
+                              className="aspect-square block absolute transition-opacity z-10"
+                            >
+                              <h3 className="pt-2 mx-auto text-xl font-bold">
+                                {resource.title}
+                              </h3>
+                            </a>
 
-                        {/* rating */}
-                        <div class="pt-16 flex items-center">
-                          <svg
-                            aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <title>First star</title>
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                          </svg>
-                          <svg
-                            aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <title>Second star</title>
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                          </svg>
-                          <svg
-                            aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <title>Third star</title>
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                          </svg>
-                          <svg
-                            aria-hidden="true"
-                            class="w-5 h-5 text-yellow-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <title>Fourth star</title>
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                          </svg>
-                          <svg
-                            aria-hidden="true"
-                            class="w-5 h-5 text-gray-300 dark:text-gray-500"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <title>Fifth star</title>
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                          </svg>
-                        </div>
+                            {/* rating */}
+                            <div className="pt-16 flex items-center">
+                              <svg
+                                aria-hidden="true"
+                                className="w-5 h-5 text-yellow-400"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title>First star</title>
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                              </svg>
+                              <svg
+                                aria-hidden="true"
+                                className="w-5 h-5 text-yellow-400"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title>Second star</title>
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                              </svg>
+                              <svg
+                                aria-hidden="true"
+                                className="w-5 h-5 text-yellow-400"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title>Third star</title>
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                              </svg>
+                              <svg
+                                aria-hidden="true"
+                                className="w-5 h-5 text-yellow-400"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title>Fourth star</title>
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                              </svg>
+                              <svg
+                                aria-hidden="true"
+                                className="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title>Fifth star</title>
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                              </svg>
+                            </div>
 
-                        {/* ten co giao */}
-                        <a
-                          href={resource.link}
-                          className="aspect-square block absolute transition-opacity z-10"
-                        >
-                          <h3 className="font-medium mx-auto text-sm pb-1">
-                            {resource.namTeacher}
-                          </h3>
-                        </a>
-                        {/* detail */}
-                        <a
-                          href={resource.link}
-                          className="aspect-square block absolute transition-opacity z-10"
-                        >
-                          <h3 className="pt-7 font-normal mx-auto text-sm pr-4">
-                            {resource.detail}
-                          </h3>
-                        </a>
-                        {/*  */}
-                        <a
-                          href={resource.link}
-                          className="aspect-square block absolute transition-opacity z-10 pt-32"
-                        >
-                          <div className="border-solid border-2 border-black-500 w-52 h-px"></div>
-                        </a>
-                        <div className="pt-36 w-full">
-                          <button class="bg-sky-400 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-full">
-                            <p className="mx-14">Xem Thêm</p>
-                          </button>
+                            {/* ten co giao */}
+                            <a
+                              href={resource.link}
+                              className="aspect-square block absolute transition-opacity z-10"
+                            >
+                              <h3 className="font-medium mx-auto text-sm pb-1">
+                                {resource.namTeacher}
+                              </h3>
+                            </a>
+                            {/* detail */}
+                            <a
+                              href={resource.link}
+                              className="aspect-square block absolute transition-opacity z-10"
+                            >
+                              <h3 className="pt-7 font-normal mx-auto text-sm pr-4">
+                                {resource.detail}
+                              </h3>
+                            </a>
+                            {/*  */}
+                            <a
+                              href={resource.link}
+                              className="aspect-square block absolute transition-opacity z-10 pt-32"
+                            >
+                              <div className="border-solid border-2 border-black-500 w-52 h-px"></div>
+                            </a>
+                            <div className="pt-36 w-full">
+                              <button className="bg-sky-400 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-full">
+                                <p className="mx-14">Xem Thêm</p>
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            )
-          })}
+                </Carousel.Item>
+              )
+            })}
+          </Carousel>
         </div>
       </div>
     </div>

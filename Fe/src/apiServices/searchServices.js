@@ -1,11 +1,10 @@
 import * as request from '../../src/utilts/request'
 
-export const seacrh = async (q, type = 'less') => {
+export const seacrh = async (key) => {
   try {
-    const res = await request.get('users/search', {
+    const res = await request.get('search/', {
       params: {
-        q,
-        type,
+        key
       },
     })
     return res.data

@@ -19,6 +19,8 @@ public interface CourseService {
     Course deleteCourseById(Long id);
     Course getCourseById(Long id);
     List<Course> getAllCourse();
+    List<Course> getCourseByCatalogId(Long id);
+    List<Course> searchCourseByTitleAndCatalogName(String key);
 
     ClassSchedule createClassSchedule(ClassSchedule classSchedule);
     ClassSchedule updateClassSchedule(ClassSchedule classSchedule);
@@ -86,6 +88,18 @@ class CourseServiceImpl implements CourseService {
     public List<Course> getAllCourse() {
         log.info("Getting all courses from the database");
         return courseRepository.findAll();
+    }
+
+    @Override
+    public List<Course> getCourseByCatalogId(Long id) {
+        log.info("Getting all courses from the database");
+        return courseRepository.findByCourseCatalogsId(id);
+    }
+
+    @Override
+    public List<Course> searchCourseByTitleAndCatalogName(String key) {
+        log.info("Getting all courses from the database");
+        return courseRepository.findDistinctByTitleContainingOrCourseCatalogsNameContaining(key, key);
     }
 
     @Override

@@ -1,7 +1,21 @@
-// Data
-import dataLearningCard from "./dataLearningCard.json";
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const LearningCardNB = () => {
+  const [featuredCourses, setFeaturedCourses] = useState([])
+  console.log('featuredCourses', featuredCourses)
+  useEffect(() => {
+    axios
+      .get('http://localhost:8080/api/courses')
+      .then(function (response) {
+        setFeaturedCourses(response.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }, [])
+
   return (
     <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16 ">
       {/* Pha doa cung */}
@@ -44,49 +58,43 @@ const LearningCardNB = () => {
 
       {/* learningcard */}
       <div className=" pt-2 flex justify-center align-center items-center pb-2">
-        <div
-          ref={dataLearningCard}
-          className="flex flex-col sm:flex-row"
-        >
-          {dataLearningCard.resources.map((resource, index) => {
+        <div ref={featuredCourses} className="flex flex-col sm:flex-row">
+          {featuredCourses.slice([0], [5]).map((courses) => {
             return (
-              <div className="pl-2 sm:pl-10 pb-8">
+              <div key={courses.id} className="pl-2 sm:pl-10 pb-8">
                 <div className="pb-16 text-black bg-[#fff] rounded-md">
                   <div className="rounded-md">
-                    <div
-                      key={index}
-                      className="learningcard-item relative w-72 h-80 snap-start rounded-md"
-                    >
+                    <div className="learningcard-item relative w-72 h-80 snap-start rounded-md">
                       {/* img */}
-                      <a
-                        href={resource.link}
+                      <Link
+                        
                         className="h-40 w-72 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
                         style={{
-                          backgroundImage: `url(${resource.imageUrl || ""})`,
+                          backgroundImage: `url(${courses.thumbnail || ''})`,
                         }}
                       >
                         <img
-                          src={resource.imageUrl || ""}
-                          alt={resource.title}
+                          src={courses.thumbnail || ''}
+                          alt={courses.title}
                           className="aspect-square hidden w-full rounded-md"
                         />
-                      </a>
+                      </Link>
 
                       {/* tag */}
                       <h5 className="pl-2 pt-2 flex items-center text-sm font-black dark:text-white">
                         <span class="bg-[#ff5c5c29] text-[#ff5c5c] text-[12px]  mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
-                          {"8 - 12 tuổi"}
+                          {courses.age}  tuổi
                         </span>
                       </h5>
 
                       <div className="pl-5 w-72 ">
                         {/* ten khoa hoc */}
                         <a
-                          href={resource.link}
+                          href={courses.link}
                           className="aspect-square block absolute transition-opacity z-10"
                         >
                           <h3 className="mx-auto text-[20px] font-bold text-[#242424]">
-                            {resource.title}
+                            {courses.title}
                           </h3>
                         </a>
 
@@ -146,11 +154,11 @@ const LearningCardNB = () => {
 
                         {/* detail */}
                         <a
-                          href={resource.link}
+                 
                           className="aspect-square block absolute transition-opacity z-10"
                         >
                           <h3 className="pt-2 font-normal mx-auto text-sm pr-4 text-[#707070]">
-                            {resource.detail}
+                            {courses.description.slice(0,105)} ...
                           </h3>
                         </a>
                       </div>
@@ -158,21 +166,19 @@ const LearningCardNB = () => {
                   </div>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
-
-        
       </div>
 
       {/* Xem Them */}
       <div className=" w-full flex justify-center align-center items-center">
-          <button class="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
-            <p className="mx-14">Xem Thêm</p>
-          </button>
-        </div>
+        <button class="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
+          <p className="mx-14">Xem Thêm</p>
+        </button>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default LearningCardNB;
+export default LearningCardNB
