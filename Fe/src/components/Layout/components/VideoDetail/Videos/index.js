@@ -39,7 +39,7 @@ function Videos() {
               <div className="flex justify-center">
                 <ReactPlayer
                   className="react-player"
-                  url= 'https://www.youtube.com/watch?v=xaDl80P6GoA'
+                  url= {videos.url}
                   width="100%"
                   height="500px"
                   controls
