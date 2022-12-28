@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/auth/login");
         http.cors().and().csrf().disable();
-        http.authorizeRequests().antMatchers("/api/auth/login", "/api/types", "/api/countries", "/api/categories", "/api/token/refresh", "/api/videos", "/api/videos/{id}", "/api/courses", "/api/search/**", "/api/videos/{videoId}/{epNumber}", "/api/videos/categories/name/{name}").permitAll();
+        http.authorizeRequests().antMatchers("/api/auth/login", "/api/courses/{id}", "/api/courses/catalogs", "/api/courses/search","/api/auth/register", "/api/courses/catalogs/{id}", "/api/types", "/api/countries", "/api/courses/{id}/add/teacher", "/api/courses/{id}/add/rating", "/api/categories", "/api/token/refresh", "/api/videos", "/api/videos/{id}", "/api/courses", "/api/search/**", "/api/videos/{videoId}/{epNumber}", "/api/videos/categories/name/{name}").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/users", "/api/videos/{id}", "/api/videos/{id}/type/**", "/api/videos/{id}/country" ,"/api/videos/{id}/category/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/swagger-ui/index.html").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPER_ADMIN");
         http.authorizeRequests().antMatchers(POST, "/api/videos/add/**", "/videos/{id}", "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");

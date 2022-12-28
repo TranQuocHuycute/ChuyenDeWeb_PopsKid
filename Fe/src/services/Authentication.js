@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 const LOGIN_REST_API_URL = 'http://localhost:8080/api/auth/login'
+const REGISTER_REST_API_URL = 'http://localhost:8080/api/auth/register'
 import qs from 'qs'
 export default class Authentication {
   static login(username, password) {
@@ -23,6 +24,32 @@ export default class Authentication {
       })
       .catch((err) => {
         console.log(err)
+      })
+  }
+  static logout() {
+    Cookies.remove('authToken')
+  }
+
+  static register(username, password, name) {
+    console.log({ username, password, name })
+    return axios
+      .post(
+        REGISTER_REST_API_URL,
+        {
+          name: name ? name : username,
+          username,
+          password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + Cookies.get('authToken'),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res)
+        window.location.href = '/login'
       })
   }
 }

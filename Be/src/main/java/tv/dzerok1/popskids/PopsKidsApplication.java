@@ -40,8 +40,8 @@ public class PopsKidsApplication {
             userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
 
             User user = userService.saveUser(new User(null, "John Travolta", "john", "1234", null, new ArrayList<>()));
-            userService.saveUser(new User(null, "Will Smith", "will", "1234", null, new ArrayList<>()));
-            userService.saveUser(new User(null, "Jim Carry", "jim", "1234", null, new ArrayList<>()));
+            User user1 = userService.saveUser(new User(null, "Will Smith", "will", "1234", null, new ArrayList<>()));
+            userService.saveUser(new User(null, "Jim Carry", "jim@gmail.com", "1234", null, new ArrayList<>()));
             userService.saveUser(new User(null, "Arnold Schwarzenegger", "arnold", "1234", null, new ArrayList<>()));
             userService.saveUser(new User(null, "Tom Cruise", "tom", "1234", null, new ArrayList<>()));
             userService.saveUser(new User(null, "Bruce Willis", "bruce", "1234", null, new ArrayList<>()));
@@ -50,7 +50,7 @@ public class PopsKidsApplication {
             userService.addRoleToUser("john", "ROLE_USER");
             userService.addRoleToUser("will", "ROLE_USER");
             userService.addRoleToUser("will", "ROLE_TEACHER");
-            userService.addRoleToUser("jim", "ROLE_MANAGER");
+            userService.addRoleToUser("jim@gmail.com", "ROLE_MANAGER");
             userService.addRoleToUser("arnold", "ROLE_ADMIN");
             userService.addRoleToUser("tom", "ROLE_USER");
             userService.addRoleToUser("tom", "ROLE_TEACHER");
@@ -158,7 +158,7 @@ public class PopsKidsApplication {
             courseService.addCourseCatalogsToCourse(course.getId(), courseCatalog.getId());
             courseService.addClassSchedulesToCourse(course.getId(), classSchedule.getId());
             courseService.addRatingsToCourse(course.getId(), rating.getId());
-            courseService.addUsersToCourse(course.getId(), user.getUsername());
+            courseService.addUsersToCourse(course.getId(), user1.getUsername());
         };
     }
 
