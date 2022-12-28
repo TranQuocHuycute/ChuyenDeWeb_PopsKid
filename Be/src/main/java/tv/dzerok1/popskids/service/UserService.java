@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import tv.dzerok1.popskids.dao.RoleRepository;
 import tv.dzerok1.popskids.dao.UserRepository;
 import tv.dzerok1.popskids.domain.Role;
@@ -21,9 +20,13 @@ import java.util.List;
 
 public interface UserService {
     User saveUser(User user);
+
     Role saveRole(Role role);
+
     void addRoleToUser(String username, String roleName);
+
     User getUser(String username);
+
     List<User> getUsers();
 }
 
@@ -46,17 +49,52 @@ class UserServiceImpl implements UserService, UserDetailsService {
             log.info("User found in the database: {}", username);
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        user.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        });
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        user
+                .getRoles()
+                .forEach(role -> {
+                    authorities.add(new SimpleGrantedAuthority(role.getName()));
+                });
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+                                                                      user.getPassword(),
+                                                                      authorities);
     }
 
     @Override
     public User saveUser(User user) {
         log.info("Saving new user {} to the database", user.getName());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        String phoneNumberRegex = "^\\d{10}$";
+        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        log.info("Checking if user {} already exists", user.getPassword());
+        if (!userRepository.existsByUsername(user.getUsername())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            if (user
+                    .getUsername()
+                    .matches(phoneNumberRegex) || user
+                    .getUsername()
+                    .matches(emailRegex)) {
+                log.info("User {} saved to the database", user.getName());
+                return userRepository.save(user);
+            } else if (user
+                    .getUsername()
+                    .equals("john") || user
+                    .getUsername()
+                    .equals("will") || user
+                    .getUsername()
+                    .equals("jim") || user
+                    .getUsername()
+                    .equals("arnold") || user
+                    .getUsername()
+                    .equals("tom") || user
+                    .getUsername()
+                    .equals("bruce") || user
+                    .getUsername()
+                    .equals("admin")) {
+                log.info("User {} saved to the database", user.getName());
+                return userRepository.save(user);
+            }
+            log.error("User {} not saved to the database", user.getName());
+        }
+        return null;
     }
 
     @Override
@@ -70,7 +108,9 @@ class UserServiceImpl implements UserService, UserDetailsService {
         log.info("Adding role {} to user {}", roleName, username);
         User user = userRepository.findByUsername(username);
         Role role = roleRepository.findByName(roleName);
-        user.getRoles().add(role);
+        user
+                .getRoles()
+                .add(role);
     }
 
     @Override
