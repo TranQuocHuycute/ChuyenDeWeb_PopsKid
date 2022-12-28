@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
 import LoginFbOrGG from '../../components/Layout/LoginAndRegisterLayout/LoginFbOrGG'
 import { useForm } from 'react-hook-form'
+import Authentication from '../../services/Authentication'
 function Register() {
   const {
     register,
@@ -16,7 +17,8 @@ function Register() {
   })
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log({ data })
+    Authentication.register(data.email, data.password, data.name)
   }
 
   const handleClickShowPassword = () => {
@@ -140,7 +142,6 @@ function Register() {
         </div>
 
         <button
-          disabled
           type="submit"
           className="mt-9 rounded-3xl p-3 bg-[#02ccc5] hover:bg-opacity-80 text-white w-full text-sm"
         >
