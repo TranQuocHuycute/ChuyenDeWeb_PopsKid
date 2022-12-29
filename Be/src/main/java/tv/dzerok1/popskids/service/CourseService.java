@@ -37,7 +37,6 @@ public interface CourseService {
     CourseCatalog deleteCourseCatalogById(Long id);
     CourseCatalog getCourseCatalogById(Long id);
     List<CourseCatalog> getAllCourseCatalog();
-    CourseCatalog getCourseCatalogByIds(Long id);
     List<CourseCatalog> searchCourseCatalogByNameOrCourseTitle(String key);
 
     void addUsersToCourse(Long courseId, String username);
@@ -185,11 +184,6 @@ class CourseServiceImpl implements CourseService {
     public List<CourseCatalog> getAllCourseCatalog() {
         log.info("Getting all courseCatalogs from the database");
         return courseCatalogRepository.findAll();
-    }
-
-    @Override
-    public CourseCatalog getCourseCatalogByIds(Long id) {
-        return courseCatalogRepository.findById(id).orElseThrow(() -> new RuntimeException("CourseCatalog not found"));
     }
 
     @Override
