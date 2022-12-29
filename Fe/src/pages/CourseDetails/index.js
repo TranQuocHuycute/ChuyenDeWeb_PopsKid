@@ -1,17 +1,20 @@
 import dataLearningCard from './dataLearningCardDetail.json'
 import images from '../../assets/images'
-import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import formatCash from '../../hooks/formatCash'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 function CourseDetails() {
   const { courseId } = useParams()
-  const [courseDetails, setCourseDetails] = useState()
-  const [rating , setRating] = useState([])
+  const navigate = useNavigate()
 
-  console.log('rating', rating)
+  const [courseDetails, setCourseDetails] = useState()
+  const [rating, setRating] = useState([])
+
+  console.log(rating)
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/courses/${courseId}`)
@@ -23,6 +26,12 @@ function CourseDetails() {
         console.log(error)
       })
   }, [])
+
+  const openRegisterCouse = () => {
+    if (Cookies.get('authToken') !== undefined) {
+      navigate('/registerCourse',{ state: {courseDetails} })
+    } else navigate({ pathname: '/login' })
+  }
 
   const subjectInfo = [
     courseDetails && {
@@ -61,8 +70,12 @@ function CourseDetails() {
           {/* Thong tin khoa hoc */}
           <div className="">
             {/* Thông tin khóa học */}
+            <img
+              className=" md:hidden rounded-2xl h-[200px]"
+              src={courseDetails.thumbnail}
+            ></img>
             <div className="flex sm:flex-row justify-between">
-              <div className="sm:w-2/3 w-full">
+              <div className="md:w-2/3 w-full">
                 {/* tag */}
                 <div className="flex flex-row">
                   <div>
@@ -102,40 +115,10 @@ function CourseDetails() {
                 </div>
               </div>
               {/*hinh giời thiệu */}
-              <div className="sm:w-1/3 w-full flex items-center">
-                <div className="bg-auto">
-                  <div ref={dataLearningCard}>
-                    {dataLearningCard.resources3.map((resource, index) => {
-                      return (
-                        <div key={index} className="pl-4">
-                          <div className=" text-black rounded-md">
-                            <div className="rounded-md">
-                              <div className="learningcard-item relative sm:w-64 sm:h-32 w-32 h-16 snap-start rounded-md">
-                                {/* img */}
-                                <a
-                                  href={resource.link}
-                                  className="sm:h-32 sm:w-64 h-16 w-32 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
-                                  style={{
-                                    backgroundImage: `url(${
-                                      resource.imageUrl || ''
-                                    })`,
-                                  }}
-                                >
-                                  <img
-                                    src={resource.imageUrl || ''}
-                                    alt={resource.title}
-                                    className="aspect-square hidden w-full rounded-md"
-                                  />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
+              <img
+                className="hidden md:block md:w-[350px] rounded-2xl md:mr-[60px]"
+                src={courseDetails.thumbnail}
+              ></img>
             </div>
 
             <div className="sm:max-w-[66%]">
@@ -424,7 +407,7 @@ function CourseDetails() {
           <div className="sm:w-10/12 2xl:w-4/5 py-5 sm:m-auto pb:-[10px]">
             <h2>
               <span className="text-[20px] md:text-[24px] font-bold">
-                Đánh giá của phụ huynh 
+                Đánh giá của phụ huynh
               </span>
             </h2>
             {/* sao trung bình */}
@@ -628,13 +611,13 @@ function CourseDetails() {
                 className="sm:m-10 m-5 my-5 flex justify-start items-center flex-row"
               >
                 <div className="flex justify-start w-32 h-12 ">
-                  <button className="bg-[#02bcc4] rounded-md">
-                    <Link
-                      to="/registerCourse"
-                      className="text-white font-bold px-5 sm:px-2 text-[12px] xl:text-[20px] 2xl:text-[20px]"
-                    >
+                  <button
+                    onClick={openRegisterCouse}
+                    className="bg-[#02bcc4] rounded-md"
+                  >
+                    <p className="text-white font-bold px-5 sm:px-2 text-[12px] xl:text-[20px] 2xl:text-[20px]">
                       ĐĂNG KÝ
-                    </Link>
+                    </p>
                   </button>
                 </div>
                 <div className="px-10 text-[#ff5c5c] font-bold">

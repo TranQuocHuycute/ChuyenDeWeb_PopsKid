@@ -6,8 +6,18 @@ import ItemMenu from './ItemMenu'
 import LoginRegisterButton from '../../LoginRegisterButton'
 import Cookies from 'js-cookie'
 import images from '../../../../assets/images'
+import jwtDecode from 'jwt-decode'
+import { useState , useEffect } from 'react'
 
 function Menu({ children, items, profile }) {
+  const [user , setUser] = useState()
+  useEffect(() => {
+    if (Cookies.get('authToken') !== undefined) {
+      const json = jwtDecode(Cookies.get('authToken'))
+      setUser (json)
+    }
+  }, [])
+
   const isAuthenticated = () => {
     return Cookies.get('authToken') !== undefined
   }
@@ -37,12 +47,10 @@ function Menu({ children, items, profile }) {
                   alt="flex items-center mx-4"
                 ></img>
                 <div className="grow h-14 mx-4">
-                  <p className="text-xs text-[#808080] mt-3 font-semibold">
-                    User ID : 646461313333333333353113131
+                  <p className=" text-[#808080] mt-5 font-semibold">
+                  {user && user.sub}
                   </p>
-                  <p className="text-xs text-[#808080] font-semibold">
-                    646461313333333333
-                  </p>
+                 
                 </div>
                 <div className="flex rounded-full bg-[#f0f0f0] w-8 h-8 justify-center items-center">
                   <svg

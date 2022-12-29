@@ -1,6 +1,38 @@
+import { useLocation } from 'react-router-dom'
+import formatCash from '../../hooks/formatCash'
+import jwtDecode from 'jwt-decode'
+import Cookies from 'js-cookie'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 function RegisterCourse() {
+  const location = useLocation()
+  const navigata = useNavigate()
+
+  const course = location.state.courseDetails
+  console.log('props', course)
+  const [user, setUser] = useState()
+  useEffect(() => {
+    if (Cookies.get('authToken') !== undefined) {
+      const json = jwtDecode(Cookies.get('authToken'))
+      setUser(json)
+    }
+  }, [])
+
+  const baseURL = '/api/course/addtouser'
+
+  function createPost() {
+    if (Cookies.get('authToken') !== undefined) {
+      axios.post(`${baseURL}/${course.id}/${user.sub}`).then((response) => {
+        console.log('success', response)
+      })
+    } else {
+      navigata({ pathname: '/login' })
+    }
+  }
   return (
-    <div className="mb-20 bg-[#f0f0f0]">
+    <div className=" md:mt-[100px] mb-20 bg-[#f0f0f0]">
       <div className="m-auto max-w-[1200px] pt-[30px] pb-10">
         {/* Đăng ký khóa học */}
         <div className="mb-12">
@@ -169,51 +201,7 @@ function RegisterCourse() {
                         {'Chuyển khoản qua ngân hàng'}
                       </p>
                     </div>
-                    
                   </div>
-
-                  {/* 
-                  <div className="mb-5 py-2 text-center cursor-pointer border-[#06afc3] ">
-                    <div className="hidden text-left  ">
-                    //   <p className="text-gray-900">
-                    //     <b className="text-base">Chuyển khoản ngân hàng</b>
-                    //     <small className="text-sm">
-                    //       Bạn có thể thanh toán cho khóa học bằng hình thức
-                    //       chuyển khoản online hoặc tại quầy giao dịch của ngân
-                    //       hàng. Sau khi chuyển khoản thành công, vui lòng gửi
-                    //       hình ảnh hóa đơn chuyển khoản đến POPS tại
-                    //     </small>
-                    //     <a className="text-[#06afc3]" href="...">
-                    //       popskidslearn@popsww.com
-                    //     </a>
-                    //   </p>
-                    //   <p className="text-base mt-5">
-                    //     {'Số tài khoản'}
-                    //     {':'}
-                    //     <b>117002652492</b>
-                    //     <br>
-                    //       {'Tên chủ tài khoản'}
-                    //       {':'}
-                    //     </br>
-                    //     <b>Công ty cổ phần Phong Phú Sắc Việt</b>
-                    //     <br>
-                    //       {'Ngân hàng'}
-                    //       {':'}
-                    //     </br>
-                    //     <b>Vietinbank</b>
-                    //     <br>
-                    //       {'Chi nhánh'}
-                    //       {':'}
-                    //     </br>
-                    //     <b>Thành phố Hồ Chí Minh</b>
-                    //     <br>
-                    //       {'Nội dung thanh toán'}
-                    //       {':'}
-                    //     </br>
-                    //     <b>PKL - Số điện thoại của bạn</b>
-                    //   </p>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -255,28 +243,33 @@ function RegisterCourse() {
                   <div className="flex justify-between items-center py-4 border-[#ebebeb]">
                     <p className="text-base">{'Tên khóa học: '}</p>
                     <p className="text-base font-semibold text-right">
-                      (20 Buoi) Thứ 3, 5 - 18:00 Ngữ Pháp Tiếng Anh Cơ Bản
+                      {course.title}
                     </p>
                   </div>
 
                   <div className="flex justify-between items-center py-4 border-[#ebebeb] text-base">
                     <p className="text-black">{'Học phí: '}</p>
                     <p className="font-semibold">
-                      <span>1.600.000{' đ'}</span>
+                      <span>{formatCash(course.price + '')} đ</span>
                     </p>
                   </div>
 
-                  <div clasName="flex justify-between items-center py-4 border-[#ebebeb] border-t border-solid text-2xl">
+                  <div clasName="flex flex-row justify-between items-center py-4 border-[#ebebeb] border-t border-solid text-2xl">
                     <p className="text-black">{'Tổng'}</p>
                     <p className="font-semibold">
-                      <span>1.600.000{' đ'}</span>
+                      <span className="text-2xl text-[#06afc3]">
+                        {formatCash(course.price + '')} đ
+                      </span>
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-[30px] text-center">
-                  <button className="rounded-3xl p-3 bg-[#02ccc5] hover:bg-opacity-80 text-white font-bold text-sm w-1/2">
-                    {"Tiến hành giao dịch"}
+                  <button
+                    onClick={createPost}
+                    className="rounded-3xl p-3 bg-[#02ccc5] hover:bg-opacity-80 text-white font-bold text-sm w-1/2"
+                  >
+                    {'Tiến hành giao dịch'}
                   </button>
                 </div>
               </div>

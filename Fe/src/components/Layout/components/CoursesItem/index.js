@@ -10,11 +10,12 @@ function CoursesItem() {
   };
 
   const [courseCategories, setCourseCategories] = useState([])
+  console.log('courseCategories' , courseCategories);
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/courses/catalogs')
       .then(function (response) {
-        setCourseCategories(response.data.map(e => e.courseCatalogs))
+        setCourseCategories(response.data)
       })
       .catch(function (error) {
         console.log(error)
