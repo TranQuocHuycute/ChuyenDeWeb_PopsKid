@@ -23,4 +23,11 @@ public class CourseCatalog {
     private String avatar;
     private String description;
 
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    Collection<Course> courses = new ArrayList<>();
 }

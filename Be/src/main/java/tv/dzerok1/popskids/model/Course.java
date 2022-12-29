@@ -66,6 +66,4 @@ public class Course {
             }
     )
     private Collection<Rating> ratings = new ArrayList<>();
-    @OneToMany
-    private Collection<CourseCatalog> courseCatalogs = new ArrayList<>();
 }
