@@ -6,30 +6,58 @@ import formatCash from '../../hooks/formatCash'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
+import { Rating } from 'react-simple-star-rating'
 
 function CourseDetails() {
   const { courseId } = useParams()
   const navigate = useNavigate()
 
   const [courseDetails, setCourseDetails] = useState()
+  const [user, setUser] = useState([])
+  const [teacher, setTeacher] = useState()
   const [rating, setRating] = useState([])
+  // const [star, setStar] = useState(0)
 
-  console.log(rating)
+  console.log('rating', rating)
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/courses/${courseId}`)
       .then(function (response) {
         setCourseDetails(response.data)
-        setRating(response.data.ratings)
+        setRating({
+          data: response.data.ratings,
+          ratingTotal:
+            Math.round(
+              (response.data.ratings
+                .map((e) => e.numberRating)
+                .reduce((a, b) => a + b, 0) /
+                response.data.ratings.length) *
+                10
+            ) / 10,
+        })
+        setUser(response.data.users)
       })
       .catch(function (error) {
         console.log(error)
       })
   }, [])
 
+  useEffect(() => {
+    if (user.length > 0) {
+      user.map((e) => {
+        e.roles.map((c) => {
+          if (c.name === 'ROLE_TEACHER') {
+            setTeacher({ nameTeacher: e.name })
+          }
+        })
+      })
+    }
+  }, [user])
+
   const openRegisterCouse = () => {
     if (Cookies.get('authToken') !== undefined) {
-      navigate('/registerCourse',{ state: {courseDetails} })
+      navigate('/registerCourse', { state: { courseDetails } })
     } else navigate({ pathname: '/login' })
   }
 
@@ -93,7 +121,7 @@ function CourseDetails() {
                 </div>
                 <div>
                   <a className="text-[#06AFC3] sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px]">
-                    Ảo Thuật gia Nguyễn Phương
+                    {teacher && teacher.nameTeacher}
                   </a>
                 </div>
 
@@ -104,7 +132,7 @@ function CourseDetails() {
                   </div>
                   <div className="sm:mx-2 ">
                     <p className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px]">
-                      (425 {' đánh giá'})
+                      {rating.length} / Đánh giá
                     </p>
                   </div>
                   <div className="sm: border-l-2 border-r-2">
@@ -271,7 +299,7 @@ function CourseDetails() {
           </div>
 
           {/* collapse_root__L5u__edittor */}
-          <div ref={dataLearningCard}>
+          <div>
             {dataLearningCard.noidung.map((noidung, index) => {
               return (
                 <div key={index}>
@@ -410,81 +438,15 @@ function CourseDetails() {
                 Đánh giá của phụ huynh
               </span>
             </h2>
-            {/* sao trung bình */}
-            <div ref={dataLearningCard}>
-              {dataLearningCard.ratingTotal.map((ratingTotal, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-row justify-start items-center pb-[10px]"
-                  >
-                    <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
-                      <div className="flex items-center">
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>First star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Second star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Third star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-gray-300 dark:text-gray-500"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Fourth star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-gray-300 dark:text-gray-500"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Fifth star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                      </div>
-                    </div>
-
-                    <span className="font-bold text-[#4b4b4b] text-base ml-2">
-                      {ratingTotal.ratingTotal}
-                      <sub className="align-baseline text-base b-0">/5</sub>
-                    </span>
-                  </div>
-                )
-              })}
+            <div className="flex-row">
+              <Rating initialValue={1} readonly iconsCount={1} />
+              <span className='font-medium text-lg'>{rating.ratingTotal}/5</span>
             </div>
+
             {/* comment */}
             {/* Tên người đánh giá */}
-            <div ref={dataLearningCard}>
-              {dataLearningCard.rating.map((rating, index) => {
+            <div>
+              {rating.data.map((rating, index) => {
                 return (
                   <div key={index} className=" border-b border-[#f0f0f0] my-5">
                     {/* Tên */}
@@ -514,58 +476,7 @@ function CourseDetails() {
 
                     {/* số sao */}
                     <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
-                      <div className="flex items-center">
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>First star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Second star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Third star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Fourth star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5 text-gray-300 dark:text-gray-500"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <title>Fifth star</title>
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                      </div>
+                     {rating.numberRating}
                     </div>
 
                     {/* comment */}
@@ -600,10 +511,7 @@ function CourseDetails() {
         </div>
 
         {/* Đăng ký */}
-        <div
-          ref={dataLearningCard}
-          className="fixed bottom-0 left-0 right-0 flex w-full bg-[#F9F9F9]"
-        >
+        <div className="fixed bottom-0 left-0 right-0 flex w-full bg-[#F9F9F9]">
           {dataLearningCard.resources4.map((resources4, index) => {
             return (
               <div

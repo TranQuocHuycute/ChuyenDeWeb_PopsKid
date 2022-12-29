@@ -77,7 +77,7 @@ function Subject() {
         <h1 className="md:text-4xl font-bold">Các khóa học đề xuất</h1>
         {dataCourse.map((e) => {
           return (
-            <div className="m-10 md:m-0 block md:flex justify-center items-center md:px-3 md:h-[184px] hover:bg-[#CCFFFF] active:bg-[#CCFFFF] focus:outline-none md:my-3 rounded-xl">
+            <Link to={`/courseDetails/${e.id}`} className="m-10 md:m-0 block md:flex justify-center items-center md:px-3 md:h-[184px] hover:bg-[#CCFFFF] active:bg-[#CCFFFF] focus:outline-none md:my-3 rounded-xl">
               <div className="md:w-[20%] ">
                 <img  className="rounded-lg " src={e.thumbnail}></img>
               </div>
@@ -85,7 +85,6 @@ function Subject() {
               <div className="md:w-[80%] flex-col md:ml-5">
                 <div>
                   <span className="rounded-3xl bg-[#ff5c5c29] text-red-600 text-xs py-1 px-3 font-bold">
-                    {' '}
                     {e.age} tuổi
                   </span>
                   <p className="font-medium text-xl ">{e.title}</p>
@@ -97,7 +96,7 @@ function Subject() {
                   {formatCash(e.price + '')} đ/Buổi
                 </h1>
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>

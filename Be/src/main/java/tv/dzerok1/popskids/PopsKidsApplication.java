@@ -41,6 +41,7 @@ public class PopsKidsApplication {
 
             User user = userService.saveUser(new User(null, "John Travolta", "john", "1234", null, new ArrayList<>(), new ArrayList<>()));
             User user1 = userService.saveUser(new User(null, "Will Smith", "will", "1234", null, new ArrayList<>(), new ArrayList<>()));
+
             userService.saveUser(new User(null, "Jim Carry", "jim@gmail.com", "1234", null, new ArrayList<>(), new ArrayList<>()));
             userService.saveUser(new User(null, "Arnold Schwarzenegger", "arnold", "1234", null, new ArrayList<>(), new ArrayList<>()));
             userService.saveUser(new User(null, "Tom Cruise", "tom", "1234", null, new ArrayList<>(), new ArrayList<>()));
@@ -209,7 +210,9 @@ public class PopsKidsApplication {
             ClassSchedule classSchedule =
                     courseService.createClassSchedule(new ClassSchedule(null, 1, 8, "Thứ 7, CN - 15:00", 8, 700000L));
 
-            Rating rating = courseService.createRating(new Rating(null, user.getId(), 5, "admin"));
+            Rating rating = courseService.createRating(new Rating(null, user.getId(), 5, "Khá ổn về mặt nội dung và cách hướng dẫn. Mình cho 4*, hy vọng con sẽ thích bộ môn này") );
+            Rating rating1 = courseService.createRating(new Rating(null, user1.getId(), 4, "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học") );
+            Rating rating2 = courseService.createRating(new Rating(null, user.getId(), 5, "Thầy dạy nhiệt tình, có nhiều bài hay ho. Con mình còn đem lên trường để biểu diễn cho cô và cả lớp xem nữa đấy") );
 
             CourseCatalog courseCatalog =
                     courseService.createCourseCatalog(new CourseCatalog(null,
@@ -243,6 +246,8 @@ public class PopsKidsApplication {
             courseService.addCourseToCourseCatalog(courseCatalog.getId(), course.getId());
             courseService.addClassSchedulesToCourse(course.getId(), classSchedule.getId());
             courseService.addRatingsToCourse(course.getId(), rating.getId());
+            courseService.addRatingsToCourse(course.getId(), rating1.getId());
+            courseService.addRatingsToCourse(course.getId(), rating2.getId());
             courseService.addUsersToCourse(course.getId(), user1.getUsername());
 
 

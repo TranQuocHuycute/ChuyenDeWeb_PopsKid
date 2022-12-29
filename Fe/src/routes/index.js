@@ -27,6 +27,7 @@ import { AddVideo } from '../components/Layout/components/AddVideo'
 import Subject from '../pages/Subject'
 import CourseDetail from '../pages/CourseDetails'
 import RegisterCourse from '../pages/RegisterCourse'
+import Schedule from '../pages/Schedule'
 //public
 const publicRoutes = [
   { path: '/', components: Home },
@@ -83,6 +84,12 @@ const publicRoutes = [
   {
     path: '/registerCourse',
     components: RegisterCourse,
+    layout: PopskidLearnLayout,
+  },
+
+  {
+    path: '/schedule/:userId',
+    components: Schedule,
     layout: PopskidLearnLayout,
   },
 ]
