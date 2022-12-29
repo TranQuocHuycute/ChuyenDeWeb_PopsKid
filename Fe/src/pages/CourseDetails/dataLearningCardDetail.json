@@ -18,7 +18,7 @@
             "title": "Tiếng Việt"
         },
         {
-            "title": "1 Buổi"
+            "title": "2 Buổi/Tuần"
         }
     ],
     "resources3": [
@@ -28,12 +28,43 @@
     ],
     "resources4": [
         {
-            "buoi": "1 Buổi",
+            "tag": "Tuổi 6 - 12",
+            "buoi": "1 Tuần học thử miễn phí",
             "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
             "start": "Bắt đầu 01/01/2023",
+            "price": "0",
+            "list": "Mỗi học viên được học 1 lần",
+            "time": "Thứ 7 & Chủ nhật - 16:00 ",
+            "name": "Học nhảy cùng cô "
+        },
+        {
+            "tag": "Tuổi 6 - 12",
+            "buoi": "1 Học kỳ - 36 Buổi",
+            "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+            "start": "Bắt đầu khi đủ học viên",
             "price": "300.000",
             "list": "Tối đa 12 học viên",
-            "time": "Thứ 7 - 16:00",
+            "time": "Thứ 7 & Chủ nhật - 16:00",
+            "name": "Học nhảy cùng cô "
+        },
+        {
+            "tag": "Tuổi 6 - 12",
+            "buoi": "2 Học kỳ - 72 Buổi",
+            "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+            "start": "Bắt đầu khi đủ học viên",
+            "price": "600.000",
+            "list": "Tối đa 12 học viên",
+            "time": "Thứ 7 & Chủ nhật - 16:00",
+            "name": "Học nhảy cùng cô "
+        },
+        {
+            "tag": "Tuổi 6 - 12",
+            "buoi": "4 Học kỳ - 144 Buổi",
+            "imageUrl": "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/be_hoc_nhay_dance_sport-ab610a9212c1-1652984608494-BWnvehUg.png?v=0&maxW=640&format=webp",
+            "start": "Bắt đầu khi đủ học viên",
+            "price": "1.200.000",
+            "list": "Tối đa 12 học viên",
+            "time": "Thứ 7 & Chủ nhật - 16:00",
             "name": "Học nhảy cùng cô "
         }
     ],

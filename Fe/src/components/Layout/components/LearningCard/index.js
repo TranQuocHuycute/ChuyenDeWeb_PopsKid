@@ -4,7 +4,7 @@ import dataLearningCard from './dataLearningCard.json'
 
 const LearningCard = () => {
   return (
-    <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16">
+    <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16 ">
       {/* Pha doa cung */}
       <div>
         <div className="flex flex-row justify-items-center items-center">
@@ -33,7 +33,7 @@ const LearningCard = () => {
             {/* tên phim */}
             <div className="mr-2">
               <p className="text-xl xl:text-2xl 2xl:text-3xl leading-8 font-bold text-slate-700">
-                Phá Đảo Thế Giới Tik Tok
+                Learn
               </p>
             </div>
           </a>
@@ -44,14 +44,14 @@ const LearningCard = () => {
 
       <div className="relative overflow-hidden pt-2">
         <div className="">
-          <Carousel cols={5} rows={1} gap={1} loop>
+          <Carousel cols={3} rows={1} gap={1} loop>
             {dataLearningCard.resources.map((resource, index) => {
               return (
                 <Carousel.Item key={index}>
-                  <div className="pl-4 pb-10">
-                    <div className="pb-32 text-black bg-[#fff] rounded-md">
-                      <div className="rounded-md">
-                        <div className="learningcard-item relative w-64 h-80 snap-start rounded-md">
+                  <div className="pl-4 pb-10 ">
+                    <div className=" pb-32 text-black bg-[#fff] rounded-md border border-[#f9f9f9]">
+                      <div className="rounded-md ">
+                        <div className="mx-auto learningcard-item relative w-64 h-80 snap-start rounded-md">
                           {/* img */}
                           <a
                             href={resource.link}
@@ -78,14 +78,13 @@ const LearningCard = () => {
 
                           <div className="pl-5 w-72 ">
                             {/* ten khoa hoc */}
-                            <a
-                              href={resource.link}
+                            <div
                               className="aspect-square block absolute transition-opacity z-10"
                             >
                               <h3 className="pt-2 mx-auto text-xl font-bold">
                                 {resource.title}
                               </h3>
-                            </a>
+                            </div>
 
                             {/* rating */}
                             <div className="pt-16 flex items-center">
@@ -142,32 +141,29 @@ const LearningCard = () => {
                             </div>
 
                             {/* ten co giao */}
-                            <a
-                              href={resource.link}
+                            <div
                               className="aspect-square block absolute transition-opacity z-10"
                             >
                               <h3 className="font-medium mx-auto text-sm pb-1">
                                 {resource.namTeacher}
                               </h3>
-                            </a>
+                            </div>
                             {/* detail */}
-                            <a
-                              href={resource.link}
+                            <div
                               className="aspect-square block absolute transition-opacity z-10"
                             >
                               <h3 className="pt-7 font-normal mx-auto text-sm pr-4">
                                 {resource.detail}
                               </h3>
-                            </a>
+                            </div>
                             {/*  */}
-                            <a
-                              href={resource.link}
+                            <div
                               className="aspect-square block absolute transition-opacity z-10 pt-32"
                             >
                               <div className="border-solid border-2 border-black-500 w-52 h-px"></div>
-                            </a>
+                            </div>
                             <div className="pt-36 w-full">
-                              <button className="bg-sky-400 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-full">
+                              <button href='/courseDetails' className="bg-sky-400 hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-full">
                                 <p className="mx-14">Xem Thêm</p>
                               </button>
                             </div>
