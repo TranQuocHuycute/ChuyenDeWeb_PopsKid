@@ -37,10 +37,10 @@ public class CourseController {
     }
 
     @GetMapping("/courses/catalogs")
-    public ResponseEntity<List<Course>> getVideosByCatalog() {
+    public ResponseEntity<List<CourseCatalog>> getVideosByCatalog() {
         return ResponseEntity
                 .ok()
-                .body(courseService.getAllCourse());
+                .body(courseService.getAllCourseCatalog());
     }
 
     @GetMapping("/courses/catalogs/{id}")
