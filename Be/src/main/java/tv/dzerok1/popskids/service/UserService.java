@@ -9,10 +9,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tv.dzerok1.popskids.dao.CourseRepository;
 import tv.dzerok1.popskids.dao.RoleRepository;
 import tv.dzerok1.popskids.dao.UserRepository;
 import tv.dzerok1.popskids.domain.Role;
 import tv.dzerok1.popskids.domain.User;
+import tv.dzerok1.popskids.model.Course;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,10 +26,12 @@ public interface UserService {
     Role saveRole(Role role);
 
     void addRoleToUser(String username, String roleName);
+    void addCourseToUser(String username, Long courseId);
 
     User getUser(String username);
 
     List<User> getUsers();
+    List<Course> getUserCourses(String username);
 }
 
 @Service
@@ -35,6 +39,7 @@ public interface UserService {
 @Transactional
 @Slf4j
 class UserServiceImpl implements UserService, UserDetailsService {
+    private final CourseRepository courseRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
@@ -114,6 +119,16 @@ class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void addCourseToUser(String username, Long courseId) {
+        log.info("Adding course {} to user {}", courseId, username);
+        User user = userRepository.findByUsername(username);
+        Course course = courseRepository.findById(courseId).get();
+        user
+                .getCourses()
+                .add(course);
+    }
+
+    @Override
     public User getUser(String username) {
         log.info("Fetching user {}", username);
         return userRepository.findByUsername(username);
@@ -123,5 +138,12 @@ class UserServiceImpl implements UserService, UserDetailsService {
     public List<User> getUsers() {
         log.info("Fetching all users");
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<Course> getUserCourses(String username) {
+        log.info("Fetching all courses by user {}", username);
+        User user = userRepository.findByUsername(username);
+        return (List<Course>) user.getCourses();
     }
 }
