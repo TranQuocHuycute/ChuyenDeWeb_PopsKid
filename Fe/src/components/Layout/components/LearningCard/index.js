@@ -33,7 +33,7 @@ const LearningCard = () => {
             {/* tên phim */}
             <div className="mr-2">
               <p className="text-xl xl:text-2xl 2xl:text-3xl leading-8 font-bold text-slate-700">
-                Learn
+                {"Khóa học"}
               </p>
             </div>
           </a>
