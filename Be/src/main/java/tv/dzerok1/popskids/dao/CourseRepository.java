@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    List<Course> findByCourseCatalogsId(Long id);
-    List<Course> findDistinctByTitleContainingOrCourseCatalogsNameContaining(String title, String name);
 }
