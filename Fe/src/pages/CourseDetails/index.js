@@ -1,55 +1,11 @@
 import dataLearningCard from './dataLearningCardDetail.json'
 import images from '../../assets/images'
 import { Link } from 'react-router-dom'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
+import LearningCard from '../../components/Layout/components/LearningCard'
+import Carousel from 'react-grid-carousel'
 
 function CourseDetails() {
-  const maxScrollWidth = useRef(0)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const learningcard = useRef(null)
-
-  const movePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1)
-    }
-  }
-
-  const moveNext = () => {
-    if (
-      learningcard.current !== null &&
-      learningcard.current.offsetWidth * currentIndex <= maxScrollWidth.current
-    ) {
-      setCurrentIndex((prevState) => prevState + 1)
-    }
-  }
-
-  const isDisabled = (direction) => {
-    if (direction === 'prev') {
-      return currentIndex <= 0
-    }
-
-    if (direction === 'next' && learningcard.current !== null) {
-      return (
-        learningcard.current.offsetWidth * currentIndex >=
-        maxScrollWidth.current
-      )
-    }
-
-    return false
-  }
-
-  useEffect(() => {
-    if (learningcard !== null && learningcard.current !== null) {
-      learningcard.current.scrollLeft =
-        learningcard.current.offsetWidth * currentIndex
-    }
-  }, [currentIndex])
-
-  useEffect(() => {
-    maxScrollWidth.current = learningcard.current
-      ? learningcard.current.scrollWidth - learningcard.current.offsetWidth
-      : 0
-  }, [])
   const [buttonA, setButtonA] = useState(false)
   const [buttonB, setButtonB] = useState(false)
   const [buttonC, setButtonC] = useState(false)
@@ -254,112 +210,121 @@ function CourseDetails() {
         </div>
 
         {/*lich hoc*/}
-        <div className="flex justify-center align-center items-center sm:mt-10 mt-5">
-          <span className="sm:text-[20px] text-[20px] xl:text-[24px] 2xl:text-[24px] font-bold leading-8 mr-2">
-            Lịch học
-          </span>
-        </div>
-        <div className="flex justify-center align-center items-center">
-          <div className="flex flex-row justify-items-center items-center">
-            <span className="flex" href="...">
-              <div className="mr-2 justify-center sm:flex-row flex-col items-center">
-                <span className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px] mr-2">
-                  Ba Mẹ không tìm thấy thời gian phù hợp, liên hệ{''}
-                </span>
-                <a
-                  href="..."
-                  className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px] font-bold  text-[#06AFC3]"
-                >
-                  090.181.6890{' '}
-                </a>
-                <span className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px]  mr-2">
-                  để được tư vấn!
-                </span>
-              </div>
+        <div>
+          <div className="flex justify-center align-center items-center sm:mt-10 mt-5">
+            <span className="sm:text-[20px] text-[20px] xl:text-[24px] 2xl:text-[24px] font-bold leading-8 mr-2">
+              {'Lịch học'}
             </span>
           </div>
-        </div>
-        {/* Thời gian học */}
-        <div className="flex justify-center align-center items-center pb-2">
-          <div ref={dataLearningCard} className="flex flex-col sm:flex-row">
-            {dataLearningCard.resources4.map((resource, index) => {
-              return (
-                <div key={index} className="">
-                  <div className="pb-16 text-black bg-[#f9f9f9] rounded-md">
-                    <div className="rounded-md">
-                      <div className="learningcard-item relative w-72 h-72 snap-start rounded-md">
-                        <div className="m-10">
-                          {/* Buổi */}
-                          <div className="flex items-start justify-start pt-10">
-                            <h5 className="text-sm font-black dark:text-white">
-                              <span className="bg-[#ff5c5c29] text-[#ff5c5c] text-[12px]  mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800">
-                                {resource.buoi}
-                              </span>
-                            </h5>
-                          </div>
-                          {/* Thời gian học */}
-                          <div>
-                            <a href={resource.link} className="">
-                              <h3 className="pt-2 font-bold text-[#20px] text-black">
-                                {resource.time}
-                              </h3>
-                            </a>
-                          </div>
-                          {/* thời gian bắt đầu */}
-                          <div className="flex flex-row items-center mt-2 mb-10">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="1.5"
-                              stroke="currentColor"
-                              className="w-5 h-5"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-                              />
-                            </svg>
+          <div className="flex justify-center align-center items-center">
+            <div className="flex flex-row justify-items-center items-center">
+              <span className="flex" href="...">
+                <div className="mr-2 justify-center sm:flex-row flex-col items-center">
+                  <span className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px] mr-2">
+                    {'Ba Mẹ không tìm thấy thời gian phù hợp, liên hệ'}
+                    {''}
+                  </span>
+                  <a
+                    href="..."
+                    className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px] font-bold  text-[#06AFC3]"
+                  >
+                    {'090.181.6890'}{' '}
+                  </a>
+                  <span className="sm:text-[20px] text-[12px] xl:text-[24px] 2xl:text-[24px]  mr-2">
+                    {'để được tư vấn!'}
+                  </span>
+                </div>
+              </span>
+            </div>
+          </div>
+          {/* Thời gian học */}
+          <div className="relative overflow-hidden pt-2">
+            <div className="">
+              <Carousel cols={3} rows={1} gap={1} loop>
+                {dataLearningCard.resources4.map((resource, index) => {
+                  return (
+                    <Carousel.Item key={index}>
+                      <div className="pl-4 pb-10">
+                        <div className="pb-16 text-black bg-[#f9f9f9] rounded-md">
+                          <div className="rounded-md">
+                            <div className="learningcard-item relative w-72 h-72 rounded-md mx-auto">
+                              <div className="m-5">
+                                {/* Buoi */}
+                                <div className="flex items-start justify-start pt-5">
+                                  <h5 className="text-sm font-black dark:text-white">
+                                    <span className="bg-[rgba(255,92,92,0.16)] text-[#ff5c5c] text-[12px]  mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800">
+                                      {resource.buoi}
+                                    </span>
+                                  </h5>
+                                </div>
+                                {/* Thời gian học */}
+                                <div>
+                                  <a href={resource.link} className="">
+                                    <h3 className="pt-2 font-bold text-[#20px] text-black">
+                                      {resource.time}
+                                    </h3>
+                                  </a>
+                                </div>
+                                {/* thời gian bắt đầu */}
+                                <div className="flex flex-row items-center mt-2 mb-10">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth="1.5"
+                                    stroke="currentColor"
+                                    className="w-5 h-5"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                                    />
+                                  </svg>
 
-                            <a href={resource.link} className="pl-1">
-                              <h3 className="sm:text-[16px] text-[12px] font-bold text-[#707070]">
-                                {resource.start}
-                              </h3>
-                            </a>
-                          </div>
+                                  <a href={resource.link} className="pl-1">
+                                    <h3 className="sm:text-[16px] text-[12px] font-bold text-[#707070]">
+                                      {resource.start}
+                                    </h3>
+                                  </a>
+                                </div>
 
-                          {/* tối đa học viên */}
-                          <div className="border-t border-[#fff] py-4">
-                            <a href={resource.link} className="">
-                              <h3 className="text-[18px] font-bold text-red-500">
-                                {resource.list}
-                              </h3>
-                            </a>
-                          </div>
-                          {/* giá khóa học */}
-                          <div>
-                            <a href={resource.link} className="py-4">
-                              <h3 className="pt-2 font-bold text-[20px]">
-                                {resource.price}
-                                {' đ'}
-                              </h3>
-                            </a>
-                          </div>
+                                <div>
+                                  {/* tối đa học viên */}
+                                  <div className="border-t border-[#fff] py-4">
+                                    <a href={resource.link} className="">
+                                      <h3 className="text-[18px] font-bold text-red-500">
+                                        {resource.list}
+                                      </h3>
+                                    </a>
+                                  </div>
+                                  {/* giá khóa học */}
+                                  <div>
+                                    <a href={resource.link} className="py-4">
+                                      <h3 className="pt-2 font-bold text-[20px]">
+                                        {resource.price}
+                                        {' đ'}
+                                      </h3>
+                                    </a>
+                                  </div>
 
-                          {/* đăng ký */}
-                          <div className="w-full flex justify-center align-center items-center px-2 py-4">
-                            <button className="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
-                              <p className="mx-4">Đăng ký</p>
-                            </button>
+                                  {/* đăng ký */}
+                                  <div className="w-full flex justify-center align-center items-center px-2 py-4">
+                                    <button className="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
+                                      <p className="mx-4">Đăng ký</p>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
+                    </Carousel.Item>
+                  )
+                })}
+              </Carousel>
+            </div>
           </div>
         </div>
 
@@ -674,214 +639,12 @@ function CourseDetails() {
         </div>
 
         {/* Có thể bạn quan tâm */}
-        <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16">
-          {/* Pha doa cung */}
-          <div>
-            <div className="flex flex-row justify-items-center items-center">
-              <a className="flex" href="...">
-                {/* tên phim */}
-                <div className="mr-2">
-                  <p className="text-xl xl:text-2xl 2xl:text-3xl leading-8 font-bold text-slate-700">
-                    Có thể bạn quan tâm
-                  </p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          {/* <> */}
-          {/* {false && (  */}
-          <section className="pb-1 px-20">
-            <div className="flex justify-end flex-row">
-              {/* < */}
-              <div className="flex items-center">
-                <div className="text-right">
-                  <button
-                    onClick={movePrev}
-                    className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                    disabled={isDisabled('prev')}
-                    class="p-1 rounded-full"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 19.5L8.25 12l7.5-7.5"
-                      />
-                    </svg>
-                    <span className="sr-only">Prev</span>
-                  </button>
-                </div>
-              </div>
-              {/* > */}
-              <div className="flex items-center">
-                <div className="text-right">
-                  <button
-                    onClick={moveNext}
-                    className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-                    disabled={isDisabled('next')}
-                    class="p-1 rounded-full"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                      />
-                    </svg>
-                  </button>
-                  <span className="sr-only">Next</span>
-                </div>
-              </div>
-            </div>
-          </section>
-          {/* )} */}
-
-          {/* learningcard */}
-          <div className="relative overflow-hidden pt-2">
-            <div
-              ref={learningcard}
-              className="learningcard-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
-            >
-              {dataLearningCard.learnCard.map((learnCard, index) => {
-                return (
-                  <div key={index} className="pl-4 pb-10">
-                    <div className="pb-32 text-black bg-[#fff] rounded-md">
-                      <div className="rounded-md">
-                        <div className="learningcard-item relative w-64 h-80 snap-start rounded-md">
-                          <button>
-                            {/* img */}
-                            <a
-                              href={learnCard.link}
-                              className="h-32 w-64 aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 rounded-md"
-                              style={{
-                                backgroundImage: `url(${
-                                  learnCard.imageUrl || ''
-                                })`,
-                              }}
-                            >
-                              <img
-                                src={learnCard.imageUrl || ''}
-                                alt={learnCard.title}
-                                className="aspect-square hidden w-full rounded-md"
-                              />
-                            </a>
-
-                            {/* tag */}
-                            <h5 className="pl-2 pt-4 flex items-center text-sm font-black dark:text-white">
-                              <span className="bg-pink-100 text-orange-800 text-sm font-black mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 orange:text-orange-800 ml-2">
-                                New
-                              </span>
-                            </h5>
-
-                            <div className="pl-5 w-72 ">
-                              {/* ten khoa hoc */}
-                              <a
-                                href={learnCard.link}
-                                className="aspect-square block absolute transition-opacity z-10"
-                              >
-                                <h3 className="pt-2 mx-auto text-xl font-bold">
-                                  {learnCard.title}
-                                </h3>
-                              </a>
-
-                              {/* rating */}
-                              <div className="pt-16 flex items-center">
-                                <svg
-                                  aria-hidden="true"
-                                  className="w-5 h-5 text-yellow-400"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title>First star</title>
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <svg
-                                  aria-hidden="true"
-                                  className="w-5 h-5 text-yellow-400"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title>Second star</title>
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <svg
-                                  aria-hidden="true"
-                                  className="w-5 h-5 text-yellow-400"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title>Third star</title>
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <svg
-                                  aria-hidden="true"
-                                  className="w-5 h-5 text-yellow-400"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title>Fourth star</title>
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <svg
-                                  aria-hidden="true"
-                                  className="w-5 h-5 text-gray-300 dark:text-gray-500"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <title>Fifth star</title>
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                              </div>
-
-                              {/* ten co giao */}
-                              <a
-                                href={learnCard.link}
-                                className="aspect-square block absolute transition-opacity z-10"
-                              >
-                                <h3 className="font-medium mx-auto text-sm pb-1">
-                                  {learnCard.namTeacher}
-                                </h3>
-                              </a>
-                              {/* detail */}
-                              <a
-                                href={learnCard.link}
-                                className="aspect-square block absolute transition-opacity z-10"
-                              >
-                                <h3 className="pt-7 font-normal mx-auto text-sm pr-4">
-                                  {learnCard.detail}
-                                </h3>
-                              </a>
-                            </div>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+        <div className="flex">
+          <p className="mx-auto font-bold text-xl text-[#02bcc4]">
+            {'Có thể bạn quan tâm'}
+          </p>
         </div>
+        <LearningCard />
       </div>
 
       {/* Đăng ký */}
@@ -897,7 +660,10 @@ function CourseDetails() {
             >
               <div className="flex justify-start w-32 h-12 ">
                 <button className="bg-[#02bcc4] rounded-md">
-                  <Link to = '/registerCourse' className="text-white font-bold px-5 sm:px-2 text-[12px] xl:text-[20px] 2xl:text-[20px]">
+                  <Link
+                    to="/registerCourse"
+                    className="text-white font-bold px-5 sm:px-2 text-[12px] xl:text-[20px] 2xl:text-[20px]"
+                  >
                     ĐĂNG KÝ
                   </Link>
                 </button>
