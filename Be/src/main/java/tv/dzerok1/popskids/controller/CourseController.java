@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tv.dzerok1.popskids.model.Course;
+import tv.dzerok1.popskids.model.CourseCatalog;
 import tv.dzerok1.popskids.model.Rating;
 import tv.dzerok1.popskids.service.CourseService;
 
@@ -17,8 +18,8 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping("/courses/search")
-    public ResponseEntity<List<Course>> searchCourses(@RequestParam String key) {
-        return ResponseEntity.ok(courseService.searchCourseByTitleAndCatalogName(key));
+    public ResponseEntity<List<CourseCatalog>> searchCourses(@RequestParam String key) {
+        return ResponseEntity.ok(courseService.searchCourseCatalogByNameOrCourseTitle(key));
     }
 
     @GetMapping("/courses")
@@ -36,17 +37,17 @@ public class CourseController {
     }
 
     @GetMapping("/courses/catalogs")
-    public ResponseEntity<List<Course>> getVideosByCatalog() {
+    public ResponseEntity<List<CourseCatalog>> getVideosByCatalog() {
         return ResponseEntity
                 .ok()
-                .body(courseService.getAllCourse());
+                .body(courseService.getAllCourseCatalog());
     }
 
     @GetMapping("/courses/catalogs/{id}")
-    public ResponseEntity<List<Course>> getVideosByCatalogId(@PathVariable Long id) {
+    public ResponseEntity<CourseCatalog> getVideosByCatalogId(@PathVariable Long id) {
         return ResponseEntity
                 .ok()
-                .body(courseService.getCourseByCatalogId(id));
+                .body(courseService.getCourseCatalogById(id));
     }
 
     @PostMapping("/courses/{id}/add/teacher")

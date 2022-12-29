@@ -81,6 +81,21 @@ public class UserController {
                 .build();
     }
 
+    @PostMapping("/course/addtouser/{courseId}/{username}")
+    public ResponseEntity<?> addCourseToUser(@PathVariable String username, @PathVariable Long courseId) {
+        userService.addCourseToUser(username, courseId);
+        return ResponseEntity
+                .ok()
+                .build();
+    }
+
+    @GetMapping("/user/course/{username}")
+    public ResponseEntity<?> getUserCourses(@PathVariable String username) {
+        return ResponseEntity
+                .ok()
+                .body(userService.getUserCourses(username));
+    }
+
     @GetMapping("/token/refresh")
     public void refreshToken(
             HttpServletRequest request,

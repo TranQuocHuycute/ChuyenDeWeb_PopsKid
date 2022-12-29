@@ -19,8 +19,6 @@ public interface CourseService {
     Course deleteCourseById(Long id);
     Course getCourseById(Long id);
     List<Course> getAllCourse();
-    List<Course> getCourseByCatalogId(Long id);
-    List<Course> searchCourseByTitleAndCatalogName(String key);
 
     ClassSchedule createClassSchedule(ClassSchedule classSchedule);
     ClassSchedule updateClassSchedule(ClassSchedule classSchedule);
@@ -39,11 +37,12 @@ public interface CourseService {
     CourseCatalog deleteCourseCatalogById(Long id);
     CourseCatalog getCourseCatalogById(Long id);
     List<CourseCatalog> getAllCourseCatalog();
+    List<CourseCatalog> searchCourseCatalogByNameOrCourseTitle(String key);
 
     void addUsersToCourse(Long courseId, String username);
     void addClassSchedulesToCourse(Long courseId, Long classScheduleId);
     void addRatingsToCourse(Long courseId, Long ratingId);
-    void addCourseCatalogsToCourse(Long courseId, Long courseCatalogId);
+    void addCourseToCourseCatalog(Long courseCatalogId, Long courseId);
 
 }
 
@@ -88,18 +87,6 @@ class CourseServiceImpl implements CourseService {
     public List<Course> getAllCourse() {
         log.info("Getting all courses from the database");
         return courseRepository.findAll();
-    }
-
-    @Override
-    public List<Course> getCourseByCatalogId(Long id) {
-        log.info("Getting all courses from the database");
-        return courseRepository.findByCourseCatalogsId(id);
-    }
-
-    @Override
-    public List<Course> searchCourseByTitleAndCatalogName(String key) {
-        log.info("Getting all courses from the database");
-        return courseRepository.findDistinctByTitleContainingOrCourseCatalogsNameContaining(key, key);
     }
 
     @Override
@@ -200,6 +187,11 @@ class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<CourseCatalog> searchCourseCatalogByNameOrCourseTitle(String key) {
+        return courseCatalogRepository.findDistinctByNameContainingOrCoursesTitleContaining(key, key);
+    }
+
+    @Override
     public void addUsersToCourse(Long courseId, String username) {
         log.info("Adding user {} to course {}", username, courseId);
         Course course = courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found"));
@@ -228,11 +220,19 @@ class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void addCourseCatalogsToCourse(Long courseId, Long courseCatalogId) {
-        log.info("Adding courseCatalog {} to course {}", courseCatalogId, courseId);
-        Course course = courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found"));
+    public void addCourseToCourseCatalog(Long courseCatalogId, Long courseId) {
+        log.info("Adding course {} to courseCatalog {}", courseId, courseCatalogId);
         CourseCatalog courseCatalog = courseCatalogRepository.findById(courseCatalogId).orElseThrow(() -> new RuntimeException("CourseCatalog not found"));
-        course.getCourseCatalogs().add(courseCatalog);
-
+        Course course = courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found"));
+        courseCatalog.getCourses().add(course);
     }
+
+//    @Override
+//    public void addCourseCatalogsToCourse(Long courseId, Long courseCatalogId) {
+//        log.info("Adding courseCatalog {} to course {}", courseCatalogId, courseId);
+//        Course course = courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found"));
+//        CourseCatalog courseCatalog = courseCatalogRepository.findById(courseCatalogId).orElseThrow(() -> new RuntimeException("CourseCatalog not found"));
+//        course.getCourseCatalogs().add(courseCatalog);
+//
+//    }
 }
