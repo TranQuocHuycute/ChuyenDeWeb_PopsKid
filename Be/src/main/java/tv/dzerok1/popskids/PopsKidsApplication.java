@@ -39,13 +39,13 @@ public class PopsKidsApplication {
             userService.saveRole(new Role(null, "ROLE_ADMIN"));
             userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
 
-            User user = userService.saveUser(new User(null, "John Travolta", "john", "1234", null, new ArrayList<>()));
-            User user1 = userService.saveUser(new User(null, "Will Smith", "will", "1234", null, new ArrayList<>()));
-            userService.saveUser(new User(null, "Jim Carry", "jim@gmail.com", "1234", null, new ArrayList<>()));
-            userService.saveUser(new User(null, "Arnold Schwarzenegger", "arnold", "1234", null, new ArrayList<>()));
-            userService.saveUser(new User(null, "Tom Cruise", "tom", "1234", null, new ArrayList<>()));
-            userService.saveUser(new User(null, "Bruce Willis", "bruce", "1234", null, new ArrayList<>()));
-            userService.saveUser(new User(null, "Admin", "admin", "admin", null, new ArrayList<>()));
+            User user = userService.saveUser(new User(null, "John Travolta", "john", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            User user1 = userService.saveUser(new User(null, "Will Smith", "will", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            userService.saveUser(new User(null, "Jim Carry", "jim@gmail.com", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            userService.saveUser(new User(null, "Arnold Schwarzenegger", "arnold", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            userService.saveUser(new User(null, "Tom Cruise", "tom", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            userService.saveUser(new User(null, "Bruce Willis", "bruce", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            userService.saveUser(new User(null, "Admin", "admin", "admin", null, new ArrayList<>(), new ArrayList<>()));
 
             userService.addRoleToUser("john", "ROLE_USER");
             userService.addRoleToUser("will", "ROLE_USER");

@@ -1,6 +1,7 @@
 package tv.dzerok1.popskids.domain;
 
 import lombok.*;
+import tv.dzerok1.popskids.model.Course;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,4 +28,12 @@ public class User {
 
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
+
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    private Collection<Course> courses = new ArrayList<>();
 }
