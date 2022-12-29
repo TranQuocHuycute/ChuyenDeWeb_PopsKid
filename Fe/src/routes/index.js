@@ -74,7 +74,7 @@ const publicRoutes = [
   },
   { path: '/dashboard/users', components: Users, layout: DashboardLayout },
   { path: '/dashboard/types', components: Types, layout: DashboardLayout },
-  { path: '/subject', components: Subject, layout: PopskidLearnLayout },
+  { path: '/subject/:courseCateId', components: Subject, layout: PopskidLearnLayout },
   {
     path: '/courseDetails/:courseId',
     components: CourseDetail,

@@ -1,7 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 function Subject() {
+
+  const {courseCateId} = useParams()
+
+  const [courseCategoryDetail, setCourseCategoryDetail] = useState()
+  console.log('courseCategoryDetail' , courseCategoryDetail[0]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/courses/catalogs/${courseCateId}`)
+      .then(function (response) {
+        setCourseCategoryDetail(response.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }, [])
+
   const ReadMore = ({ children }) => {
     const text = children
     const [isReadMore, setIsReadMore] = useState(true)
