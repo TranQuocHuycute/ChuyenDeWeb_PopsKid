@@ -18,7 +18,9 @@ import tv.dzerok1.popskids.domain.User;
 import tv.dzerok1.popskids.model.ClassSchedule;
 import tv.dzerok1.popskids.model.Course;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public interface UserService {
     User saveUser(User user);
@@ -26,11 +28,13 @@ public interface UserService {
     Role saveRole(Role role);
 
     void addRoleToUser(String username, String roleName);
+
     void addClassScheduleToUser(String username, Long classScheduleId);
 
     User getUser(String username);
 
     List<User> getUsers();
+
     List<Course> getUserCourses(String username);
 }
 
@@ -123,7 +127,9 @@ class UserServiceImpl implements UserService, UserDetailsService {
     public void addClassScheduleToUser(String username, Long classScheduleId) {
         log.info("Adding class schedule {} to user {}", classScheduleId, username);
         User user = userRepository.findByUsername(username);
-        ClassSchedule classSchedule = classScheduleRepository.findById(classScheduleId).get();
+        ClassSchedule classSchedule = classScheduleRepository
+                .findById(classScheduleId)
+                .get();
         user
                 .getClassSchedules()
                 .add(classSchedule);
@@ -145,15 +151,14 @@ class UserServiceImpl implements UserService, UserDetailsService {
     public List<Course> getUserCourses(String username) {
         log.info("Fetching all courses by user {}", username);
         User user = userRepository.findByUsername(username);
-        List<Long> ids = new ArrayList<>();
-        user
-                .getClassSchedules()
-                .forEach(classSchedule -> ids.add(classSchedule.getId()));
-
-        List<Course> courses = courseRepository.findDistinctByClassSchedulesIn((List<ClassSchedule>) user.getClassSchedules());
-        courses.forEach(course -> course
-                .getClassSchedules()
-                .removeIf(classSchedule -> !ids.contains(classSchedule.getId())));
-        return courses;
+        // courses to db and remove class schedules not belonging to use no remove in db
+        //        courses.forEach(course -> {
+//            course
+//                    .getClassSchedules()
+//                    .removeIf(classSchedule -> !user
+//                            .getClassSchedules()
+//                            .contains(classSchedule));
+//        });
+        return courseRepository.findDistinctByClassSchedulesIn((List<ClassSchedule>) user.getClassSchedules());
     }
 }

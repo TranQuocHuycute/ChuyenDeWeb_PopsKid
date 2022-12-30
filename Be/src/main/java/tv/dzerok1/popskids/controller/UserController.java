@@ -15,6 +15,7 @@ import tv.dzerok1.popskids.dao.RoleRepository;
 import tv.dzerok1.popskids.dao.UserRepository;
 import tv.dzerok1.popskids.domain.Role;
 import tv.dzerok1.popskids.domain.User;
+import tv.dzerok1.popskids.model.Course;
 import tv.dzerok1.popskids.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,13 @@ public class UserController {
         return ResponseEntity
                 .ok()
                 .body(userService.getUsers());
+    }
+
+    @GetMapping("/users/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username) {
+        return ResponseEntity
+                .ok()
+                .body(userService.getUser(username));
     }
 
     @PostMapping("/auth/register")
@@ -90,10 +98,19 @@ public class UserController {
     }
 
     @GetMapping("/user/course/{username}")
-    public ResponseEntity<?> getUserCourses(@PathVariable String username) {
+    public ResponseEntity<List<Course>> getUserCourses(@PathVariable String username) {
+        List<Course> courses = userService.getUserCourses(username);
+        User user = userRepository.findByUsername(username);
+        courses.forEach(course -> {
+            course
+                    .getClassSchedules()
+                    .removeIf(classSchedule -> !user
+                            .getClassSchedules()
+                            .contains(classSchedule));
+        });
         return ResponseEntity
                 .ok()
-                .body(userService.getUserCourses(username));
+                .body(courses);
     }
 
     @GetMapping("/token/refresh")

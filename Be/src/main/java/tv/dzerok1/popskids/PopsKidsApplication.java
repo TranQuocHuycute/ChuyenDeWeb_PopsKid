@@ -253,7 +253,7 @@ public class PopsKidsApplication {
                                                                         "https://www.google.com.vn/"));
 
             ClassSchedule classSchedule1 = courseService.createClassSchedule(new ClassSchedule(null,
-                                                                1,
+                                                                2,
                                                                 8,
                                                                 "Thứ 7, CN - 15:00",
                                                                 8,
