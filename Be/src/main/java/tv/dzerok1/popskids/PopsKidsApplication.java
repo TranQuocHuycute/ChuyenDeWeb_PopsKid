@@ -39,13 +39,49 @@ public class PopsKidsApplication {
             userService.saveRole(new Role(null, "ROLE_ADMIN"));
             userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
 
-            User user = userService.saveUser(new User(null, "John Travolta", "john", "1234", null, new ArrayList<>(), new ArrayList<>()));
-            User user1 = userService.saveUser(new User(null, "Will Smith", "will", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            User user = userService.saveUser(new User(null,
+                                                      "John Travolta",
+                                                      "john",
+                                                      "1234",
+                                                      null,
+                                                      new ArrayList<>(),
+                                                      new ArrayList<>()));
+            User user1 = userService.saveUser(new User(null,
+                                                       "Will Smith",
+                                                       "will",
+                                                       "1234",
+                                                       null,
+                                                       new ArrayList<>(),
+                                                       new ArrayList<>()));
 
-            userService.saveUser(new User(null, "Jim Carry", "jim@gmail.com", "1234", null, new ArrayList<>(), new ArrayList<>()));
-            userService.saveUser(new User(null, "Arnold Schwarzenegger", "arnold", "1234", null, new ArrayList<>(), new ArrayList<>()));
-            userService.saveUser(new User(null, "Tom Cruise", "tom", "1234", null, new ArrayList<>(), new ArrayList<>()));
-            userService.saveUser(new User(null, "Bruce Willis", "bruce", "1234", null, new ArrayList<>(), new ArrayList<>()));
+            userService.saveUser(new User(null,
+                                          "Jim Carry",
+                                          "jim@gmail.com",
+                                          "1234",
+                                          null,
+                                          new ArrayList<>(),
+                                          new ArrayList<>()));
+            userService.saveUser(new User(null,
+                                          "Arnold Schwarzenegger",
+                                          "arnold",
+                                          "1234",
+                                          null,
+                                          new ArrayList<>(),
+                                          new ArrayList<>()));
+            userService.saveUser(new User(null,
+                                          "Tom Cruise",
+                                          "tom",
+                                          "1234",
+                                          null,
+                                          new ArrayList<>(),
+                                          new ArrayList<>()));
+            userService.saveUser(new User(null,
+                                          "Bruce Willis",
+                                          "bruce",
+                                          "1234",
+                                          null,
+                                          new ArrayList<>(),
+                                          new ArrayList<>()));
             userService.saveUser(new User(null, "Admin", "admin", "admin", null, new ArrayList<>(), new ArrayList<>()));
 
             userService.addRoleToUser("john", "ROLE_USER");
@@ -208,13 +244,34 @@ public class PopsKidsApplication {
             videoService.addTypeToVideo(video3.getId(), "Music");
 
             ClassSchedule classSchedule =
-                    courseService.createClassSchedule(new ClassSchedule(null, 1, 8, "Thứ 7, CN - 15:00", 8, 700000L, "https://www.google.com.vn/"));
+                    courseService.createClassSchedule(new ClassSchedule(null,
+                                                                        1,
+                                                                        8,
+                                                                        "Thứ 7, CN - 15:00",
+                                                                        8,
+                                                                        700000L,
+                                                                        "https://www.google.com.vn/"));
 
-                    courseService.createClassSchedule(new ClassSchedule(null, 1, 8, "Thứ 7, CN - 15:00", 8, 700000L, "https://www.google.com.vn/"));
+            ClassSchedule classSchedule1 = courseService.createClassSchedule(new ClassSchedule(null,
+                                                                2,
+                                                                8,
+                                                                "Thứ 7, CN - 15:00",
+                                                                8,
+                                                                700000L,
+                                                                "https://www.google.com.vn/"));
 
-            Rating rating = courseService.createRating(new Rating(null, user.getUsername(), 5, "Khá ổn về mặt nội dung và cách hướng dẫn. Mình cho 4*, hy vọng con sẽ thích bộ môn này") );
-            Rating rating1 = courseService.createRating(new Rating(null, user1.getUsername(), 4, "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học") );
-            Rating rating2 = courseService.createRating(new Rating(null, user.getUsername(), 5, "Thầy dạy nhiệt tình, có nhiều bài hay ho. Con mình còn đem lên trường để biểu diễn cho cô và cả lớp xem nữa đấy") );
+            Rating rating = courseService.createRating(new Rating(null,
+                                                                  user.getUsername(),
+                                                                  5,
+                                                                  "Khá ổn về mặt nội dung và cách hướng dẫn. Mình cho 4*, hy vọng con sẽ thích bộ môn này"));
+            Rating rating1 = courseService.createRating(new Rating(null,
+                                                                   user1.getUsername(),
+                                                                   4,
+                                                                   "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học"));
+            Rating rating2 = courseService.createRating(new Rating(null,
+                                                                   user.getUsername(),
+                                                                   5,
+                                                                   "Thầy dạy nhiệt tình, có nhiều bài hay ho. Con mình còn đem lên trường để biểu diễn cho cô và cả lớp xem nữa đấy"));
 
             CourseCatalog courseCatalog =
                     courseService.createCourseCatalog(new CourseCatalog(null,
@@ -247,11 +304,11 @@ public class PopsKidsApplication {
 
             courseService.addCourseToCourseCatalog(courseCatalog.getId(), course.getId());
             courseService.addClassSchedulesToCourse(course.getId(), classSchedule.getId());
+            courseService.addClassSchedulesToCourse(course.getId(), classSchedule1.getId());
             courseService.addRatingsToCourse(course.getId(), rating.getId());
             courseService.addRatingsToCourse(course.getId(), rating1.getId());
             courseService.addRatingsToCourse(course.getId(), rating2.getId());
             courseService.addUsersToCourse(course.getId(), user1.getUsername());
-
 
 
         };

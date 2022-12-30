@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import CoursesSlider from "../../components/Layout/Popper/CoursesSlider";
 import CoursesItem from "../../components/Layout/components/CoursesItem";
 import LearningCartNB from '../../components/Layout/components/LearningCartNB'
@@ -9,6 +9,7 @@ import axios from 'axios'
 
 function Learn() {
 
+  // eslint-disable-next-line no-unused-vars
   const [courses, setFeaturedCourses] = useState([])
   console.log('featuredCourses', featuredCourses)
   useEffect(() => {

@@ -1,6 +1,7 @@
 package tv.dzerok1.popskids.domain;
 
 import lombok.*;
+import tv.dzerok1.popskids.model.ClassSchedule;
 import tv.dzerok1.popskids.model.Course;
 
 import javax.persistence.*;
@@ -35,5 +36,5 @@ public class User {
                     CascadeType.MERGE
             }
     )
-    private Collection<Course> courses = new ArrayList<>();
+    private Collection<ClassSchedule> classSchedules = new ArrayList<>();
 }
