@@ -14,6 +14,7 @@ import VideoDetail from '../pages/VideoDetail'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import SearchValue from '../pages/SearchValue'
+import Courses from '../pages/Courses'
 import {
   Categories,
   Dashboard,
@@ -24,9 +25,10 @@ import {
 } from '../pages/CRUD'
 import { DashboardLayout } from '../components/Layout/DashboardLayout'
 import { AddVideo } from '../components/Layout/components/AddVideo'
-import Subject from '../pages/Subject';
+import Subject from '../pages/Subject'
 import CourseDetail from '../pages/CourseDetails'
 import RegisterCourse from '../pages/RegisterCourse'
+import Schedule from '../pages/Schedule'
 //public
 const publicRoutes = [
   { path: '/', components: Home },
@@ -74,9 +76,29 @@ const publicRoutes = [
   },
   { path: '/dashboard/users', components: Users, layout: DashboardLayout },
   { path: '/dashboard/types', components: Types, layout: DashboardLayout },
-  { path: '/subject', components: Subject , layout: PopskidLearnLayout},
-  { path: '/courseDetails', components: CourseDetail , layout: PopskidLearnLayout},
-  { path: '/registerCourse', components: RegisterCourse , layout: PopskidLearnLayout},
+  { path: '/subject/:courseCateId', components: Subject, layout: PopskidLearnLayout },
+  {
+    path: '/courseDetails/:courseId',
+    components: CourseDetail,
+    layout: PopskidLearnLayout,
+  },
+  {
+    path: '/registerCourse',
+    components: RegisterCourse,
+    layout: PopskidLearnLayout,
+  },
+
+  {
+    path: '/schedule/:userId',
+    components: Schedule,
+    layout: PopskidLearnLayout,
+  },
+
+  {
+    path: '/courses',
+    components: Courses,
+    layout: PopskidLearnLayout,
+  },
 ]
 
 //private

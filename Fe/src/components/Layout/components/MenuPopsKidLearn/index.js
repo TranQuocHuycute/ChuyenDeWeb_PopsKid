@@ -1,11 +1,26 @@
-import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import jwtDecode from 'jwt-decode'
+import { useState, useEffect } from 'react'
 function MenuPopsKidLearn({ position }) {
+  const [user, setUser] = useState()
+  console.log('user', user)
+  useEffect(() => {
+    if (Cookies.get('authToken') !== undefined) {
+      const json = jwtDecode(Cookies.get('authToken'))
+      setUser(json)
+    }
+  }, [])
+
   const categories = [
     { id: 1, title: 'Khám Phá', to: '/learn' },
-    { id: 2, title: 'Khóa Học', to: '/courseDetails' },
+    { id: 2, title: 'Khóa Học', to: '/courses' },
     { id: 4, title: 'Đối Tác Giáo Dục' },
-    { id: 5, title: 'Khóa Học Đã Đăng Ký' },
+    {
+      id: 5,
+      title: 'Khóa Học Đã Đăng Ký',
+      to: `/schedule/${user !== undefined ? user.sub : ''}`,
+    },
     { id: 6, title: 'Trở về popskid', to: '/' },
   ]
   const [activeCate, setActiveCate] = useState(1)

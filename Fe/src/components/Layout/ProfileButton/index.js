@@ -2,6 +2,7 @@ import React from 'react'
 import Cookies from 'js-cookie'
 import Menu from '../../Layout/Popper/Menu'
 import images from '../../../assets/images'
+
 function ProfileButton() {
   const ITEMS = [
     {
