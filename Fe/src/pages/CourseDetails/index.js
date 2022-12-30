@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import formatCash from '../../hooks/formatCash'
 import axios from 'axios'
-import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 import { Rating } from 'react-simple-star-rating'
+import CommentFrom from '../../components/Layout/CommentForm'
+import Cookies from 'js-cookie'
+import jwtDecode from 'jwt-decode'
 
 function CourseDetails() {
   const { courseId } = useParams()
@@ -16,9 +18,16 @@ function CourseDetails() {
   const [user, setUser] = useState([])
   const [teacher, setTeacher] = useState()
   const [rating, setRating] = useState([])
-  // const [star, setStar] = useState(0)
 
-  console.log('rating', rating)
+  const [username, setUsername] = useState()
+  console.log('username', username)
+
+  useEffect(() => {
+    if (Cookies.get('authToken') !== undefined) {
+      const json = jwtDecode(Cookies.get('authToken'))
+      setUsername(json)
+    }
+  }, [])
 
   useEffect(() => {
     axios
@@ -438,45 +447,31 @@ function CourseDetails() {
                 Đánh giá của phụ huynh
               </span>
             </h2>
-            <div className="flex-row">
-              <Rating initialValue={1} readonly iconsCount={1} />
-              <span className='font-medium text-lg'>{rating.ratingTotal}/5</span>
-            </div>
 
-            {/* comment */}
-            {/* Tên người đánh giá */}
-            <div>
+            <Rating initialValue={1} readonly iconsCount={1} />
+            <span className="font-medium text-lg">{rating.ratingTotal}/5</span>
+            {username !== undefined ? <CommentFrom userName={username.sub} /> : ''}
+
+            <div className="mt-5">
               {rating.data.map((rating, index) => {
                 return (
                   <div key={index} className=" border-b border-[#f0f0f0] my-5">
                     {/* Tên */}
                     <div className="flex pb-5 items-center">
                       <span className="w-[48px] h-[48px] block rounded-full overflow-hidden">
-                        <picture>
-                          <source
-                            srcSet={rating.imageUrlWeb}
-                            type="image/webp"
-                          ></source>
-                          <source
-                            srcSet={rating.imageUrl}
-                            type="image/jpeg"
-                          ></source>
-                          <img
-                            title={rating.title}
-                            src={rating.imageUrl}
-                            className="w-[48px] h-[48px]"
-                          ></img>
-                        </picture>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzH6TfTtq91hzmeIvm_4JOdb5y1UWjTlYZdA&usqp=CAU"></img>
                       </span>
                       <div className="pl-4 text-base flex-1">
-                        <span className="block font-bold">{rating.title}</span>
+                        <span className="block font-bold">
+                          {rating.username}
+                        </span>
                         <span className="text-gray-dark"></span>
                       </div>
                     </div>
 
                     {/* số sao */}
                     <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
-                     {rating.numberRating}
+                      {rating.numberRating}
                     </div>
 
                     {/* comment */}

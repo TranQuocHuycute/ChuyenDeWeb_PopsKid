@@ -208,11 +208,13 @@ public class PopsKidsApplication {
             videoService.addTypeToVideo(video3.getId(), "Music");
 
             ClassSchedule classSchedule =
-                    courseService.createClassSchedule(new ClassSchedule(null, 1, 8, "Thứ 7, CN - 15:00", 8, 700000L));
+                    courseService.createClassSchedule(new ClassSchedule(null, 1, 8, "Thứ 7, CN - 15:00", 8, 700000L, "https://www.google.com.vn/"));
 
-            Rating rating = courseService.createRating(new Rating(null, user.getId(), 5, "Khá ổn về mặt nội dung và cách hướng dẫn. Mình cho 4*, hy vọng con sẽ thích bộ môn này") );
-            Rating rating1 = courseService.createRating(new Rating(null, user1.getId(), 4, "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học") );
-            Rating rating2 = courseService.createRating(new Rating(null, user.getId(), 5, "Thầy dạy nhiệt tình, có nhiều bài hay ho. Con mình còn đem lên trường để biểu diễn cho cô và cả lớp xem nữa đấy") );
+                    courseService.createClassSchedule(new ClassSchedule(null, 1, 8, "Thứ 7, CN - 15:00", 8, 700000L, "https://www.google.com.vn/"));
+
+            Rating rating = courseService.createRating(new Rating(null, user.getUsername(), 5, "Khá ổn về mặt nội dung và cách hướng dẫn. Mình cho 4*, hy vọng con sẽ thích bộ môn này") );
+            Rating rating1 = courseService.createRating(new Rating(null, user1.getUsername(), 4, "Bé Hồng Phúc bình thường học toán tư duy tại Trung Tâm TiTan, nay ko được đi học nữa, phải học online thì đăng ký khóa này, thấy học cũng khá ok, giá cũng rẻ hơn học trực tiếp, nên học") );
+            Rating rating2 = courseService.createRating(new Rating(null, user.getUsername(), 5, "Thầy dạy nhiệt tình, có nhiều bài hay ho. Con mình còn đem lên trường để biểu diễn cho cô và cả lớp xem nữa đấy") );
 
             CourseCatalog courseCatalog =
                     courseService.createCourseCatalog(new CourseCatalog(null,

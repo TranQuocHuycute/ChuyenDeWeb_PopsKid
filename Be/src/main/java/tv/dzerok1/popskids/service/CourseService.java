@@ -11,6 +11,7 @@ import tv.dzerok1.popskids.model.Course;
 import tv.dzerok1.popskids.model.CourseCatalog;
 import tv.dzerok1.popskids.model.Rating;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface CourseService {
@@ -37,7 +38,7 @@ public interface CourseService {
     CourseCatalog deleteCourseCatalogById(Long id);
     CourseCatalog getCourseCatalogById(Long id);
     List<CourseCatalog> getAllCourseCatalog();
-    List<CourseCatalog> searchCourseCatalogByNameOrCourseTitle(String key);
+    List<Course> searchCourseCatalogByNameOrCourseTitle(String key);
 
     void addUsersToCourse(Long courseId, String username);
     void addClassSchedulesToCourse(Long courseId, Long classScheduleId);
@@ -187,8 +188,13 @@ class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<CourseCatalog> searchCourseCatalogByNameOrCourseTitle(String key) {
-        return courseCatalogRepository.findDistinctByNameContainingOrCoursesTitleContaining(key, key);
+    public List<Course> searchCourseCatalogByNameOrCourseTitle(String key) {
+        List<CourseCatalog> courseCatalogs = courseCatalogRepository.findDistinctByNameContainingOrCoursesTitleContaining(key, key);
+        List<Course> courses = new ArrayList<>();
+        for (CourseCatalog courseCatalog : courseCatalogs) {
+            courses.addAll(courseCatalog.getCourses());
+        }
+        return courses;
     }
 
     @Override

@@ -87,12 +87,18 @@ function Schedule() {
                                       </h3>
                                     </div>
                                     <div className="border-t border-black"></div>
-                                    {/* tối đa học viên */}
+
                                     <div className="border-t border-[#fff] py-4">
                                       <h3 className="text-sm font-bold text-red-500">
                                         {e.note}
                                       </h3>
                                     </div>
+                                    <p className="border-t border-black">
+                                      Đường dẫn vào google meet
+                                    </p>
+                                    {e.classSchedules.map((c) => (
+                                      <a className = "text-blue-600" href={c.urlMeeting}>{c.urlMeeting}</a>
+                                    ))}
                                   </div>
                                 </div>
                               </div>

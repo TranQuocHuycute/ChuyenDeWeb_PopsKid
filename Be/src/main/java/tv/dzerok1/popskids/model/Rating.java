@@ -19,7 +19,7 @@ public class Rating {
     @GeneratedValue(strategy = AUTO)
     private Long id;
 
-    private Long accountId;
+    private String username;
     private int numberRating;
     private String comment;
 }

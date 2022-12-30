@@ -18,7 +18,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping("/courses/search")
-    public ResponseEntity<List<CourseCatalog>> searchCourses(@RequestParam String key) {
+    public ResponseEntity<List<Course>> searchCourses(@RequestParam String key) {
         return ResponseEntity.ok(courseService.searchCourseCatalogByNameOrCourseTitle(key));
     }
 
