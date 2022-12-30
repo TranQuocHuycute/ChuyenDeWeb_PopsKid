@@ -14,7 +14,7 @@ function MenuPopsKidLearn({ position }) {
 
   const categories = [
     { id: 1, title: 'Khám Phá', to: '/learn' },
-    { id: 2, title: 'Khóa Học', to: '/courseDetails' },
+    { id: 2, title: 'Khóa Học', to: '/courses' },
     { id: 4, title: 'Đối Tác Giáo Dục' },
     {
       id: 5,

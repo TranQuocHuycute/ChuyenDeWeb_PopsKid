@@ -13,7 +13,7 @@ function SearchValue({ data }) {
               key={e.id}
               className="py-2 text-[#797979]"
             >
-              {e.title}
+              {e.name}
             </Link>
           )
         })}

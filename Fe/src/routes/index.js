@@ -14,6 +14,7 @@ import VideoDetail from '../pages/VideoDetail'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import SearchValue from '../pages/SearchValue'
+import Courses from '../pages/Courses'
 import {
   Categories,
   Dashboard,
@@ -90,6 +91,12 @@ const publicRoutes = [
   {
     path: '/schedule/:userId',
     components: Schedule,
+    layout: PopskidLearnLayout,
+  },
+
+  {
+    path: '/courses',
+    components: Courses,
     layout: PopskidLearnLayout,
   },
 ]

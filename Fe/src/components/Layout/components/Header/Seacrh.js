@@ -7,7 +7,8 @@ import { useDebounce } from '../../../../hooks'
 import axios from 'axios'
 import 'tippy.js/dist/tippy.css'
 
-function Seacrh() {
+function Seacrh({ api }) {
+  console.log('api', api)
   const [searchValue, setSearchValue] = useState('')
   const [seacrhResult, setSearchResult] = useState([])
   // delay 500 r moi call api
@@ -19,18 +20,19 @@ function Seacrh() {
       return
     }
 
-    axios.get('http://localhost:8080/api/search/', {
-      params: {
-        key : debounced
-      }
-    })
-    .then(function (response) {
-      setSearchResult(response.data)
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  
+    axios
+      .get(api, {
+        params: {
+          key: debounced,
+        },
+      })
+      .then(function (response) {
+        setSearchResult(response.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+
     // encodeURIComponent ma hoa thanh 1 kí tự hợp lệ trong url
     // const fetchApi = async () => {
     //   const result = await searchServices.seacrh(debounced)
@@ -52,50 +54,50 @@ function Seacrh() {
               <div className="w-[40rem]">
                 {searchValue === '' ? (
                   ''
-                  // <div>
-                  //   <div className="m-2 mx-6 ">TÌM KIẾM GẦN ĐÂY</div>
-                  //   <div className=" m-2 mx-6 border-b-[1px] border-[#e5e7eb]"></div>
-                  //   <div className="m-2 mx-6">HOT KEYWORDS</div>
-                  //   <ul className="flex flex-wrap m-3">
-                  //     <li className="p-2  m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Doreamon</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Doreamon</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Doreamon</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Doreamon</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Doreamon</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Doreamon</a>
-                  //     </li>
-                  //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
-                  //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
-                  //     </li>
-                  //   </ul>
-                  // </div>
-                ) : seacrhResult !== undefined ? (
+                ) : // <div>
+                //   <div className="m-2 mx-6 ">TÌM KIẾM GẦN ĐÂY</div>
+                //   <div className=" m-2 mx-6 border-b-[1px] border-[#e5e7eb]"></div>
+                //   <div className="m-2 mx-6">HOT KEYWORDS</div>
+                //   <ul className="flex flex-wrap m-3">
+                //     <li className="p-2  m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Doreamon</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Doreamon</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Doreamon</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Doreamon</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Doreamon</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Doreamon</a>
+                //     </li>
+                //     <li className="p-2 m-1 bg-[#ccf2f7] rounded-full">
+                //       <a className="text-[#09ccc7]">Nobita Chaien Xuka</a>
+                //     </li>
+                //   </ul>
+                // </div>
+                seacrhResult !== undefined ? (
                   <SearchValue data={seacrhResult} />
                 ) : (
                   ''
@@ -105,7 +107,7 @@ function Seacrh() {
           </div>
         )}
       >
-        <div className="w-[40rem] h-14 flex bg-[#e5e7eb] rounded-full">
+        <div className="w-[40rem] h-14 flex bg-[#f3f3f3] rounded-full">
           <input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}

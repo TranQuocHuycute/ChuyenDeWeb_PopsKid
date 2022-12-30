@@ -3,18 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const LearningCardNB = () => {
-  const [featuredCourses, setFeaturedCourses] = useState([])
-  console.log('featuredCourses', featuredCourses)
-  useEffect(() => {
-    axios
-      .get('http://localhost:8080/api/courses')
-      .then(function (response) {
-        setFeaturedCourses(response.data)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }, [])
+
 
   return (
     <div className="learningcard mt-12 mx-6 xl:mx-16 2xl:mx-16 ">
