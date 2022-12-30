@@ -81,9 +81,9 @@ public class UserController {
                 .build();
     }
 
-    @PostMapping("/course/addtouser/{courseId}/{username}")
-    public ResponseEntity<?> addCourseToUser(@PathVariable String username, @PathVariable Long courseId) {
-        userService.addCourseToUser(username, courseId);
+    @PostMapping("/course/addtouser/{classScheduleId}/{username}")
+    public ResponseEntity<?> addCourseToUser(@PathVariable String username, @PathVariable Long classScheduleId) {
+        userService.addClassScheduleToUser(username, classScheduleId);
         return ResponseEntity
                 .ok()
                 .build();

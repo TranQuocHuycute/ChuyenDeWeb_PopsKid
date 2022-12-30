@@ -9,16 +9,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tv.dzerok1.popskids.dao.ClassScheduleRepository;
 import tv.dzerok1.popskids.dao.CourseRepository;
 import tv.dzerok1.popskids.dao.RoleRepository;
 import tv.dzerok1.popskids.dao.UserRepository;
 import tv.dzerok1.popskids.domain.Role;
 import tv.dzerok1.popskids.domain.User;
+import tv.dzerok1.popskids.model.ClassSchedule;
 import tv.dzerok1.popskids.model.Course;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public interface UserService {
     User saveUser(User user);
@@ -26,7 +26,7 @@ public interface UserService {
     Role saveRole(Role role);
 
     void addRoleToUser(String username, String roleName);
-    void addCourseToUser(String username, Long courseId);
+    void addClassScheduleToUser(String username, Long classScheduleId);
 
     User getUser(String username);
 
@@ -39,6 +39,7 @@ public interface UserService {
 @Transactional
 @Slf4j
 class UserServiceImpl implements UserService, UserDetailsService {
+    private final ClassScheduleRepository classScheduleRepository;
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -119,13 +120,13 @@ class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void addCourseToUser(String username, Long courseId) {
-        log.info("Adding course {} to user {}", courseId, username);
+    public void addClassScheduleToUser(String username, Long classScheduleId) {
+        log.info("Adding class schedule {} to user {}", classScheduleId, username);
         User user = userRepository.findByUsername(username);
-        Course course = courseRepository.findById(courseId).get();
+        ClassSchedule classSchedule = classScheduleRepository.findById(classScheduleId).get();
         user
-                .getCourses()
-                .add(course);
+                .getClassSchedules()
+                .add(classSchedule);
     }
 
     @Override
@@ -144,6 +145,15 @@ class UserServiceImpl implements UserService, UserDetailsService {
     public List<Course> getUserCourses(String username) {
         log.info("Fetching all courses by user {}", username);
         User user = userRepository.findByUsername(username);
-        return (List<Course>) user.getCourses();
+        List<Long> ids = new ArrayList<>();
+        user
+                .getClassSchedules()
+                .forEach(classSchedule -> ids.add(classSchedule.getId()));
+
+        List<Course> courses = courseRepository.findDistinctByClassSchedulesIn((List<ClassSchedule>) user.getClassSchedules());
+        courses.forEach(course -> course
+                .getClassSchedules()
+                .removeIf(classSchedule -> !ids.contains(classSchedule.getId())));
+        return courses;
     }
 }
