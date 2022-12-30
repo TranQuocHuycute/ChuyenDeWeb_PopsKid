@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Rating from 'react-rating'
 import startActive from '../../../assets/images/startActive.png'
 import starUn from '../../../assets/images/starUn.png'
-import { Link } from 'react-router-dom'
 
 function CommentFrom({ userName, courseId }) {
   const [cmtValues, setCmtValues] = useState('')
@@ -44,13 +43,13 @@ function CommentFrom({ userName, courseId }) {
           ></textarea>
         </div>
         <div>
-          <Link
-            to={`/courseDetails/${42}`}
+          <a
+            href={`http://localhost:3000/courseDetails/${courseId}`}
             onClick={creactComment}
             className="px-3 py-2 mr-5 text-sm text-blue-100 bg-blue-600 rounded"
           >
             Comment
-          </Link>
+          </a>
         </div>
       </div>
     </div>
