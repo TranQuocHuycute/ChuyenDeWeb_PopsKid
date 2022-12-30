@@ -1,21 +1,20 @@
-import React from "react";
-import CoursesSlider from "../../components/Layout/Popper/CoursesSlider";
-import CoursesItem from "../../components/Layout/components/CoursesItem";
+import React, { useState, useEffect } from 'react'
+import CoursesSlider from '../../components/Layout/Popper/CoursesSlider'
+import CoursesItem from '../../components/Layout/components/CoursesItem'
 import LearningCartNB from '../../components/Layout/components/LearningCartNB'
-import SixReasons from "../../components/Layout/components/SixReasons"
+import SixReasons from '../../components/Layout/components/SixReasons'
 import { ParentsComments } from '../../components/Layout/ParentsComments'
 import { CourseSelection } from '../../components/Layout/CourseSelection'
 import axios from 'axios'
 
 function Learn() {
-
-  const [courses, setFeaturedCourses] = useState([])
-  console.log('featuredCourses', featuredCourses)
+  const [courses, setCourses] = useState([])
+  console.log('courses', courses)
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/courses')
       .then(function (response) {
-        setFeaturedCourses(response.data)
+        setCourses(response.data)
       })
       .catch(function (error) {
         console.log(error)
@@ -27,12 +26,12 @@ function Learn() {
       <CoursesSlider>
         <CoursesItem />
       </CoursesSlider>
-      <LearningCartNB/>
-      <SixReasons/>
+      <LearningCartNB dataCourses={courses} />
+      <SixReasons />
       <CourseSelection />
       <ParentsComments />
     </div>
-  );
+  )
 }
 
-export default Learn;
+export default Learn
