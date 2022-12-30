@@ -24,4 +24,5 @@ public class ClassSchedule {
     private String time;
     private int maximumStudents;
     private Long price;
+    private String urlMeeting;
 }
