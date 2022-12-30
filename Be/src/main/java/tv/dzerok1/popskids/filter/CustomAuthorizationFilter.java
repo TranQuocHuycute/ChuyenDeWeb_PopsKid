@@ -79,7 +79,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 .getServletPath()
                 .equals("/api/course/addtouser/{classScheduleId}/{username}") || request
                 .getServletPath()
-                .equals("/api/user/course/{username}")) {
+                .equals("/api/user/course/{username}") || request
+                .getServletPath()
+                .equals("/api/users/{username}")) {
 
             filterChain.doFilter(request, response);
         } else {
