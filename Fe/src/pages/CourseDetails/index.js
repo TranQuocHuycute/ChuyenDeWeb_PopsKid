@@ -6,7 +6,7 @@ import formatCash from '../../hooks/formatCash'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
-import { Rating } from 'react-simple-star-rating'
+// import { Rating } from 'react-simple-star-rating'
 
 function CourseDetails() {
   const { courseId } = useParams()
