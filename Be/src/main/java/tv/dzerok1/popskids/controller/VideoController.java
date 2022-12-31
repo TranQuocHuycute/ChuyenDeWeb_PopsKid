@@ -61,6 +61,12 @@ public class VideoController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/videos/ep/add")
+    public ResponseEntity<Void> addEpToVideo(@RequestBody Ep ep) {
+        videoService.addEp(ep);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/videos")
     public ResponseEntity<List<Video>> getVideos() {
         List<Video> videos = videoService.getVideos();
