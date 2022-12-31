@@ -17,7 +17,7 @@ function HeaderPopsKidLearn() {
             alt="Logo"
           />
         </div>
-        <Seacrh api = 'http://localhost:8080/api/courses/search/' />
+        <Seacrh api = 'http://localhost:8080/api/courses/search/' to='/courseDetails/' />
         <div className=" hidden md:flex">
           <ProfileButton />
         </div>

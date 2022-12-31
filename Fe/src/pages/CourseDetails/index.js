@@ -4,9 +4,13 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import formatCash from '../../hooks/formatCash'
 import axios from 'axios'
-import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
-// import { Rating } from 'react-simple-star-rating'
+import CommentFrom from '../../components/Layout/CommentForm'
+import Cookies from 'js-cookie'
+import jwtDecode from 'jwt-decode'
+import Rating from 'react-rating'
+import startActive from '../../assets/images/startActive.png'
+import starUn from '../../assets/images/starUn.png'
 
 function CourseDetails() {
   const { courseId } = useParams()
@@ -16,9 +20,17 @@ function CourseDetails() {
   const [user, setUser] = useState([])
   const [teacher, setTeacher] = useState()
   const [rating, setRating] = useState([])
-  // const [star, setStar] = useState(0)
+  const [username, setUsername] = useState()
+  const [scheduleOfUser, setScheduleOfUser] = useState([])
 
   console.log('rating', rating)
+
+  useEffect(() => {
+    if (Cookies.get('authToken') !== undefined) {
+      const json = jwtDecode(Cookies.get('authToken'))
+      setUsername(json)
+    }
+  }, [])
 
   useEffect(() => {
     axios
@@ -26,7 +38,8 @@ function CourseDetails() {
       .then(function (response) {
         setCourseDetails(response.data)
         setRating({
-          data: response.data.ratings,
+          data: response.data.ratings.reverse(),
+          userName: response.data.ratings.map((e) => e.username),
           ratingTotal:
             Math.round(
               (response.data.ratings
@@ -41,7 +54,22 @@ function CourseDetails() {
       .catch(function (error) {
         console.log(error)
       })
-  }, [])
+  }, [username])
+
+  useEffect(() => {
+    if (username !== undefined) {
+      axios
+        .get(`http://localhost:8080/api/user/course/${username.sub}`)
+        .then(function (response) {
+          setScheduleOfUser(
+            response.data.map((e) => e.classSchedules.map((a) => a.id))
+          )
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }, [username])
 
   useEffect(() => {
     if (user.length > 0) {
@@ -55,9 +83,9 @@ function CourseDetails() {
     }
   }, [user])
 
-  const openRegisterCouse = () => {
+  const openRegisterCouse = (scheduleId) => {
     if (Cookies.get('authToken') !== undefined) {
-      navigate('/registerCourse', { state: { courseDetails } })
+      navigate('/registerCourse', { state: { courseDetails, scheduleId } })
     } else navigate({ pathname: '/login' })
   }
 
@@ -284,9 +312,23 @@ function CourseDetails() {
 
                             {/* đăng ký */}
                             <div className="w-full flex justify-center align-center items-center px-2 py-4">
-                              <button className="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full">
-                                <p className="mx-4">Đăng ký</p>
-                              </button>
+                              {scheduleOfUser.length > 0 &&
+                              scheduleOfUser[0].includes(resource.id) ? (
+                                <button
+                                  disabled
+                                  onClick={() => openRegisterCouse(resource.id)}
+                                  className="bg-[#06c31c] text-white border border-[#06afc3]  font-bold py-2 px-3 rounded-full"
+                                >
+                                  <p className="mx-4">Đã đăng ký</p>
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={() => openRegisterCouse(resource.id)}
+                                  className="bg-[#fff] text-[#06afc3] border border-[#06afc3]  font-bold py-2 px-3 rounded-full"
+                                >
+                                  <p className="mx-4">Đăng ký</p>
+                                </button>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -433,55 +475,64 @@ function CourseDetails() {
 
           {/* Rating list_root__kpG6B*/}
           <div className="sm:w-10/12 2xl:w-4/5 py-5 sm:m-auto pb:-[10px]">
-            <h2>
-              <span className="text-[20px] md:text-[24px] font-bold">
+            <h2 className="flex flex-row items-center">
+              <span className="text-[20px] md:text-[24px] font-bold md:mr-6">
                 Đánh giá của phụ huynh
               </span>
-            </h2>
-            <div className="flex-row">
-              <Rating initialValue={1} readonly iconsCount={1} />
-              <span className='font-medium text-lg'>{rating.ratingTotal}/5</span>
-            </div>
+              <Rating
+                readonly
+                initialRating={1}
+                stop={1}
+                fullSymbol={<img src={starUn} className="icon w-16" />}
+              />
 
-            {/* comment */}
-            {/* Tên người đánh giá */}
-            <div>
-              {rating.data.map((rating, index) => {
+              <span className="font-medium text-lg">
+                {rating.ratingTotal}/5
+              </span>
+            </h2>
+
+            {username !== undefined && scheduleOfUser.length > 0 ? (
+              rating.userName.includes(username.sub) === true ? (
+                ''
+              ) : (
+                <CommentFrom userName={username.sub} courseId={courseId} />
+              )
+            ) : (
+              ''
+            )}
+
+            <div className="mt-5">
+              {rating.data.reverse().map((rating, index) => {
                 return (
-                  <div key={index} className=" border-b border-[#f0f0f0] my-5">
+                  <div key={index} className=" border-b border-[#f0f0f0] my-2">
                     {/* Tên */}
                     <div className="flex pb-5 items-center">
                       <span className="w-[48px] h-[48px] block rounded-full overflow-hidden">
-                        <picture>
-                          <source
-                            srcSet={rating.imageUrlWeb}
-                            type="image/webp"
-                          ></source>
-                          <source
-                            srcSet={rating.imageUrl}
-                            type="image/jpeg"
-                          ></source>
-                          <img
-                            title={rating.title}
-                            src={rating.imageUrl}
-                            className="w-[48px] h-[48px]"
-                          ></img>
-                        </picture>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzH6TfTtq91hzmeIvm_4JOdb5y1UWjTlYZdA&usqp=CAU"></img>
                       </span>
                       <div className="pl-4 text-base flex-1">
-                        <span className="block font-bold">{rating.title}</span>
+                        <span className="block font-bold">
+                          {rating.username}
+                        </span>
                         <span className="text-gray-dark"></span>
                       </div>
                     </div>
 
                     {/* số sao */}
                     <div className="flex sm:flex-row flex-col sm:items-start items-start sm:my-4 sm:mb-5">
-                     {rating.numberRating}
+                      <Rating
+                        readonly
+                        initialRating={rating.numberRating}
+                        fullSymbol={<img src={starUn} className="icon w-5" />}
+                        emptySymbol={
+                          <img src={startActive} className="icon w-5" />
+                        }
+                      />
                     </div>
 
                     {/* comment */}
                     <div className="pt-5 pb-5">
-                      <div className="text-base whitespace-pre-wrap sm:text-[20px] text-[20px] xl:text-[24px] 2xl:text-[24px] overflow-hidden mr-2 relative inline">
+                      <div className="text-base overflow-hidden mr-2 relative inline">
                         {rating.comment}
                       </div>
                     </div>
@@ -519,10 +570,7 @@ function CourseDetails() {
                 className="sm:m-10 m-5 my-5 flex justify-start items-center flex-row"
               >
                 <div className="flex justify-start w-32 h-12 ">
-                  <button
-                    onClick={openRegisterCouse}
-                    className="bg-[#02bcc4] rounded-md"
-                  >
+                  <button className="bg-[#02bcc4] rounded-md">
                     <p className="text-white font-bold px-5 sm:px-2 text-[12px] xl:text-[20px] 2xl:text-[20px]">
                       ĐĂNG KÝ
                     </p>
