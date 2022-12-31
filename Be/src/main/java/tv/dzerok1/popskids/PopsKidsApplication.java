@@ -260,6 +260,14 @@ public class PopsKidsApplication {
                                                                 700000L,
                                                                 "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv5-5.html"));
 
+            ClassSchedule classSchedule2 = courseService.createClassSchedule(new ClassSchedule(null,
+                    1,
+                    6,
+                    "Thứ 2, Thứ 6 - 7:00",
+                    8,
+                    700000L,
+                    "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv5-5.html"));
+
             Rating rating = courseService.createRating(new Rating(null,
                                                                   user.getUsername(),
                                                                   5,
@@ -279,6 +287,13 @@ public class PopsKidsApplication {
                                                                         "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/tieng_anh-286b40d22a4d-1656059551172-KyAPqdKG.png?v=0&maxW=160&format=webp",
                                                                         "a",
                                                                         new ArrayList<>()
+                    ));
+            CourseCatalog courseCatalog1 =
+                    courseService.createCourseCatalog(new CourseCatalog(null,
+                            "Tiếng Nhật",
+                            "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/tieng_trung-02132af3cf47-1657873295508-BkStgZ28.png?v=0&format=webp",
+                            "a",
+                            new ArrayList<>()
                     ));
 
             Course course =
@@ -302,6 +317,27 @@ public class PopsKidsApplication {
                                                           new ArrayList<>(),
                                                           new ArrayList<>()));
 
+            Course course1 =
+                    courseService.createCourse(new Course(null,
+                            "Tiếng Nhật Giao Tiếp N5",
+                            "https://vnw-img-cdn.popsww.com/api/v2/containers/file2/cms_thumbnails/tt___ti_ng_nah_m_m_non-c93aaeaf6a90-1664965814874-piefd46p.png?v=0&maxW=480&format=webp",
+                            87500L,
+                            "Khoá học Tiếng Anh Giao Tiếp cho trẻ mầm non từ 4 đến 6 tuổi đang làm quen Tiếng Anh và phụ huynh mong muốn con được rèn luyện phát âm theo chuẩn, giao tiếp phản xạ",
+                            "4 - 5",
+                            "45",
+                            "Bắt đầu sớm khi đủ học viên",
+                            10,
+                            "Tiếng Anh, Tiếng Việt",
+                            2,
+                            "Với kinh nghiệm dạy Tiếng Anh giao tiếp cho các lứa tuổi và các cấp độ",
+                            "Kết thúc khóa học Tiếng Anh Giao Tiếp cho trẻ mầm non, bé sẽ",
+                            "Nội dung học tập và luyện tập các kỹ năng giao tiếng Anh theo các giáo trình Quốc tế tiêu chuẩn, phù hợp lứa tuổi: First Friend",
+                            "Sách PDF cho bé",
+                            "Quý Phụ huynh bố trí chỗ ngồi học thoáng, yên tĩnh và đủ ánh sáng cho trẻ.",
+                            new ArrayList<>(),
+                            new ArrayList<>(),
+                            new ArrayList<>()));
+
             courseService.addCourseToCourseCatalog(courseCatalog.getId(), course.getId());
             courseService.addClassSchedulesToCourse(course.getId(), classSchedule.getId());
             courseService.addClassSchedulesToCourse(course.getId(), classSchedule1.getId());
@@ -309,6 +345,10 @@ public class PopsKidsApplication {
             courseService.addRatingsToCourse(course.getId(), rating1.getId());
             courseService.addRatingsToCourse(course.getId(), rating2.getId());
             courseService.addUsersToCourse(course.getId(), user1.getUsername());
+
+            courseService.addCourseToCourseCatalog(courseCatalog1.getId(), course1.getId());
+            courseService.addClassSchedulesToCourse(course1.getId(), classSchedule2.getId());
+            courseService.addUsersToCourse(course1.getId(), user1.getUsername());
 
 
         };

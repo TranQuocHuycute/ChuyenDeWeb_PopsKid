@@ -1,14 +1,14 @@
-import React ,  {useEffect , useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from '../../components/Layout/DefaultLayout/Banner'
 import Carousel from '../../components/Layout/components/Carousels'
 import LearningCard from '../../components/Layout/components/LearningCard'
+// import * as getVideos from '../../components/Layout/components/'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
 
 function Home() {
-
   const [videos, setVideos] = useState([])
-  console.log('videos', videos);
+  console.log('videos', videos)
 
   useEffect(() => {
     axios
@@ -28,9 +28,9 @@ function Home() {
 
   return (
     <div>
-      <Banner/>
-      <LearningCard/>
-      <Carousel data = {videos}/>
+      <Banner />
+      <LearningCard />
+      <Carousel data={videos} />
     </div>
   )
 }
