@@ -12,3 +12,4 @@ export const seacrh = async (key) => {
     console.log(error)
   }
 }
+

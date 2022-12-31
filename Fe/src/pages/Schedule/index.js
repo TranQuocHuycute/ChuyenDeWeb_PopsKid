@@ -7,7 +7,6 @@ function Schedule() {
 
   const [schedule, setSchedule] = useState([])
 
-  console.log('schedule' , schedule);
 
   useEffect(() => {
     axios
