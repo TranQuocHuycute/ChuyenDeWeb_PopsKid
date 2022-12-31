@@ -7,8 +7,7 @@ import { useDebounce } from '../../../../hooks'
 import axios from 'axios'
 import 'tippy.js/dist/tippy.css'
 
-function Seacrh({ api }) {
-  console.log('api', api)
+function Seacrh({ api , to }) {
   const [searchValue, setSearchValue] = useState('')
   const [seacrhResult, setSearchResult] = useState([])
   // delay 500 r moi call api
@@ -98,7 +97,7 @@ function Seacrh({ api }) {
                 //   </ul>
                 // </div>
                 seacrhResult !== undefined ? (
-                  <SearchValue data={seacrhResult} />
+                  <SearchValue data={seacrhResult} to = {to} />
                 ) : (
                   ''
                 )}

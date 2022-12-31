@@ -255,10 +255,10 @@ public class PopsKidsApplication {
             ClassSchedule classSchedule1 = courseService.createClassSchedule(new ClassSchedule(null,
                                                                 2,
                                                                 8,
-                                                                "Thứ 7, CN - 15:00",
+                                                                "Thứ 2, Thứ 3 - 15:00",
                                                                 8,
                                                                 700000L,
-                                                                "https://www.google.com.vn/"));
+                                                                "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv5-5.html"));
 
             Rating rating = courseService.createRating(new Rating(null,
                                                                   user.getUsername(),

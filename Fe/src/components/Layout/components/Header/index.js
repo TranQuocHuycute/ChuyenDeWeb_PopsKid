@@ -47,7 +47,7 @@ function Header() {
         </div>
 
         {/* <Nav/> */}
-        {imgActive ? <Nav /> : <Seacrh api={'http://localhost:8080/api/search/'}/>}
+        {imgActive ? <Nav /> : <Seacrh api={'http://localhost:8080/api/search/'} to= '/'/>}
 
         {/* Item */}
         <div className=" hidden md:flex">

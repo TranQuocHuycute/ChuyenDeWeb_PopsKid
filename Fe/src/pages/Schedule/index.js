@@ -7,6 +7,8 @@ function Schedule() {
 
   const [schedule, setSchedule] = useState([])
 
+  console.log('schedule' , schedule);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/user/course/${userId}`)
@@ -19,7 +21,7 @@ function Schedule() {
   }, [])
 
   return (
-    schedule.length > 0 && (
+    schedule.length > 0 ? (
       <div className="my-[200px] mx-[100px] ">
         <div className="">
           <h1 className="md:text-4xl font-bold">Lịch học của bạn</h1>
@@ -87,12 +89,18 @@ function Schedule() {
                                       </h3>
                                     </div>
                                     <div className="border-t border-black"></div>
-                                    {/* tối đa học viên */}
+
                                     <div className="border-t border-[#fff] py-4">
                                       <h3 className="text-sm font-bold text-red-500">
                                         {e.note}
                                       </h3>
                                     </div>
+                                    <p className="border-t border-black">
+                                      Đường dẫn vào google meet
+                                    </p>
+                                   
+                                      <a className = "text-blue-600" href={a.urlMeeting}>{a.urlMeeting}</a>
+                                    
                                   </div>
                                 </div>
                               </div>
@@ -107,7 +115,7 @@ function Schedule() {
           })}
         </div>
       </div>
-    )
+    ) : <div className='w-full h-[500px] my-[100px] flex justify-center items-center bg-blue-200'><h1 className=''>Hiện tại bạn chưa đăng kí khóa học nào</h1></div>
   )
 }
 

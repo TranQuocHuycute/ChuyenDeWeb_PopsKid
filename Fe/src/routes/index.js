@@ -29,6 +29,7 @@ import Subject from '../pages/Subject'
 import CourseDetail from '../pages/CourseDetails'
 import RegisterCourse from '../pages/RegisterCourse'
 import Schedule from '../pages/Schedule'
+import MyComponent  from '../pages/MyComponent'
 //public
 const publicRoutes = [
   { path: '/', components: Home },
@@ -97,6 +98,11 @@ const publicRoutes = [
   {
     path: '/courses',
     components: Courses,
+    layout: PopskidLearnLayout,
+  },
+   {
+    path: '/mycomments',
+    components: MyComponent,
     layout: PopskidLearnLayout,
   },
 ]

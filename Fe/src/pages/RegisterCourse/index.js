@@ -11,8 +11,10 @@ function RegisterCourse() {
   const location = useLocation()
   const navigata = useNavigate()
 
-
   const course = location.state.courseDetails
+  const scheduleId = location.state.scheduleId
+
+  console.log('scheduleId' , scheduleId)
 
   const [user, setUser] = useState()
   useEffect(() => {
@@ -29,7 +31,7 @@ function RegisterCourse() {
   function createPost() {
     if (Cookies.get('authToken') !== undefined) {
       axios
-        .post(`${baseURL}/${course.id}/${user.sub}`)
+        .post(`${baseURL}/${scheduleId}/${user.sub}`)
         .then(() => {
           
           navigata({ pathname: '/learn' })
